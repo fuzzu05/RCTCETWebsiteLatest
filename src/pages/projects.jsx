@@ -127,6 +127,9 @@ function Projects() {
           <img
             src={heroImage}
             alt={`Projects ${selectedYear}`}
+            {/* Hero image — load eagerly to avoid blank grey box on page load */}
+            loading="eager"
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover object-[center_70%] scale-105 transition-all duration-700"
             style={{
               maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',

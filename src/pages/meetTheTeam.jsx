@@ -146,13 +146,25 @@ const TeamPage = () => {
                 >
                   <div className="absolute inset-0 bg-black/10 dark:bg-black/40 z-0" />
                   
-                  {/* Full Bleed Image */}
-                  <img
-                    src={member.image || "/placeholder.svg"}
-                    alt={member.name}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0"
-                    loading="lazy"
-                  />
+                  {/* Full Bleed Image — below-fold card: shimmer skeleton until image loads */}
+                  {(() => {
+                    const [loaded, setLoaded] = useState(false);
+                    return (
+                      <>
+                        {/* Animated shimmer skeleton shown while image is loading */}
+                        {!loaded && (
+                          <div className="absolute inset-0 z-0 bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
+                        )}
+                        <img
+                          src={member.image || "/placeholder.svg"}
+                          alt={member.name}
+                          className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 z-0 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+                          loading="lazy"
+                          onLoad={() => setLoaded(true)}
+                        />
+                      </>
+                    );
+                  })()}
                   
                   {/* Deep Bottom Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 z-10 pointer-events-none" />
@@ -207,13 +219,25 @@ const TeamPage = () => {
                 >
                   <div className="absolute inset-0 bg-black/10 dark:bg-black/40 z-0" />
                   
-                  {/* Full Bleed Image */}
-                  <img
-                    src={bod.image || "/placeholder.svg"}
-                    alt={bod.name}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0"
-                  />
+                  {/* Full Bleed Image — below-fold card: shimmer skeleton until image loads */}
+                  {(() => {
+                    const [loaded, setLoaded] = useState(false);
+                    return (
+                      <>
+                        {/* Animated shimmer skeleton shown while image is loading */}
+                        {!loaded && (
+                          <div className="absolute inset-0 z-0 bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
+                        )}
+                        <img
+                          src={bod.image || "/placeholder.svg"}
+                          alt={bod.name}
+                          loading="lazy"
+                          className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 z-0 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+                          onLoad={() => setLoaded(true)}
+                        />
+                      </>
+                    );
+                  })()}
                   
                   {/* Deep Bottom Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 z-10 pointer-events-none" />

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { magazines } from "../data/magazines";
 
 export const Magazine = () => {
@@ -68,20 +69,25 @@ export const Magazine = () => {
             "
           >
             <div className="relative aspect-[3/4] p-5 rounded-t-[2rem] overflow-hidden bg-background">
-              <img
-                src={mag.cover}
-                alt={mag.title}
-                loading="lazy"
-                decoding="async"
-                className="
-                  w-full h-full
-                  object-contain
-                  rounded-[1.5rem]
-                  transition-transform duration-700 ease-out
-                  group-hover:scale-110
-                  drop-shadow-xl
-                "
-              />
+              {/* Library card image: shimmer skeleton until loaded to avoid blank grey placeholder */}
+              {(() => {
+                const [loaded, setLoaded] = useState(false);
+                return (
+                  <>
+                    {!loaded && (
+                      <div className="absolute inset-2 z-0 rounded-[1.5rem] bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
+                    )}
+                    <img
+                      src={mag.cover}
+                      alt={mag.title}
+                      loading="lazy"
+                      decoding="async"
+                      onLoad={() => setLoaded(true)}
+                      className={`w-full h-full object-contain rounded-[1.5rem] transition-all duration-700 ease-out group-hover:scale-110 drop-shadow-xl ${loaded ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                  </>
+                );
+              })()}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
             </div>
 

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { avenuesInfo as allinfo } from "../data/avenues";
 
@@ -72,11 +73,24 @@ export const Avenue = () => {
               <div className="w-full h-[250px] p-4 relative overflow-hidden flex-shrink-0">
                 <div className="w-full h-full bg-black/5 dark:bg-black/40 rounded-[2rem] flex items-center justify-center p-4 relative overflow-hidden shadow-inner">
                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
-                   <img
-                    src={item.img}
-                    alt={item.title}
-                    className="max-h-full max-w-full object-contain relative z-10 transition-transform duration-700 group-hover:scale-110 drop-shadow-2xl"
-                  />
+                   {/* Below-fold card image: shimmer skeleton until loaded to avoid blank grey box */}
+                   {(() => {
+                     const [loaded, setLoaded] = useState(false);
+                     return (
+                       <>
+                         {!loaded && (
+                           <div className="absolute inset-0 z-0 rounded-[2rem] bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
+                         )}
+                         <img
+                           src={item.img}
+                           alt={item.title}
+                           loading="lazy"
+                           onLoad={() => setLoaded(true)}
+                           className={`max-h-full max-w-full object-contain relative z-10 transition-all duration-700 group-hover:scale-110 drop-shadow-2xl ${loaded ? 'opacity-100' : 'opacity-0'}`}
+                         />
+                       </>
+                     );
+                   })()}
                 </div>
               </div>
 
