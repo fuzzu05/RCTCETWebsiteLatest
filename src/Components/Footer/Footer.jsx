@@ -9,7 +9,8 @@ function Footer() {
         {/* Section 1: Logo & Address */}
         {/* Fix: changed h1 to h2 with the same classes as other column headers so all headers baseline-align */}
         <div className="flex flex-col space-y-6">
-          <h2 className="text-lg font-bold text-foreground uppercase tracking-wider">Rotaract Club</h2>
+          {/* Branding fix: updated from "Rotaract Club" to match site-wide "Rotaract Club of TCET" */}
+          <h2 className="text-lg font-bold text-foreground uppercase tracking-wider">Rotaract Club of TCET</h2>
           <p className="text-sm text-muted leading-relaxed">
             <a href="https://www.tcetmumbai.in/" target="_blank" rel="noreferrer" className="text-foreground hover:text-primary transition-colors font-medium">Thakur College of Engineering and Technology</a> <br />
             A Block, Thakur Educational Campus, Thakur Village, <br />
