@@ -9,8 +9,8 @@ function Footer() {
         {/* Section 1: Logo & Address */}
         {/* Fix: changed h1 to h2 with the same classes as other column headers so all headers baseline-align */}
         <div className="flex flex-col space-y-6">
-          {/* Branding fix: updated from "Rotaract Club" to match site-wide "Rotaract Club of TCET" */}
-          <h2 className="text-lg font-bold text-foreground uppercase tracking-wider">Rotaract Club of TCET</h2>
+          {/* Heading — larger font size while keeping column alignment intact */}
+          <h1 className="text-xl md:text-2xl font-bold text-foreground uppercase tracking-wider">Rotaract Club</h1>
           <p className="text-sm text-muted leading-relaxed">
             <a href="https://www.tcetmumbai.in/" target="_blank" rel="noreferrer" className="text-foreground hover:text-primary transition-colors font-medium">Thakur College of Engineering and Technology</a> <br />
             A Block, Thakur Educational Campus, Thakur Village, <br />
@@ -76,17 +76,19 @@ function Footer() {
         </div>
       </div>
 
-      {/* Centered Logos */}
-      <div className="relative z-10 flex justify-center items-center gap-8 mt-12 mb-4">
+      {/* Centered Logos — RC TCET logo left, vertical divider, TCET logo right (matches brand reference) */}
+      <div className="relative z-10 flex justify-center items-center gap-10 mt-12 mb-4">
         <img
-          src="https://res.cloudinary.com/dtc2xaeaf/image/upload/f_auto,q_auto:eco,w_100,c_limit/v1757125056/logo_pdqctw_ztwsvl.png"
+          src="https://res.cloudinary.com/dtc2xaeaf/image/upload/f_auto,q_auto:eco,w_200,c_limit/v1757125056/logo_pdqctw_ztwsvl.png"
           alt="RCTCET Logo"
-          className="h-20 w-20 md:h-26 md:w-26 object-contain drop-shadow-md hover:scale-110 transition-transform"
+          className="h-28 w-28 md:h-32 md:w-32 object-contain drop-shadow-md hover:scale-110 transition-transform"
         />
+        {/* Vertical divider between the two logos */}
+        <div className="h-20 w-px bg-primary/20" />
         <img
           src="https://res.cloudinary.com/aaqzfmzc/image/upload/v1787231323/TCET_new_logo.png"
           alt="TCET Logo"
-          className="h-20 w-20 md:h-26 md:w-26 object-contain drop-shadow-md hover:scale-110 transition-transform"
+          className="h-28 w-28 md:h-32 md:w-32 object-contain drop-shadow-md hover:scale-110 transition-transform"
         />
       </div>
 
