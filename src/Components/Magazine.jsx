@@ -1,8 +1,10 @@
 import { magazines } from "../data/magazines";
 
 export const Magazine = () => {
-  // Duplicate array multiple times for a seamless infinite scroll on wide screens
-  const scrollItems = [...magazines, ...magazines, ...magazines, ...magazines, ...magazines, ...magazines];
+  // Duplicate array exactly twice for a seamless infinite scroll:
+  // the animation translates to -50% (one full copy width), so 2 copies are sufficient.
+  // Using more copies caused each of the 4 items to appear many times (duplicated list bug).
+  const scrollItems = [...magazines, ...magazines];
 
   return (
     <section className="py-24 bg-card dark:bg-[#0c111c] transition-colors duration-500 overflow-hidden relative">
