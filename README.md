@@ -25,7 +25,7 @@ The official website for the Rotaract Club of Thakur College of Engineering and 
 
 ### Demo
 
-Live Website: [https://www.rc.tcetmumbai.in](https://www.rc.tcetmumbai.in)
+Live Website: https://rctcet-website-2026-27.vercel.app
 
 ---
 
