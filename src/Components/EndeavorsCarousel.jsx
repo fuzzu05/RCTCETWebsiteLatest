@@ -22,7 +22,10 @@ const EndeavorsCarousel = () => {
   }, [isHovered, slides.length]);
 
   return (
-    <div className="bg-card w-full flex flex-col items-center justify-center pt-24 pb-0 relative overflow-hidden">
+    <div className="bg-background dark:bg-card w-full flex flex-col items-center justify-center pt-24 pb-0 relative overflow-hidden">
+
+      {/* Ambient Top Glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
 
       {/* Soft Organic SVG Divider at Top */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">

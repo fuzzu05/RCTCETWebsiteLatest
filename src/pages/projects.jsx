@@ -119,7 +119,11 @@ function Projects() {
   }, [activeTab]);
 
   return (
-    <div className="scroll-smooth bg-card dark:bg-card min-h-screen">
+    <div className="scroll-smooth bg-background dark:bg-card min-h-screen relative overflow-hidden">
+      {/* Ambient Glows */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute bottom-1/3 left-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none" />
+
       <SEO title="Our Projects" description="Explore our latest endeavors and community service projects." />
       {/* HERO — UPDATED TO CHEF'S KISS AESTHETIC */}
       <div className="flex md:min-h-[70vh] justify-center items-center sm:p-8 relative">
@@ -370,7 +374,7 @@ function SliderSection({ section, index }) {
       </h2>
 
       <div className="relative max-w-6xl mx-auto group perspective-1000">
-        <div className="bg-white/40 dark:bg-black/20 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-3xl shadow-2xl shadow-primary/5 p-4 sm:p-8 transition-transform duration-500 hover:-translate-y-2">
+        <div className="bg-white/80 dark:bg-black/20 backdrop-blur-md border border-primary/10 dark:border-white/10 rounded-3xl shadow-sm p-4 sm:p-8 transition-transform duration-500 hover:-translate-y-2">
 
           {/* Arrows */}
           {total > 1 && (

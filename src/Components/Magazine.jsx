@@ -5,7 +5,7 @@ export const Magazine = () => {
   const scrollItems = [...magazines, ...magazines, ...magazines, ...magazines, ...magazines, ...magazines];
 
   return (
-    <section className="py-24 bg-card dark:bg-[#0c111c] transition-colors duration-500 overflow-hidden relative">
+    <section className="py-24 bg-background dark:bg-[#0c111c] transition-colors duration-500 overflow-hidden relative">
       
       {/* Soft Organic SVG Divider at Top */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-10">
@@ -37,8 +37,9 @@ export const Magazine = () => {
         `}
       </style>
 
-      {/* Decorative background grid/mesh */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none z-0" />
+      {/* Decorative background ambient glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none z-0" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none z-0" />
 
       <div className="relative z-10 text-center mb-16 px-6 pt-10">
         <h1 className="text-4xl md:text-5xl lg:text-5xl leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tighter drop-shadow-sm select-none uppercase">
@@ -56,16 +57,17 @@ export const Magazine = () => {
             className="
               group
               w-[280px] sm:w-[320px] shrink-0
-              bg-background
+              bg-white/80 dark:bg-card/80
+              backdrop-blur-md
               rounded-[2rem]
-              shadow-lg shadow-black/5 dark:shadow-black/40
-              hover:shadow-2xl hover:shadow-primary/20
+              shadow-sm shadow-black/5 dark:shadow-black/40
+              hover:shadow-card-light-hover hover:shadow-primary/20
               hover:-translate-y-4 hover:rotate-2
               transition-all duration-500 ease-out
-              border border-black/5 dark:border-white/5
+              border border-primary/10 dark:border-white/5
             "
           >
-            <div className="relative aspect-[3/4] p-5 rounded-t-[2rem] overflow-hidden bg-background">
+            <div className="relative aspect-[3/4] p-5 rounded-t-[2rem] overflow-hidden bg-primary/5 dark:bg-card/40">
               <img
                 src={mag.cover}
                 alt={mag.title}

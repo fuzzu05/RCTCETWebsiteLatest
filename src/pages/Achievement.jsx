@@ -31,7 +31,11 @@ export const Achievement = () => {
   }, []);
 
   return (
-    <section className="bg-card dark:bg-card text-foreground transition-colors duration-300 relative overflow-hidden">
+    <section className="bg-background dark:bg-card text-foreground transition-colors duration-300 relative overflow-hidden">
+      {/* Ambient Glows */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none" />
+
       <SEO 
         title="Our Legacy & Achievements" 
         description="Discover the legacy, awards, and milestones achieved by the Rotaract Club of TCET (R.I.D 3141). See our outstanding projects, best club ranks, and individual rotaractor achievements." 

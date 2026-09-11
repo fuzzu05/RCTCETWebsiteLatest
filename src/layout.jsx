@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-card dark:bg-[#1a1410] relative">
+    <div className="min-h-screen flex flex-col bg-background dark:bg-[#1a1410] relative">
       {/* Scroll-driven ambient Rotaract glow (Light Mode only, hidden in Dark Mode) */}
       <div
         id="rotaract-ambient-glow"
