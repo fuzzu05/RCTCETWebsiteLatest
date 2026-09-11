@@ -10,7 +10,7 @@ const Anantya = () => {
           <div className="relative z-10 flex flex-col md:flex-row h-full p-6 lg:px-24 justify-center items-center gap-12 max-w-7xl mx-auto">
 
             {/* Text Side - Glass Card */}
-            <div className="flex-grow md:w-1/2 p-8 md:p-10 rounded-3xl bg-white/60 dark:bg-black/20 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm transition-transform hover:-translate-y-1 duration-500 relative overflow-hidden group">
+            <div className="flex-grow md:w-1/2 p-8 md:p-10 rounded-3xl bg-white/70 dark:bg-black/20 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm transition-transform hover:-translate-y-1 duration-500 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-secondary transform -translate-x-1 group-hover:translate-x-0 transition-transform duration-500" />
               <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.2rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tighter drop-shadow-sm select-none uppercase mb-6 xl:whitespace-nowrap">ROTARACT CLUB OF TCET</h2>
               <p className="text-foreground text-lg leading-relaxed mb-6 font-medium">

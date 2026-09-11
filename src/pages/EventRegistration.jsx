@@ -190,7 +190,7 @@ const EventRegistration = () => {
       >
         {/* ── Left: Event Details ── */}
         <div className="md:col-span-2">
-          <div className="sticky top-24 bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-3xl overflow-hidden shadow-sm border border-stone-200/50 dark:border-white/10">
+          <div className="sticky top-24 bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-3xl overflow-hidden shadow-sm border border-stone-200/60 dark:border-white/10">
             <img src={eventData.eventImage} alt={eventData.eventName} className="w-full h-52 object-cover" />
             <div className="p-6 flex flex-col gap-3">
               <span className="inline-block bg-primary/10 text-primary px-3 py-1 border border-primary/20 rounded-full text-xs font-bold uppercase tracking-wider w-fit">
@@ -220,7 +220,7 @@ const EventRegistration = () => {
         </div>
 
         {/* ── Right: Form ── */}
-        <div className="md:col-span-3 bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200/50 dark:border-white/10">
+        <div className="md:col-span-3 bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200/60 dark:border-white/10">
           <h3 className="text-lg font-black text-foreground mb-6 border-b border-white/10 pb-4 uppercase tracking-wider">Participant Details</h3>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">

@@ -251,7 +251,7 @@ const Projectachievement = ({ selectedYear }) => {
                   variants={fadeUp}
                   initial="hidden"
                   animate="visible"
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 py-3.5 px-5 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-md border border-stone-200/50 dark:border-white/5 shadow-sm hover:border-primary/30 hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-250 group"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 py-3.5 px-5 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-md border border-stone-200/60 dark:border-white/5 shadow-sm hover:border-primary/30 hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-250 group"
                 >
                   <div className="flex items-center gap-3 sm:w-2/5">
                     <span className="w-1 h-5 rounded-full bg-primary opacity-40 group-hover:opacity-100 transition-opacity flex-shrink-0" />

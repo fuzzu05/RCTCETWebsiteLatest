@@ -432,7 +432,7 @@ const RegistrationForm = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-4xl bg-white/70 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[2.5rem] shadow-sm dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-stone-200/50 dark:border-white/10 relative z-10"
+        className="w-full max-w-4xl bg-white/70 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[2.5rem] shadow-sm dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-stone-200/60 dark:border-white/10 relative z-10"
       >
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-3 uppercase tracking-tighter drop-shadow-sm">

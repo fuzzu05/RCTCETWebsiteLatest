@@ -45,7 +45,7 @@ export const Magazine = () => {
             className="
               group
               w-[280px] sm:w-[320px] shrink-0
-              bg-white/60 dark:bg-card/80
+              bg-white/70 dark:bg-card/80
               backdrop-blur-md
               rounded-[2rem]
               shadow-sm dark:shadow-black/40

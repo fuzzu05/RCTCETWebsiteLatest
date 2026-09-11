@@ -2,16 +2,16 @@ import React from "react";
 
 /**
  * MeshBackground — Pure CSS Ambient Mesh Background
- * High-performance, zero WebGL/canvas dependencies, non-distracting warmth
- * 
- * Orbs:
- * - Orb 1 (Top Left): Soft Oat/Beige warmth (#F7E7D7)
- * - Orb 2 (Center Right): Subtle Rotaract Warm Orange (#F37021 / 10%)
- * - Orb 3 (Bottom Left): Subtle Rotaract Cranberry Red (#D71921 / 8%)
- * 
- * Overlay:
- * - SVG grain/noise overlay (opacity 0.025 mix-blend-overlay)
- * - Fully isolated from Dark Mode (.dark:hidden)
+ * Lightweight, zero WebGL/canvas dependencies, warm and subtle aesthetic.
+ *
+ * Requirements:
+ * - Base container: #FAF7F2 (Warm Beige)
+ * - 3 fixed, low-opacity ambient floating blur circles:
+ *   - Top Left: w-[600px] h-[600px] bg-[#F7E7D7] rounded-full blur-[100px] opacity-70
+ *   - Center Right: w-[500px] h-[500px] bg-[#F37021]/10 rounded-full blur-[120px] opacity-50
+ *   - Bottom Left: w-[450px] h-[450px] bg-[#D71921]/08 rounded-full blur-[110px] opacity-40
+ * - Light SVG noise grain overlay (mix-blend-overlay opacity-[0.025])
+ * - Preserves dark mode compatibility (dark:bg-[#1a1410] / dark:hidden for light orbs)
  */
 const MeshBackground = () => {
   return (
@@ -19,26 +19,26 @@ const MeshBackground = () => {
       className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-[#FAF7F2] dark:bg-[#1a1410] select-none"
       aria-hidden="true"
     >
-      {/* 1. Pure CSS Animated Floating Orbs (Light Mode only) */}
+      {/* 3 fixed, low-opacity ambient floating blur circles (Light mode only) */}
       <div className="absolute inset-0 w-full h-full dark:hidden">
-        {/* Orb 1 (Top Left): Soft Oat/Beige warmth */}
+        {/* Top Left: w-[600px] h-[600px] bg-[#F7E7D7] rounded-full blur-[100px] opacity-70 */}
         <div
           className="absolute -top-[100px] -left-[100px] w-[600px] h-[600px] bg-[#F7E7D7] rounded-full blur-[100px] opacity-70 animate-pulse transform-gpu"
           style={{ animationDuration: "8s" }}
         />
 
-        {/* Orb 2 (Center Right): Subtle Rotaract Warm Orange */}
+        {/* Center Right: w-[500px] h-[500px] bg-[#F37021]/10 rounded-full blur-[120px] opacity-50 */}
         <div
           className="absolute top-[35%] -right-[100px] w-[500px] h-[500px] bg-[#F37021]/10 rounded-full blur-[120px] opacity-50 transform-gpu"
         />
 
-        {/* Orb 3 (Bottom Left): Subtle Rotaract Cranberry Red */}
+        {/* Bottom Left: w-[450px] h-[450px] bg-[#D71921]/08 rounded-full blur-[110px] opacity-40 */}
         <div
           className="absolute -bottom-[80px] left-[5%] w-[450px] h-[450px] bg-[#D71921]/[0.08] rounded-full blur-[110px] opacity-40 transform-gpu"
         />
       </div>
 
-      {/* 2. Light SVG Grain/Noise Overlay */}
+      {/* Light SVG noise grain overlay (mix-blend-overlay opacity-[0.025]) */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.025] dark:opacity-0 mix-blend-overlay"
         style={{

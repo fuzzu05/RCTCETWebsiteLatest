@@ -13,7 +13,7 @@ const FloatingCard = ({ obj, index, delay }) => (
     <motion.div
       animate={{ y: [0, -10, 0] }}
       transition={{ repeat: Infinity, duration: 4 + (index % 3), ease: "easeInOut", delay: delay }}
-      className="group relative bg-white/60 dark:bg-black/30 backdrop-blur-md border border-stone-200/60 dark:border-white/10 rounded-[2.5rem] p-8 lg:p-10 hover:border-primary/60 hover:bg-white/80 dark:hover:bg-black/40 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md z-30"
+      className="group relative bg-white/70 dark:bg-black/30 backdrop-blur-md border border-stone-200/60 dark:border-white/10 rounded-[2.5rem] p-8 lg:p-10 hover:border-primary/60 hover:bg-white/80 dark:hover:bg-black/40 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md z-30"
     >
       {/* Giant Background Number */}
       <div className="absolute -bottom-8 -right-4 text-[10rem] md:text-[12rem] font-black text-black/5 dark:text-white/5 transition-colors duration-500 select-none leading-none pointer-events-none">

@@ -92,7 +92,7 @@ const UpcomingEvents = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-stone-200/50 dark:border-white/10 flex flex-col group"
+                className="bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-stone-200/60 dark:border-white/10 flex flex-col group"
               >
                 <div className="overflow-hidden relative">
                   <img

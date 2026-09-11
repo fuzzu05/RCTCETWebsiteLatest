@@ -368,7 +368,7 @@ function SliderSection({ section, index }) {
       </h2>
 
       <div className="relative max-w-6xl mx-auto group perspective-1000">
-        <div className="bg-white/70 dark:bg-black/20 backdrop-blur-md border border-stone-200/50 dark:border-white/10 rounded-3xl shadow-sm p-4 sm:p-8 transition-transform duration-500 hover:-translate-y-1">
+        <div className="bg-white/70 dark:bg-black/20 backdrop-blur-md border border-stone-200/60 dark:border-white/10 rounded-3xl shadow-sm p-4 sm:p-8 transition-transform duration-500 hover:-translate-y-1">
 
           {/* Arrows */}
           {total > 1 && (

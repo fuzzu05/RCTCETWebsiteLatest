@@ -52,7 +52,7 @@ export default function SpotlightCard({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-[2rem] border border-stone-200/80 dark:border-white/10 bg-white/70 dark:bg-black/20 backdrop-blur-xl shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
+      className={`relative overflow-hidden rounded-[2rem] border border-stone-200/60 dark:border-white/10 bg-white/70 dark:bg-black/20 backdrop-blur-xl shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
       {...props}
     >
       {/* Dynamic Mouse Spotlight Glow */}

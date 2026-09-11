@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import { Outlet } from 'react-router-dom';
-import MeshBackground from './Components/ReactBits/MeshBackground';
+import MeshBackground from './Components/Layout/MeshBackground';
 
 const Layout = () => {
   return (
