@@ -30,64 +30,85 @@ export function setupLenisGsapTicker(lenis) {
 
 /**
  * Initializes Rotaract light-mode scroll animations:
- * - Ambient scroll-driven gradient shifts (Cranberry Red -> Warm Orange -> Rotary Gold)
- * - Smooth entrance animations for cards & content sections
- * - Scoped exclusively to Light Mode (disabled/hidden in Dark Mode)
+ * - Rotaract Palette: Cranberry Red (#D71921), Warm Orange (#F37021), Yellow (#FFC72C), Warm Beige (#FAF7F2)
+ * - Ambient scroll-driven gradient shifts
+ * - Subtle entrance animations (fade-in, slide-up) for light-mode sections & cards
+ * - Uses gsap.matchMedia & theme checks to strictly isolate light mode and preserve dark mode
  */
 export function initRotaractLightAnimations(theme) {
-  // If in dark mode, do not apply light mode animations
-  if (theme === 'dark') {
+  // Strict Isolation: If dark mode or user prefers reduced motion, skip animations
+  if (theme === 'dark' || document.documentElement.classList.contains('dark')) {
     return () => {};
   }
 
-  const ctx = gsap.context(() => {
-    // 1. Ambient Background Gradient Shift on scroll (Light Mode only)
-    const ambientGlow = document.querySelector('#rotaract-ambient-glow');
-    if (ambientGlow) {
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1.2,
-        },
-      })
-      .to(ambientGlow, {
-        background: 'radial-gradient(circle at 80% 20%, rgba(215, 25, 33, 0.07) 0%, rgba(243, 112, 33, 0.04) 40%, transparent 70%)',
-        ease: 'none',
-      })
-      .to(ambientGlow, {
-        background: 'radial-gradient(circle at 20% 50%, rgba(243, 112, 33, 0.08) 0%, rgba(255, 199, 44, 0.05) 50%, transparent 75%)',
-        ease: 'none',
-      })
-      .to(ambientGlow, {
-        background: 'radial-gradient(circle at 70% 80%, rgba(255, 199, 44, 0.08) 0%, rgba(215, 25, 33, 0.05) 45%, transparent 70%)',
-        ease: 'none',
+  const mm = gsap.matchMedia();
+
+  mm.add(
+    {
+      isNotReducedMotion: '(prefers-reduced-motion: no-preference)',
+    },
+    () => {
+      // 1. Scroll-driven ambient background gradient shift (Light Mode only)
+      const ambientGlow = document.querySelector('#rotaract-ambient-glow');
+      if (ambientGlow) {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: document.body,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 1.2,
+            },
+          })
+          .to(ambientGlow, {
+            background:
+              'radial-gradient(circle at 80% 20%, rgba(215, 25, 33, 0.08) 0%, rgba(243, 112, 33, 0.05) 40%, rgba(250, 247, 242, 0) 70%)',
+            ease: 'none',
+          })
+          .to(ambientGlow, {
+            background:
+              'radial-gradient(circle at 20% 50%, rgba(243, 112, 33, 0.09) 0%, rgba(255, 199, 44, 0.06) 50%, rgba(250, 247, 242, 0) 75%)',
+            ease: 'none',
+          })
+          .to(ambientGlow, {
+            background:
+              'radial-gradient(circle at 75% 85%, rgba(255, 199, 44, 0.09) 0%, rgba(215, 25, 33, 0.06) 45%, rgba(250, 247, 242, 0) 70%)',
+            ease: 'none',
+          });
+      }
+
+      // 2. Entrance animations (fade-in + slide-up) for light mode sections and cards
+      const revealElements = document.querySelectorAll(
+        '.rotaract-fade-up, [data-rotaract-reveal], .group.rounded-\\[2rem\\], .group.rounded-\\[2\\.5rem\\]'
+      );
+
+      revealElements.forEach((el) => {
+        gsap.fromTo(
+          el,
+          {
+            opacity: 0,
+            y: 28,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       });
     }
+  );
 
-    // 2. Subtle entrance animations for light mode sections & cards
-    const revealCards = document.querySelectorAll('.rotaract-fade-up, [data-rotaract-reveal]');
-    revealCards.forEach((card) => {
-      gsap.fromTo(
-        card,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 90%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    });
-  });
-
-  return () => ctx.revert();
+  return () => {
+    mm.revert();
+  };
 }
 
 export { gsap, ScrollTrigger };
+
