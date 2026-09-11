@@ -35,6 +35,7 @@ const wordVariants = {
 export default function BlurText({
   text = "",
   className = "",
+  textClassName = "",
   delay = 0.06,
   duration = 0.55,
   once = true,
@@ -66,7 +67,7 @@ export default function BlurText({
           }}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="inline-block"
+          className={`inline-block ${textClassName}`}
         >
           {word}
         </motion.span>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import BlurText from "./ReactBits/BlurText";
 
 const BG_DESKTOP = "f_auto,q_auto:low,w_1400,c_fill,g_auto";
 const BG_MOBILE = "f_auto,q_auto:low,w_600,c_fill,g_auto";
@@ -60,15 +61,25 @@ export default function RotaractClubLayout() {
           alt="Rotaract Club Logo"
           className="h-28 w-28 md:h-40 md:w-40 mb-4 md:mb-6 drop-shadow-2xl"
         />
-        <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-[12vw] sm:text-6xl md:text-[5.5rem] lg:text-[6rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 drop-shadow-[0_0_25px_rgba(0,0,0,0.8)] uppercase leading-[1.05] tracking-tighter select-none"
+        <h1
+          className="text-[12vw] sm:text-6xl md:text-[5.5rem] lg:text-[6rem] font-black uppercase leading-[1.05] tracking-tighter select-none drop-shadow-[0_0_25px_rgba(0,0,0,0.8)]"
         >
-          <span className="whitespace-nowrap">ROTARACT CLUB</span> <br />
-          <span className="whitespace-nowrap">OF TCET</span>
-        </motion.h1>
+          <BlurText
+            text="ROTARACT CLUB"
+            className="justify-center whitespace-nowrap"
+            textClassName="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
+            delay={0.08}
+            duration={0.65}
+          />
+          <br />
+          <BlurText
+            text="OF TCET"
+            className="justify-center whitespace-nowrap"
+            textClassName="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
+            delay={0.08}
+            duration={0.65}
+          />
+        </h1>
       </div>
 
       {/* Top Right: Event Name */}
