@@ -44,25 +44,25 @@ export default function RotaractClubLayout() {
           transition={{ duration: 1 }}
           src={bgUrl}
           alt={imagesData[bgIndex].title}
-          className="absolute inset-0 w-full h-full object-cover z-0 contrast-[1.05] brightness-[0.95] saturate-[1.1]"
+          className="absolute inset-0 w-full h-full object-cover z-0 contrast-[1.02] saturate-[1.05] dark:brightness-[0.95]"
         />
       </AnimatePresence>
 
       {/* ════════════════════════════════════════════════════════════════
-          Dynamic Color-Graded Consistency & Contrast Overlay System
+          Refined Light Mode Overlay System (Dialed-Back & Vibrant)
           ════════════════════════════════════════════════════════════════ */}
       <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-        {/* 1. Base Contrast Layer: ensures centered hero typography pops */}
-        <div className="absolute inset-0 bg-black/35 dark:bg-black/50" />
+        {/* 1. Subtle Base Dimmer: softened in light mode to keep photos bright */}
+        <div className="absolute inset-0 bg-black/15 dark:bg-black/45" />
 
-        {/* 2. Top Contrast Vignette: keeps top navbar and event label crisp */}
-        <div className="absolute inset-x-0 top-0 h-36 md:h-48 bg-gradient-to-b from-black/60 via-black/25 to-transparent" />
+        {/* 2. Soft Top Vignette: light gradient behind navbar */}
+        <div className="absolute inset-x-0 top-0 h-28 md:h-36 bg-gradient-to-b from-black/25 via-black/10 to-transparent dark:from-black/50 dark:via-black/20" />
 
-        {/* 3. Color Grade Layer: warm Rotaract Cranberry (#D71921) & Orange (#F37021) overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#D71921]/10 via-[#FFC72C]/5 to-[#F37021]/10 mix-blend-overlay dark:opacity-0 transition-opacity duration-500" />
+        {/* 3. Subtle Warm Rotaract Tint */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#D71921]/5 via-[#FFC72C]/5 to-[#F37021]/5 mix-blend-overlay dark:opacity-0 transition-opacity duration-500" />
 
-        {/* 4. Primary Light Gradient: smooth fade at the bottom into warm beige (#FAF7F2) */}
-        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-64 md:h-80 bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/60 to-transparent dark:opacity-0 transition-opacity duration-500" />
+        {/* 4. Soft Bottom Fade into Warm Beige (#FAF7F2) */}
+        <div className="absolute inset-x-0 bottom-0 h-36 sm:h-48 md:h-60 bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/30 to-transparent dark:opacity-0 transition-opacity duration-500" />
       </div>
 
       {/* Center Content: Logo and Title */}
@@ -73,15 +73,15 @@ export default function RotaractClubLayout() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           src="https://res.cloudinary.com/dtc2xaeaf/image/upload/f_auto,q_auto:eco,w_400/v1756746594/logo_pdqctw.svg"
           alt="Rotaract Club Logo"
-          className="h-28 w-28 md:h-40 md:w-40 mb-4 md:mb-6 drop-shadow-2xl"
+          className="h-28 w-28 md:h-40 md:w-40 mb-4 md:mb-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
         />
         <h1
-          className="text-[12vw] sm:text-6xl md:text-[5.5rem] lg:text-[6rem] font-black uppercase leading-[1.05] tracking-tighter select-none drop-shadow-[0_0_25px_rgba(0,0,0,0.8)]"
+          className="text-[12vw] sm:text-6xl md:text-[5.5rem] lg:text-[6rem] font-black uppercase leading-[1.05] tracking-tighter select-none drop-shadow-[0_4px_16px_rgba(0,0,0,0.65)]"
         >
           <BlurText
             text="ROTARACT CLUB"
             className="justify-center whitespace-nowrap"
-            textClassName="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
+            textClassName="text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
             delay={0.08}
             duration={0.65}
           />
@@ -89,7 +89,7 @@ export default function RotaractClubLayout() {
           <BlurText
             text="OF TCET"
             className="justify-center whitespace-nowrap"
-            textClassName="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
+            textClassName="text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
             delay={0.08}
             duration={0.65}
           />
@@ -107,7 +107,7 @@ export default function RotaractClubLayout() {
             transition={{ duration: 0.5 }}
             className="px-4 py-2"
           >
-            <h2 className="text-white text-xl md:text-xl font-bold tracking-wider drop-shadow-lg">
+            <h2 className="text-white text-xl md:text-xl font-bold tracking-wider drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               {imagesData[bgIndex].title}
             </h2>
           </motion.div>
