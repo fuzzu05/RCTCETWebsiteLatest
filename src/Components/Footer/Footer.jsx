@@ -92,6 +92,7 @@ function Footer() {
 
       {/* Massive Footer Text */}
       <div className="relative w-full mt-16 pt-8 border-t border-primary/20 flex justify-center items-end overflow-hidden z-10 px-4">
+        <div className="divider-rotaract w-full mb-2 hidden html:not(.dark) block" />
         <h1 className="text-[18vw] leading-[0.75] font-black text-primary/25 dark:text-primary/5 select-none uppercase tracking-tighter w-full text-center">
           RC TCET
         </h1>

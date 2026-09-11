@@ -4,27 +4,41 @@
 
 @layer base {
   :root {
-    /* Rotaract Theme Light Mode (RGB values for Tailwind opacity support) */
-    --background: 250 246 240; /* Warm Beige / Linen #FAF6F0 */
-    --card: 255 255 255;       /* Crisp Pearl White #FFFFFF */
-    --foreground: 28 25 23;    /* Deep Charcoal Espresso #1C1917 */
-    --muted: 120 113 108;      /* Warm Earth Stone #78716C */
-    
-    --primary: 225 29 72;       /* Rotaract Cranberry / Rose Red #E11D48 */
-    --primary-hover: 190 18 60; /* Deep Crimson #BE123C */
-    --primary-light: 255 241 242; /* Soft Rose Blush #FFF1F2 */
-    --secondary: 234 88 12;     /* Rotaract Tangerine / Orange #EA580C */
-    --accent-yellow: 245 158 11; /* Rotary Gold / Yellow #F59E0B */
-    --accent-beige: 245 235 224; /* Warm Beige Accent #F5EBE0 */
+    /* ═══════════════════════════════════════════════════════
+       Rotaract Light Mode Design System
+       Anti-Slop Palette — Intentional, Warm, Accessible
+       ═══════════════════════════════════════════════════════ */
+
+    /* Surfaces */
+    --background: 250 247 242;  /* Warm Beige #FAF7F2 */
+    --card:       255 255 255;  /* Pure Pearl White */
+    --card-warm:  253 249 244;  /* Warm Off-White card variant #FDF9F4 */
+
+    /* Typography */
+    --foreground: 31 26 28;     /* Dark Charcoal #1F1A1C — WCAG AAA on beige */
+    --muted:      107 100 95;   /* Warm Stone (not flat gray) #6B645F */
+
+    /* Rotaract Brand Palette */
+    --primary:        215 25 33;   /* Cranberry Red #D71921 */
+    --primary-hover:  180 15 22;   /* Deep Crimson #B40F16 */
+    --primary-light:  255 238 239; /* Blush Tint #FFEEF */
+    --secondary:      243 112 33;  /* Warm Orange #F37021 */
+    --accent-yellow:  255 199 44;  /* Rotaract Gold #FFC72C */
+    --accent-beige:   245 235 224; /* Warm Beige Accent #F5EBE0 */
+
+    /* Interactive */
+    --ring-color:     215 25 33;   /* Focus ring = Cranberry Red */
+    --shadow-warm:    rgba(215, 25, 33, 0.12); /* Warm primary shadow tint */
   }
-  
+
   .dark {
-    /* Meraki Theme Dark Mode - Preserved 100% untouched */
+    /* ═══════════════════════════════════════════════════════
+       Meraki Dark Mode — 100% UNTOUCHED. Do not modify.
+       ═══════════════════════════════════════════════════════ */
     --background: 15 23 42;
     --card: 30 41 59;
     --foreground: 248 250 252;
     --muted: 148 163 184;
-    
     --primary: 110 159 159;
     --primary-hover: 129 185 181;
     --primary-light: 30 41 59;
@@ -83,4 +97,150 @@ html:not(.lenis) {
   background: rgb(var(--primary));
   width: 14px;
   height: 14px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TASTE-SKILL LIGHT MODE POLISH — Anti-Slop Design System
+   Strictly scoped to html:not(.dark) — dark mode 100% untouched.
+   ════════════════════════════════════════════════════════════════ */
+
+/* 1. TYPOGRAPHY RHYTHM
+   Optical line-heights, fluid letter-spacing, warm charcoal hierarchy */
+html:not(.dark) body {
+  color: rgb(31 26 28);                /* Dark Charcoal #1F1A1C */
+  background-color: rgb(250 247 242);  /* Warm Beige #FAF7F2 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3 {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: rgb(31 26 28);
+}
+
+html:not(.dark) h4,
+html:not(.dark) h5,
+html:not(.dark) h6 {
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+html:not(.dark) p {
+  line-height: 1.75;
+  color: rgb(107 100 95); /* Warm Stone muted */
+}
+
+/* 2. TACTILE FOCUS RINGS — Cranberry Red, no default browser outline */
+html:not(.dark) a:focus-visible,
+html:not(.dark) button:focus-visible,
+html:not(.dark) input:focus-visible,
+html:not(.dark) select:focus-visible,
+html:not(.dark) textarea:focus-visible {
+  outline: 2.5px solid rgb(215 25 33);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* 3. BUTTON INTERACTIVE POLISH — Warm tactile hover states */
+html:not(.dark) .btn-rotaract,
+html:not(.dark) a.btn-rotaract {
+  background: linear-gradient(135deg, #D71921 0%, #F37021 100%);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(215, 25, 33, 0.25), 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  letter-spacing: 0.01em;
+}
+
+html:not(.dark) .btn-rotaract:hover,
+html:not(.dark) a.btn-rotaract:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(215, 25, 33, 0.35), 0 2px 6px rgba(0,0,0,0.10);
+}
+
+html:not(.dark) .btn-rotaract:active,
+html:not(.dark) a.btn-rotaract:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(215, 25, 33, 0.20);
+}
+
+/* 4. CARD SHADOWS — Warm, depth-layered, no harsh outlines */
+html:not(.dark) .card-light {
+  background: #ffffff;
+  border: 1px solid rgba(215, 25, 33, 0.08);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 1px 2px rgba(31, 26, 28, 0.04),
+    0 4px 12px rgba(215, 25, 33, 0.06),
+    0 12px 32px rgba(31, 26, 28, 0.06);
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+html:not(.dark) .card-light:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 2px 4px rgba(31, 26, 28, 0.06),
+    0 8px 20px rgba(215, 25, 33, 0.12),
+    0 20px 40px rgba(31, 26, 28, 0.08);
+}
+
+/* 5. ROTARACT GRADIENT TEXT — Reusable warm gradient class */
+html:not(.dark) .text-rotaract {
+  background: linear-gradient(135deg, #D71921 0%, #F37021 60%, #FFC72C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 6. WARM DIVIDERS — Replace flat borders with gradient-fade rules */
+html:not(.dark) .divider-rotaract {
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(215,25,33,0.3) 40%, rgba(243,112,33,0.2) 60%, transparent 100%);
+  border: none;
+  margin: 2rem 0;
+}
+
+/* 7. 8PT SPACING RHYTHM — Named section spacers for consistent optical rhythm */
+html:not(.dark) .section-gap {
+  padding-top: 5rem;    /* 80px — 10 × 8pt */
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  html:not(.dark) .section-gap {
+    padding-top: 7rem;    /* 112px — 14 × 8pt */
+    padding-bottom: 7rem;
+  }
+}
+
+/* 8. INPUT FIELDS — Warm, accessible light mode style */
+html:not(.dark) input[type="text"],
+html:not(.dark) input[type="email"],
+html:not(.dark) input[type="password"],
+html:not(.dark) textarea,
+html:not(.dark) select {
+  background-color: rgb(255 255 255);
+  border: 1.5px solid rgba(215, 25, 33, 0.15);
+  border-radius: 0.625rem;
+  color: rgb(31 26 28);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+html:not(.dark) input[type="text"]:hover,
+html:not(.dark) input[type="email"]:hover,
+html:not(.dark) textarea:hover {
+  border-color: rgba(215, 25, 33, 0.3);
+}
+
+html:not(.dark) input[type="text"]:focus,
+html:not(.dark) input[type="email"]:focus,
+html:not(.dark) textarea:focus {
+  border-color: rgb(215 25 33);
+  box-shadow: 0 0 0 3px rgba(215, 25, 33, 0.12);
+  outline: none;
 }

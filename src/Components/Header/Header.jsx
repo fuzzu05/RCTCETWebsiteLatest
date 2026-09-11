@@ -189,7 +189,7 @@ function Header() {
         <div className="hidden lg:flex flex-1 justify-end space-x-3 items-center">
           <Link
             to="/join"
-            className="relative group bg-gradient-to-r from-primary to-secondary text-white font-semibold py-2 px-5 rounded-full shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap overflow-hidden"
+            className="btn-rotaract relative group bg-gradient-to-r from-primary to-secondary text-white font-semibold py-2 px-5 rounded-full shadow-primary-sm hover:shadow-primary-md transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap overflow-hidden"
           >
             <span className="relative z-10 text-sm tracking-wide">Become a member</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
@@ -294,7 +294,7 @@ function Header() {
                 <Link
                   to="/join"
                   onClick={() => setIsMenuOpen(false)}
-                  className="flex justify-center w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-4 rounded-xl shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/40 transition-all"
+                  className="btn-rotaract flex justify-center w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-4 rounded-xl shadow-primary-sm hover:shadow-primary-md transition-all"
                 >
                   Become a member!
                 </Link>
