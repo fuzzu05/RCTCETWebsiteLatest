@@ -480,7 +480,7 @@ const RegistrationForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`px-10 py-3 font-black text-white bg-gradient-to-r from-primary to-secondary hover:shadow-[0_10px_30px_rgba(110,159,159,0.5)] border border-white/20 rounded-xl transition-all shadow-xl hover:-translate-y-1 tracking-widest uppercase
+                className={`px-10 py-3 font-black text-white bg-gradient-to-r from-primary to-secondary hover:shadow-[0_10px_30px_rgb(var(--primary)/0.5)] border border-white/20 rounded-xl transition-all shadow-xl hover:-translate-y-1 tracking-widest uppercase
                            ${isSubmitting ? "opacity-70 cursor-not-allowed transform-none hover:shadow-none" : ""}`}
               >
                 {isSubmitting ? "SUBMITTING..." : "SUBMIT FORM"}

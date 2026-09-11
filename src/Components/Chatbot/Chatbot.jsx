@@ -153,9 +153,9 @@ export const Chatbot = () => {
               fixed bottom-6 right-6 z-[10000]
               w-16 h-16 rounded-full
               bg-card
-              shadow-[0_10px_30px_rgba(110,159,159,0.4)]
+              shadow-[0_10px_30px_rgb(var(--primary)/0.4)]
               border-2 border-primary/50
-              hover:scale-110 hover:shadow-[0_15px_40px_rgba(110,159,159,0.6)]
+              hover:scale-110 hover:shadow-[0_15px_40px_rgb(var(--primary)/0.6)]
               transition-all duration-300
               flex items-center justify-center
               overflow-hidden
@@ -226,7 +226,7 @@ export const Chatbot = () => {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 px-5 py-6 overflow-y-auto space-y-4 custom-scrollbar bg-black/5 dark:bg-white/5">
+            <div data-lenis-prevent className="flex-1 px-5 py-6 overflow-y-auto space-y-4 custom-scrollbar bg-black/5 dark:bg-white/5">
               {messages.map((msg, index) => (
                 <div
                   key={`${msg.role}-${index}`}

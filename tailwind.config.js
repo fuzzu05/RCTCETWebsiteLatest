@@ -10,7 +10,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(135deg, #B8806A 0%, #6E9F9F 50%, #CDE3E2 100%)',
+        'custom-gradient': 'linear-gradient(135deg, #E11D48 0%, #EA580C 50%, #F59E0B 100%)',
+        'rotaract-gradient': 'linear-gradient(135deg, #E11D48 0%, #EA580C 50%, #F59E0B 100%)',
+        'rotaract-warm': 'linear-gradient(135deg, #FFFDF9 0%, #FAF0E4 100%)',
       },
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',
@@ -23,6 +25,10 @@ export default {
           light: 'rgb(var(--primary-light) / <alpha-value>)',
         },
         secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        accent: {
+          yellow: 'rgb(var(--accent-yellow) / <alpha-value>)',
+          beige: 'rgb(var(--accent-beige) / <alpha-value>)',
+        },
       },
       keyframes: {
         slider: {

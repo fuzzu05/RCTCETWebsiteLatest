@@ -4,20 +4,22 @@
 
 @layer base {
   :root {
-    /* Meraki Theme Light Mode (RGB values for Tailwind opacity support) */
-    --background: 241 245 249;
-    --card: 255 255 255;
-    --foreground: 15 23 42;
-    --muted: 100 116 139;
+    /* Rotaract Theme Light Mode (RGB values for Tailwind opacity support) */
+    --background: 250 246 240; /* Warm Beige / Linen #FAF6F0 */
+    --card: 255 255 255;       /* Crisp Pearl White #FFFFFF */
+    --foreground: 28 25 23;    /* Deep Charcoal Espresso #1C1917 */
+    --muted: 120 113 108;      /* Warm Earth Stone #78716C */
     
-    --primary: 110 159 159;
-    --primary-hover: 90 135 135;
-    --primary-light: 224 242 254;
-    --secondary: 184 128 106;
+    --primary: 225 29 72;       /* Rotaract Cranberry / Rose Red #E11D48 */
+    --primary-hover: 190 18 60; /* Deep Crimson #BE123C */
+    --primary-light: 255 241 242; /* Soft Rose Blush #FFF1F2 */
+    --secondary: 234 88 12;     /* Rotaract Tangerine / Orange #EA580C */
+    --accent-yellow: 245 158 11; /* Rotary Gold / Yellow #F59E0B */
+    --accent-beige: 245 235 224; /* Warm Beige Accent #F5EBE0 */
   }
   
   .dark {
-    /* Meraki Theme Dark Mode */
+    /* Meraki Theme Dark Mode - Preserved 100% untouched */
     --background: 15 23 42;
     --card: 30 41 59;
     --foreground: 248 250 252;
@@ -27,6 +29,8 @@
     --primary-hover: 129 185 181;
     --primary-light: 30 41 59;
     --secondary: 184 128 106;
+    --accent-yellow: 245 158 11;
+    --accent-beige: 30 41 59;
   }
 }
 
@@ -44,7 +48,11 @@ html, body {
   max-width: 100vw;
 }
 
-html {
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
+html:not(.lenis) {
   scroll-behavior: smooth;
 }
 

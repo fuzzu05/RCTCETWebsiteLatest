@@ -1,11 +1,22 @@
 
 import { Suspense, lazy, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Layout from './layout';
 import { ThemeProvider } from './context/themeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import { AdminAuthProvider } from './context/AdminAuthContext';
 import ProtectedRoute from './Components/Admin/ProtectedRoute';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
+
+// Scroll to top on route change with Lenis compatibility
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 const Home = lazy(() => import('./pages/home'));
 const Achievement = lazy(() => import('./pages/Achievement').then(m => ({ default: m.Achievement })));
@@ -32,6 +43,25 @@ function App() {
     fetch(`${import.meta.env.VITE_CHATBOT_API_URL}/activate`)
       .then(() => console.log('Backend wake-up initiated'))
       .catch(err => console.error('Failed to wake up backend:', err));
+
+    // Global Lenis Smooth Scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    const rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
   }, []);
 
   const Loader = (
@@ -45,6 +75,7 @@ function App() {
       <ThemeProvider>
         <AdminAuthProvider>
           <Router basename="/">
+            <ScrollToTop />
             <Suspense fallback={Loader}>
               <Routes>
                 {/* ── Admin routes (no Layout wrapper) ── */}
