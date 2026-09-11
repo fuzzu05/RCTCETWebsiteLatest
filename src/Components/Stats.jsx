@@ -26,7 +26,7 @@ const AnimatedCounter20 = () => {
 
 function StatsBar() {
     return(
-        <div className="font-poppins flex flex-wrap gap-x-4 gap-y-9 content-center justify-around h-fit p-2 lg:flex lg:flex-row lg:items-center lg:h-40 lg:space-y-0 lg:space-x-0 bg-background dark:bg-card">
+        <div className="font-poppins flex flex-wrap gap-x-4 gap-y-9 content-center justify-around h-fit p-2 lg:flex lg:flex-row lg:items-center lg:h-40 lg:space-y-0 lg:space-x-0 bg-transparent dark:bg-card">
             <Zone name="Zone" data="2" image={zone} alt="Zone"/>
             <District name="District" data="3141" image={district} alt="District"/>
             <TotalProjects name="Total Projects" image={totalProjects} alt="TotalProject"/>

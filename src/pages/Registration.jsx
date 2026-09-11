@@ -425,17 +425,14 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background transition-colors flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden">
+    <div className="min-h-screen bg-transparent transition-colors flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden">
       <SEO title="Join RCTCET" description="Register to become a member of the Rotaract Club of TCET." />
-
-      <div className="absolute top-0 right-0 w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-4xl bg-white/10 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 dark:border-white/10 relative z-10"
+        className="w-full max-w-4xl bg-white/45 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[2.5rem] shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/60 dark:border-white/10 relative z-10"
       >
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-3 uppercase tracking-tighter drop-shadow-sm">

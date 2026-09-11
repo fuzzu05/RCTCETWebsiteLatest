@@ -46,12 +46,7 @@ export default function FeedBackForm() {
   };
 
   return (
-    <div className="relative min-h-screen p-6 md:p-12 lg:p-24 bg-background flex items-center justify-center overflow-hidden pt-32 lg:pt-40">
-      
-      {/* Background Glows */}
-      <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none z-0" />
-      <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3 pointer-events-none z-0" />
-
+    <div className="relative min-h-screen p-6 md:p-12 lg:p-24 bg-transparent flex items-center justify-center overflow-hidden pt-32 lg:pt-40">
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none z-0" 
         style={{ backgroundImage: `url('https://res.cloudinary.com/dtc2xaeaf/image/upload/v1771630629/Baseline_grid_bg_zywtov.svg')`, backgroundSize: '100px' }}
@@ -63,7 +58,7 @@ export default function FeedBackForm() {
         <div className="lg:w-1/3 flex flex-col gap-6 justify-center mt-12 lg:mt-0">
 
           {/* Card 1: Email */}
-          <div className="relative bg-white/10 dark:bg-black/30 backdrop-blur-xl border border-white/20 dark:border-white/10 p-6 md:p-8 rounded-[2rem] shadow-xl transform transition-all duration-500 lg:-rotate-3 hover:rotate-0 hover:scale-105 hover:z-20 group hover:border-primary/50 hover:shadow-[0_0_30px_rgb(var(--primary)/0.25)] z-10">
+          <div className="relative bg-white/45 dark:bg-black/30 backdrop-blur-md border border-white/60 dark:border-white/10 p-6 md:p-8 rounded-[2rem] shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] transform transition-all duration-500 lg:-rotate-3 hover:rotate-0 hover:scale-105 hover:z-20 group hover:border-primary/50 hover:shadow-[0_0_30px_rgb(var(--primary)/0.25)] z-10">
             <div className="absolute -top-4 left-6 text-primary drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] z-20">
               <FaThumbtack className="text-4xl transform -rotate-45 group-hover:-translate-y-1 transition-transform duration-300" />
             </div>
@@ -78,7 +73,7 @@ export default function FeedBackForm() {
           </div>
 
           {/* Card 2: Location */}
-          <div className="relative bg-white/10 dark:bg-black/30 backdrop-blur-xl border border-white/20 dark:border-white/10 p-6 md:p-8 rounded-[2rem] shadow-xl transform transition-all duration-500 lg:rotate-2 hover:rotate-0 hover:scale-105 hover:z-20 group hover:border-primary/50 hover:shadow-[0_0_30px_rgb(var(--primary)/0.25)] z-10">
+          <div className="relative bg-white/45 dark:bg-black/30 backdrop-blur-md border border-white/60 dark:border-white/10 p-6 md:p-8 rounded-[2rem] shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] transform transition-all duration-500 lg:rotate-2 hover:rotate-0 hover:scale-105 hover:z-20 group hover:border-primary/50 hover:shadow-[0_0_30px_rgb(var(--primary)/0.25)] z-10">
             <div className="absolute -top-4 left-6 text-primary drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] z-20">
               <FaThumbtack className="text-4xl transform -rotate-45 group-hover:-translate-y-1 transition-transform duration-300" />
             </div>
@@ -94,7 +89,7 @@ export default function FeedBackForm() {
           </div>
 
           {/* Card 3: Connect */}
-          <div className="relative bg-white/10 dark:bg-black/30 backdrop-blur-xl border border-white/20 dark:border-white/10 p-6 md:p-8 rounded-[2rem] shadow-xl transform transition-all duration-500 lg:-rotate-2 hover:rotate-0 hover:scale-105 hover:z-20 group hover:border-primary/50 hover:shadow-[0_0_30px_rgb(var(--primary)/0.25)] z-10">
+          <div className="relative bg-white/45 dark:bg-black/30 backdrop-blur-md border border-white/60 dark:border-white/10 p-6 md:p-8 rounded-[2rem] shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] transform transition-all duration-500 lg:-rotate-2 hover:rotate-0 hover:scale-105 hover:z-20 group hover:border-primary/50 hover:shadow-[0_0_30px_rgb(var(--primary)/0.25)] z-10">
             <div className="absolute -top-4 left-6 text-primary drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] z-20">
               <FaThumbtack className="text-4xl transform -rotate-45 group-hover:-translate-y-1 transition-transform duration-300" />
             </div>
@@ -121,7 +116,7 @@ export default function FeedBackForm() {
 
         {/* Right Side - Form Container */}
         <div className="lg:w-2/3 transform transition-all duration-500 lg:rotate-1 hover:rotate-0 mt-8 lg:mt-0 relative z-20">
-          <div className="relative bg-white/10 dark:bg-black/40 backdrop-blur-3xl border border-white/20 dark:border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] h-full flex flex-col justify-center">
+          <div className="relative bg-white/45 dark:bg-black/40 backdrop-blur-3xl border border-white/60 dark:border-white/10 p-8 md:p-12 rounded-[2.5rem] shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.1)] h-full flex flex-col justify-center">
             
             <div className="mb-10">
               <h2 className="text-4xl md:text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tight">Send a Message</h2>

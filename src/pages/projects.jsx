@@ -363,8 +363,6 @@ function SliderSection({ section, index }) {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
     >
-      <div className="absolute -top-20 left-0 w-full h-40 bg-gradient-to-b from-primary/5 to-transparent blur-3xl pointer-events-none" />
-
       <h2 className="text-4xl md:text-5xl lg:text-6xl text-center font-black mb-12 text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 uppercase tracking-tight drop-shadow-sm">
         {section.title}
       </h2>

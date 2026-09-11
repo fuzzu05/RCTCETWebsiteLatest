@@ -18,7 +18,7 @@ const TeamModal = ({ year, onClose }) => {
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, y: 20 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-background dark:bg-card p-6 md:p-10 rounded-3xl max-w-5xl w-full shadow-2xl relative"
+                className="bg-white/70 dark:bg-card backdrop-blur-xl p-6 md:p-10 rounded-3xl max-w-5xl w-full shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/60 dark:border-white/10 relative"
             >
                 <button
                     onClick={onClose}
