@@ -30,7 +30,7 @@ const AboutAvenue = () => {
                     </button>
                 </div>
             </div>
-            <div className="relative w-full max-w-5xl bg-white dark:bg-card border border-primary/20 dark:border-muted rounded-2xl shadow-card-light dark:shadow-lg overflow-hidden my-5">
+            <div className="relative w-full max-w-5xl bg-white/45 dark:bg-card backdrop-blur-md border border-white/60 dark:border-muted rounded-2xl shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-lg overflow-hidden my-5">
                 <div className="flex max-sm:flex-col  items-center">
                     <img src={slides[currentIndex].imageUrl} alt={slides[currentIndex].title} className={`${slides[currentIndex].id == 13 ? "" : ""} md:w-1/2 object-cover rounded-lg `} />
                     <div className="p-2 md:p-4 md:w-1/2">

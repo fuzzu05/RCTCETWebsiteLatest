@@ -22,18 +22,7 @@ const EndeavorsCarousel = () => {
   }, [isHovered, slides.length]);
 
   return (
-    <div className="bg-background dark:bg-card w-full flex flex-col items-center justify-center pt-24 pb-0 relative overflow-hidden">
-
-      {/* Ambient Top Glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
-
-      {/* Soft Organic SVG Divider at Top */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">
-        <svg className="relative block w-full h-[40px] md:h-[60px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-background"></path>
-        </svg>
-      </div>
-
+    <div className="bg-transparent dark:bg-card w-full flex flex-col items-center justify-center pt-24 pb-0 relative overflow-hidden">
       <div className="w-full text-center z-10 mb-12 px-4">
         <h1 className="text-4xl md:text-5xl lg:text-5xl leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tighter drop-shadow-sm select-none uppercase">Our Latest Endeavours</h1>
         <p className="mt-4 text-muted font-medium text-lg">A glimpse into our recent impactful initiatives.</p>

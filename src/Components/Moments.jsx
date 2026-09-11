@@ -1,9 +1,6 @@
 function MomentsFrame() {
     return(
-        <div className="relative w-full py-12 md:py-16 overflow-hidden bg-background">
-            {/* Subtle glowing radial background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-            
+        <div className="relative w-full py-12 md:py-16 overflow-hidden bg-transparent">
             <HeadText/>
             <MomentSection/>
         </div>

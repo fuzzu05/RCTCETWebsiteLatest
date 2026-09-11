@@ -13,7 +13,7 @@ const FloatingCard = ({ obj, index, delay }) => (
     <motion.div
       animate={{ y: [0, -10, 0] }}
       transition={{ repeat: Infinity, duration: 4 + (index % 3), ease: "easeInOut", delay: delay }}
-      className="group relative bg-white/80 dark:bg-black/30 backdrop-blur-md border border-primary/10 dark:border-white/10 rounded-[2.5rem] p-8 lg:p-10 hover:border-primary/60 hover:bg-white/90 dark:hover:bg-black/40 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-card-light-hover z-30"
+      className="group relative bg-white/45 dark:bg-black/30 backdrop-blur-md border border-white/60 dark:border-white/10 rounded-[2.5rem] p-8 lg:p-10 hover:border-primary/60 hover:bg-white/60 dark:hover:bg-black/40 transition-all duration-500 overflow-hidden shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] hover:shadow-card-light-hover z-30"
     >
       {/* Giant Background Number */}
       <div className="absolute -bottom-8 -right-4 text-[10rem] md:text-[12rem] font-black text-black/5 dark:text-white/5 transition-colors duration-500 select-none leading-none pointer-events-none">
@@ -40,11 +40,7 @@ const FloatingCard = ({ obj, index, delay }) => (
 
 const Objectives = () => {
   return (
-    <div className="relative bg-background py-24 px-4 lg:px-16 w-full overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
-
+    <div className="relative bg-transparent py-24 px-4 lg:px-16 w-full overflow-hidden">
       <div className="max-w-[1400px] mx-auto relative z-10">
 
         {/* Section Header */}

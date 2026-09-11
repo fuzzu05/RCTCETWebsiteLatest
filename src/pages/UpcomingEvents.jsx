@@ -27,11 +27,7 @@ const UpcomingEvents = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background py-16 px-4 transition-colors relative overflow-hidden">
-      {/* Ambient Glows */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none" />
-
+    <div className="min-h-screen bg-transparent py-16 px-4 transition-colors relative overflow-hidden">
       <SEO title="Upcoming Events" description="Check out the latest upcoming events by the Rotaract Club of TCET." />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -96,7 +92,7 @@ const UpcomingEvents = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="bg-white/80 dark:bg-black/30 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-card-light-hover transition-all border border-primary/10 dark:border-white/10 flex flex-col group"
+                className="bg-white/45 dark:bg-black/30 backdrop-blur-md rounded-2xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] hover:shadow-card-light-hover transition-all border border-white/60 dark:border-white/10 flex flex-col group"
               >
                 <div className="overflow-hidden relative">
                   <img

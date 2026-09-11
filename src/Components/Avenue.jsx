@@ -16,11 +16,7 @@ export const Avenue = () => {
   };
 
   return (
-    <section className="bg-background dark:bg-card text-foreground transition-colors duration-300 relative overflow-hidden min-h-screen pt-24 pb-20">
-      {/* Ambient Glows */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none" />
-
+    <section className="bg-transparent dark:bg-card text-foreground transition-colors duration-300 relative overflow-hidden min-h-screen pt-24 pb-20">
       <div className="flex flex-col items-center justify-center text-center px-4 mb-20 relative z-10 w-full max-w-5xl mx-auto">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
@@ -70,7 +66,7 @@ export const Avenue = () => {
             <motion.div
               variants={itemVariants}
               key={index}
-              className="imp-hoverable group relative w-full h-auto min-h-[450px] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-2xl shadow-primary/5 border border-primary/10 dark:border-white/10 bg-white/80 dark:bg-black/30 backdrop-blur-xl flex flex-col"
+              className="imp-hoverable group relative w-full h-auto min-h-[450px] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-black/50 border border-white/60 dark:border-white/10 bg-white/45 dark:bg-black/30 backdrop-blur-xl flex flex-col"
             >
               {/* Image Container */}
               <div className="w-full h-[250px] p-4 relative overflow-hidden flex-shrink-0">

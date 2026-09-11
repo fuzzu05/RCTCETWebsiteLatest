@@ -6,7 +6,7 @@ function FounderCard() {
   return (
     <SpotlightCard
       spotlightColor="rgba(215, 25, 33, 0.14)"
-      className="group h-full rounded-[2rem] shadow-sm dark:shadow-black/50 border border-primary/10 dark:border-white/10 bg-white/80 dark:bg-black/20 backdrop-blur-md transition-all duration-500 hover:shadow-card-light-hover hover:-translate-y-2"
+      className="group h-full rounded-[2rem] shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-black/50 border border-white/60 dark:border-white/10 bg-white/45 dark:bg-black/20 backdrop-blur-md transition-all duration-500 hover:shadow-card-light-hover hover:-translate-y-2"
     >
       {/* Subtle glow effect on hover */}
       <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -86,15 +86,7 @@ Card.propTypes = {
 
 function Legacy() {
   return (
-    <div className="bg-background relative overflow-hidden">
-
-      {/* Soft Organic SVG Divider at Top */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">
-        <svg className="relative block w-full h-[50px] md:h-[80px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-background dark:fill-[#0c111c]"></path>
-        </svg>
-      </div>
-
+    <div className="bg-transparent relative overflow-hidden">
       <div className="p-8 md:p-16 lg:py-24 flex justify-center items-center relative z-10">
         <div
           className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none invert dark:invert-0"

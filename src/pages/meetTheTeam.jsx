@@ -56,11 +56,7 @@ const TeamPage = () => {
   }
 
   return (
-    <div className="bg-background dark:bg-card min-h-screen relative overflow-hidden text-foreground pt-24 pb-20">
-      {/* Ambient Glows */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute bottom-1/3 left-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none" />
-
+    <div className="bg-transparent dark:bg-card min-h-screen relative overflow-hidden text-foreground pt-24 pb-20">
       <SEO title="Meet the Team" description="Meet the core team and board of directors of the Rotaract Club of TCET." />
 
       <div className="max-w-[90%] mx-auto flex flex-col justify-center items-center relative z-10">

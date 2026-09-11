@@ -14,7 +14,7 @@ const fadeUpVariants = {
 
 const About = () => {
   return (
-    <div className="bg-background dark:bg-card min-h-screen">
+    <div className="bg-transparent dark:bg-card min-h-screen">
       <SEO title="About Us" description="Learn about the objectives, history, and journey of the Rotaract Club of TCET." />
       <Suspense fallback={<div>Loading...</div>}>
         <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>

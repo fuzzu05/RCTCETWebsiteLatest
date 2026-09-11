@@ -26,9 +26,7 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <div className="relative bg-background min-h-[90vh] flex flex-col justify-center overflow-hidden pt-10 pb-20">
-      {/* Dynamic Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--primary)/0.08)_0%,transparent_100%)] pointer-events-none" />
+    <div className="relative bg-transparent min-h-[90vh] flex flex-col justify-center overflow-hidden pt-10 pb-20">
 
       {/* Background Image (faded) */}
       <LazyLoadImage
@@ -94,7 +92,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, type: "spring" }}
-            className="relative rounded-[2.5rem] p-6 lg:p-10 aspect-square w-full max-w-[400px] md:max-w-none md:w-[28vw] overflow-visible flex-shrink-0 bg-white/80 dark:bg-card/40 backdrop-blur-md border border-primary/10 shadow-sm group hover:border-primary/40 transition-colors duration-500"
+            className="relative rounded-[2.5rem] p-6 lg:p-10 aspect-square w-full max-w-[400px] md:max-w-none md:w-[28vw] overflow-visible flex-shrink-0 bg-white/45 dark:bg-card/40 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] group hover:border-primary/40 transition-colors duration-500"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--primary)/0.1)_0%,transparent_70%)]" />
             <LazyLoadImage
