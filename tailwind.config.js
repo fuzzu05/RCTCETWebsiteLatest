@@ -18,9 +18,15 @@ export default {
       },
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',
-        card:       'rgb(var(--card) / <alpha-value>)',
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
-        muted:      'rgb(var(--muted) / <alpha-value>)',
+        card: {
+          DEFAULT:    'rgb(var(--card) / <alpha-value>)',
+          foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
+        },
+        muted: {
+          DEFAULT:    'rgb(var(--muted) / <alpha-value>)',
+          foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
+        },
         primary: {
           DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
           hover:   'rgb(var(--primary-hover) / <alpha-value>)',

@@ -6,24 +6,26 @@
   :root {
     /* ═══════════════════════════════════════════════════════
        Rotaract Light Mode Design System
-       Anti-Slop Palette — Intentional, Warm, Accessible
+       High-Contrast, Warm, Accessible
        ═══════════════════════════════════════════════════════ */
 
     /* Surfaces */
-    --background: 250 247 242;  /* Warm Beige #FAF7F2 */
-    --card:       255 255 255;  /* Pure Pearl White */
-    --card-warm:  253 249 244;  /* Warm Off-White card variant #FDF9F4 */
+    --background:      250 247 242; /* #FAF7F2 Warm Beige */
+    --foreground:      31 26 28;    /* #1F1A1C Dark Charcoal (high-contrast text) */
+    --card:            255 255 255; /* Crisp white cards */
+    --card-foreground: 31 26 28;    /* Dark text on light cards */
+    --card-warm:       253 249 244; /* Warm Off-White card variant #FDF9F4 */
 
     /* Typography */
-    --foreground: 31 26 28;     /* Dark Charcoal #1F1A1C — WCAG AAA on beige */
-    --muted:      107 100 95;   /* Warm Stone (not flat gray) #6B645F */
+    --muted:            100 116 139; /* Slate 500 for secondary copy */
+    --muted-foreground: 71 85 105;   /* Slate 600 for high-visibility secondary copy */
 
     /* Rotaract Brand Palette */
-    --primary:        215 25 33;   /* Cranberry Red #D71921 */
+    --primary:        215 25 33;   /* #D71921 Rotaract Cranberry Red */
     --primary-hover:  180 15 22;   /* Deep Crimson #B40F16 */
     --primary-light:  255 238 239; /* Blush Tint #FFEEF */
-    --secondary:      243 112 33;  /* Warm Orange #F37021 */
-    --accent-yellow:  255 199 44;  /* Rotaract Gold #FFC72C */
+    --secondary:      243 112 33;  /* #F37021 Warm Orange */
+    --accent-yellow:  255 199 44;  /* #FFC72C Rotaract Gold */
     --accent-beige:   245 235 224; /* Warm Beige Accent #F5EBE0 */
 
     /* Interactive */
@@ -35,16 +37,23 @@
     /* ═══════════════════════════════════════════════════════
        Meraki Dark Mode — 100% UNTOUCHED. Do not modify.
        ═══════════════════════════════════════════════════════ */
-    --background: 15 23 42;
-    --card: 30 41 59;
-    --foreground: 248 250 252;
-    --muted: 148 163 184;
-    --primary: 110 159 159;
-    --primary-hover: 129 185 181;
-    --primary-light: 30 41 59;
-    --secondary: 184 128 106;
-    --accent-yellow: 245 158 11;
-    --accent-beige: 30 41 59;
+    --background:      15 23 42;
+    --card:            30 41 59;
+    --card-foreground: 248 250 252;
+    --foreground:      248 250 252;
+    --muted:           148 163 184;
+    --muted-foreground: 148 163 184;
+    --primary:         110 159 159;
+    --primary-hover:   129 185 181;
+    --primary-light:   30 41 59;
+    --secondary:       184 128 106;
+    --accent-yellow:   245 158 11;
+    --accent-beige:    30 41 59;
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
   }
 }
 
@@ -107,8 +116,8 @@ html:not(.lenis) {
 /* 1. TYPOGRAPHY RHYTHM
    Optical line-heights, fluid letter-spacing, warm charcoal hierarchy */
 html:not(.dark) body {
-  color: rgb(31 26 28);                /* Dark Charcoal #1F1A1C */
-  background-color: rgb(250 247 242);  /* Warm Beige #FAF7F2 */
+  color: rgb(var(--foreground));        /* Dark Charcoal #1F1A1C */
+  background-color: rgb(var(--background)); /* Warm Beige #FAF7F2 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -118,7 +127,6 @@ html:not(.dark) h2,
 html:not(.dark) h3 {
   letter-spacing: -0.02em;
   line-height: 1.1;
-  color: rgb(31 26 28);
 }
 
 html:not(.dark) h4,
@@ -130,7 +138,6 @@ html:not(.dark) h6 {
 
 html:not(.dark) p {
   line-height: 1.75;
-  color: rgb(107 100 95); /* Warm Stone muted */
 }
 
 /* 2. TACTILE FOCUS RINGS — Cranberry Red, no default browser outline */

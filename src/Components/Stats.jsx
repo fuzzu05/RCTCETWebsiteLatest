@@ -66,7 +66,7 @@ function TotalProjects({name, image, alt}) {
             <img src={image} alt={alt} className="w-12 lg:mr-3 lg:w-20" loading={"lazy"}/>
             <div className="flex flex-col">
                 <AnimatedCounter20/>
-                <p className="text-center text-gray-500 text-sm lg:text-base">{name}</p>
+                <p className="text-center text-muted text-sm lg:text-base">{name}</p>
             </div>
         </div>
     )
