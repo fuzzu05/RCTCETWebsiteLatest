@@ -582,3 +582,49 @@ html:not(.dark) ::-moz-selection {
   background-color: rgba(215, 25, 33, 0.15);
   color: #1F1A1C;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   REACT BITS — ShinyText animation & styling
+   Respects Light Mode charcoal contrast (#1F1A1C)
+   ───────────────────────────────────────────────────────────── */
+@keyframes text-shine {
+  0% {
+    background-position: 150% center;
+  }
+  100% {
+    background-position: -150% center;
+  }
+}
+
+.animate-shine {
+  animation: text-shine 4s ease-in-out infinite;
+}
+
+.shiny-text {
+  background: linear-gradient(
+    120deg,
+    #1F1A1C 0%,
+    #1F1A1C 35%,
+    #D71921 50%,
+    #1F1A1C 65%,
+    #1F1A1C 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .shiny-text {
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.7) 35%,
+    #6E9F9F 50%,
+    rgba(255, 255, 255, 0.7) 65%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+

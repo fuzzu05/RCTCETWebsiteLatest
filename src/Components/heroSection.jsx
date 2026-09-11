@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import BlurText from "./ReactBits/BlurText";
+import ShinyText from "./ReactBits/ShinyText";
 
 const BG_DESKTOP = "f_auto,q_auto:low,w_1400,c_fill,g_auto";
 const BG_MOBILE = "f_auto,q_auto:low,w_600,c_fill,g_auto";
@@ -75,22 +76,30 @@ export default function RotaractClubLayout() {
           alt="Rotaract Club Logo"
           className="h-28 w-28 md:h-40 md:w-40 mb-4 md:mb-6 drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
         />
+
+        {/* Shiny Badge above Hero Title */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 dark:bg-black/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm mb-4">
+          <ShinyText text="ROTARACT DISTRICT 3141" className="text-xs font-bold tracking-widest" />
+        </div>
+
         <h1
           className="text-[12vw] sm:text-6xl md:text-[5.5rem] lg:text-[6rem] font-black uppercase leading-[1.05] tracking-tighter select-none drop-shadow-[0_4px_16px_rgba(0,0,0,0.65)]"
         >
           <BlurText
             text="ROTARACT CLUB"
             className="justify-center whitespace-nowrap"
-            textClassName="text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+            textClassName="text-[#1F1A1C] dark:text-white drop-shadow-[0_2px_12px_rgba(255,255,255,0.85)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
             delay={0.08}
+            startDelay={0.05}
             duration={0.65}
           />
           <br />
           <BlurText
             text="OF TCET"
             className="justify-center whitespace-nowrap"
-            textClassName="text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+            textClassName="text-[#1F1A1C] dark:text-white drop-shadow-[0_2px_12px_rgba(255,255,255,0.85)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
             delay={0.08}
+            startDelay={0.25}
             duration={0.65}
           />
         </h1>
@@ -105,11 +114,12 @@ export default function RotaractClubLayout() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.5 }}
-            className="px-4 py-2"
+            className="px-4 py-2 rounded-full bg-white/70 dark:bg-black/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm"
           >
-            <h2 className="text-white text-xl md:text-xl font-bold tracking-wider drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-              {imagesData[bgIndex].title}
-            </h2>
+            <ShinyText
+              text={imagesData[bgIndex].title}
+              className="text-sm md:text-base font-bold tracking-wider"
+            />
           </motion.div>
         </AnimatePresence>
       </div>

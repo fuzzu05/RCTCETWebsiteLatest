@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Users } from "lucide-react";
 import SEO from "../Components/SEO";
+import ShinyText from "../Components/ReactBits/ShinyText";
 
 const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
 
@@ -32,6 +33,9 @@ const UpcomingEvents = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 dark:bg-black/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm mb-4">
+            <ShinyText text="UPCOMING EVENTS" className="text-xs font-bold tracking-widest" />
+          </div>
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

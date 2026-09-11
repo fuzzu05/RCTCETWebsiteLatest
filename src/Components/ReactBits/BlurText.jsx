@@ -35,8 +35,9 @@ const wordVariants = {
 export default function BlurText({
   text = "",
   className = "",
-  textClassName = "",
+  textClassName = "text-[#1F1A1C] dark:text-foreground",
   delay = 0.06,
+  startDelay = 0,
   duration = 0.55,
   once = true,
   threshold = 0.2,
@@ -60,7 +61,7 @@ export default function BlurText({
               y: 0,
               transition: {
                 duration,
-                delay: i * delay,
+                delay: startDelay + i * delay,
                 ease: [0.25, 0.46, 0.45, 0.94],
               },
             },

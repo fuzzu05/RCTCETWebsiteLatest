@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { motion } from "framer-motion";
+import ShinyText from "../ReactBits/ShinyText";
 
 import { aboutImages, preloadImages as images } from "../../data/aboutUs";
 
@@ -40,6 +41,9 @@ const AboutSection = () => {
         
         {/* Massive Title */}
         <div className="mb-16 w-full mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 dark:bg-black/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm mb-6">
+            <ShinyText text="MERAKI • 2024-2025" className="text-xs font-bold tracking-widest" />
+          </div>
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

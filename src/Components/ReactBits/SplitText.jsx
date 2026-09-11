@@ -19,8 +19,9 @@ import { motion, useInView } from "framer-motion";
 export default function SplitText({
   text = "",
   className = "",
-  charClassName = "",
+  charClassName = "text-[#1F1A1C] dark:text-foreground",
   delay = 0.03,
+  startDelay = 0,
   duration = 0.5,
   once = true,
   threshold = 0.3,
@@ -54,7 +55,7 @@ export default function SplitText({
           }
           transition={{
             duration,
-            delay: i * delay,
+            delay: startDelay + i * delay,
             ease: [0.33, 1, 0.68, 1],
           }}
         >
