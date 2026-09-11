@@ -44,12 +44,26 @@ export default function RotaractClubLayout() {
           transition={{ duration: 1 }}
           src={bgUrl}
           alt={imagesData[bgIndex].title}
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          className="absolute inset-0 w-full h-full object-cover z-0 contrast-[1.05] brightness-[0.95] saturate-[1.1]"
         />
       </AnimatePresence>
 
-      {/* Dark overlay to make text pop */}
-      <div className="absolute inset-0 bg-black/40 z-10" />
+      {/* ════════════════════════════════════════════════════════════════
+          Dynamic Color-Graded Consistency & Contrast Overlay System
+          ════════════════════════════════════════════════════════════════ */}
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+        {/* 1. Base Contrast Layer: ensures centered hero typography pops */}
+        <div className="absolute inset-0 bg-black/35 dark:bg-black/50" />
+
+        {/* 2. Top Contrast Vignette: keeps top navbar and event label crisp */}
+        <div className="absolute inset-x-0 top-0 h-36 md:h-48 bg-gradient-to-b from-black/60 via-black/25 to-transparent" />
+
+        {/* 3. Color Grade Layer: warm Rotaract Cranberry (#D71921) & Orange (#F37021) overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#D71921]/10 via-[#FFC72C]/5 to-[#F37021]/10 mix-blend-overlay dark:opacity-0 transition-opacity duration-500" />
+
+        {/* 4. Primary Light Gradient: smooth fade at the bottom into warm beige (#FAF7F2) */}
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-64 md:h-80 bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/60 to-transparent dark:opacity-0 transition-opacity duration-500" />
+      </div>
 
       {/* Center Content: Logo and Title */}
       <div className="absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center text-center px-3 w-full max-w-[95vw] md:max-w-5xl">
