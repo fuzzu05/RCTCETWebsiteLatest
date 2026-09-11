@@ -38,7 +38,7 @@ const About = () => {
         >
           <Link
             to="/meet-the-team"
-            className="relative group bg-gradient-to-br from-primary to-[#568181] text-white font-bold text-lg py-4 px-10 rounded-full shadow-[0_0_15px_rgba(110,159,159,0.4)] hover:shadow-[0_0_30px_rgba(110,159,159,0.7)] transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+            className="relative group bg-gradient-to-br from-primary via-secondary to-accent text-white font-bold text-lg py-4 px-10 rounded-full shadow-[0_0_15px_rgba(204,0,0,0.4)] hover:shadow-[0_0_30px_rgba(255,102,0,0.6)] transition-all duration-500 hover:-translate-y-1 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
               View the Whole Team

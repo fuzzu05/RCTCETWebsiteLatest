@@ -1,6 +1,6 @@
 function MomentsFrame() {
     return(
-        <div className="relative w-full py-12 md:py-16 overflow-hidden bg-background">
+        <div className="relative w-full py-12 md:py-16 overflow-hidden bg-gradient-to-b from-background via-accent/20 to-background">
             {/* Subtle glowing radial background */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-primary/5 dark:bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
             
@@ -61,7 +61,7 @@ function MomentBox({image, alt}) {
     return(
         <div className="group mx-2 lg:mx-3 shrink-0 relative perspective-1000">
             {/* Glass Polaroid Container */}
-            <div className="p-3 pb-8 md:p-4 md:pb-12 bg-white/60 dark:bg-card/40 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded-3xl shadow-xl transition-all duration-500 ease-out hover:-translate-y-4 hover:rotate-3 hover:shadow-[0_20px_40px_rgba(110,159,159,0.2)] hover:z-10 relative">
+            <div className="p-3 pb-8 md:p-4 md:pb-12 bg-white/60 dark:bg-card/40 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded-3xl shadow-xl transition-all duration-500 ease-out hover:-translate-y-4 hover:rotate-3 hover:shadow-[0_20px_40px_rgba(204,0,0,0.15)] hover:z-10 relative">
                 {/* Image Wrapper */}
                 <div className="relative w-[250px] h-[200px] lg:w-[320px] lg:h-[350px] rounded-2xl overflow-hidden bg-muted">
                     <img 

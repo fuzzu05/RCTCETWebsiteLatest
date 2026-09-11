@@ -10,7 +10,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(135deg, #B8806A 0%, #6E9F9F 50%, #CDE3E2 100%)',
+        'custom-gradient': 'linear-gradient(135deg, #FF6600 0%, #CC0000 50%, #FFCC00 100%)',
+        'logo-gradient': 'linear-gradient(135deg, #CC0000 0%, #FF6600 50%, #FFCC00 100%)',
+        'light-gradient': 'linear-gradient(180deg, #F5F5DC 0%, #FFF8DC 100%)',
       },
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',
@@ -22,7 +24,11 @@ export default {
           hover: 'rgb(var(--primary-hover) / <alpha-value>)',
           light: 'rgb(var(--primary-light) / <alpha-value>)',
         },
-        secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        secondary: {
+          DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',
+          hover: 'rgb(var(--secondary-hover) / <alpha-value>)',
+        },
+        accent: 'rgb(var(--accent) / <alpha-value>)',
       },
       keyframes: {
         slider: {

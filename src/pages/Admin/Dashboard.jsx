@@ -184,7 +184,7 @@ const AdminDashboard = () => {
                         <Link
                           to={`/admin/edit-event/${event.eventId}`}
                           title="Edit Event"
-                          className="p-2 rounded-lg border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/10 text-foreground/50 hover:text-blue-500 transition-all"
+                          className="p-2 rounded-lg border border-white/10 hover:border-primary/30 hover:bg-primary/10 text-foreground/50 hover:text-primary transition-all"
                         >
                           <Edit2 size={14} />
                         </Link>

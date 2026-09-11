@@ -73,8 +73,8 @@ function Header() {
   return (
     <header
       className={`sticky z-[100] transition-all duration-500 ease-in-out ${isScrolled
-        ? "top-4 mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] rounded-full shadow-2xl py-2 px-6 md:px-8 lg:px-10 bg-card/80 backdrop-blur-2xl border border-primary/20"
-        : "top-0 mx-auto w-full rounded-none shadow-md py-4 px-6 md:px-8 lg:px-10 bg-card/95 backdrop-blur-md border-b border-primary/10"
+        ? "top-4 mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] rounded-full shadow-2xl py-2 px-6 md:px-8 lg:px-10 bg-card/90 backdrop-blur-2xl border border-primary/30"
+        : "top-0 mx-auto w-full rounded-none shadow-md py-4 px-6 md:px-8 lg:px-10 bg-card/98 backdrop-blur-md border-b border-primary/20"
         }`}
     >
       <div className="max-w-screen-xl mx-auto flex justify-between items-center relative">
@@ -103,13 +103,13 @@ function Header() {
               {activeLink === link.name && (
                 <motion.div
                   layoutId="activeNavPill"
-                  className="absolute inset-0 bg-primary/15 dark:bg-primary/25 rounded-full z-0"
+                  className="absolute inset-0 bg-primary/20 dark:bg-primary/25 rounded-full z-0"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
               <span
                 className={`relative z-10 transition-colors duration-300 ${
-                  activeLink === link.name ? "text-primary" : "text-foreground group-hover:text-primary"
+                  activeLink === link.name ? "text-primary font-bold" : "text-foreground group-hover:text-primary"
                 }`}
               >
                 {link.name}
@@ -131,13 +131,13 @@ function Header() {
               {activeLink === "Club hub" && (
                 <motion.div
                   layoutId="activeNavPill"
-                  className="absolute inset-0 bg-primary/15 dark:bg-primary/25 rounded-full z-0"
+                  className="absolute inset-0 bg-primary/20 dark:bg-primary/25 rounded-full z-0"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
               <span
                 className={`relative z-10 flex items-center gap-1.5 transition-colors duration-300 ${
-                  activeLink === "Club hub" ? "text-primary" : "text-foreground group-hover:text-primary"
+                  activeLink === "Club hub" ? "text-primary font-bold" : "text-foreground group-hover:text-primary"
                 }`}
               >
                 Club Hub
@@ -189,7 +189,7 @@ function Header() {
         <div className="hidden lg:flex flex-1 justify-end space-x-3 items-center">
           <Link
             to="/join"
-            className="relative group bg-gradient-to-br from-primary to-[#568181] text-white font-semibold py-2 px-5 rounded-full shadow-[0_0_15px_rgba(110,159,159,0.3)] hover:shadow-[0_0_25px_rgba(110,159,159,0.6)] transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap overflow-hidden"
+            className="relative group bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold py-2 px-5 rounded-full shadow-[0_0_15px_rgba(204,0,0,0.4)] hover:shadow-[0_0_25px_rgba(255,102,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap overflow-hidden"
           >
             <span className="relative z-10 text-sm tracking-wide">Become a member</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
@@ -206,7 +206,7 @@ function Header() {
           </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-1.5 bg-primary/10 text-primary rounded-full focus:outline-none hover:bg-primary/20 transition-colors"
+            className="p-1.5 bg-primary/15 text-primary rounded-full focus:outline-none hover:bg-primary/25 transition-colors"
             aria-expanded={isMenuOpen}
             aria-label="Toggle navigation menu"
           >
@@ -294,7 +294,7 @@ function Header() {
                 <Link
                   to="/join"
                   onClick={() => setIsMenuOpen(false)}
-                  className="flex justify-center w-full bg-gradient-to-r from-primary to-[#568181] text-white font-bold py-3 px-4 rounded-xl shadow-[0_0_15px_rgba(110,159,159,0.3)] hover:shadow-[0_0_25px_rgba(110,159,159,0.6)] transition-all"
+                  className="flex justify-center w-full bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold py-3 px-4 rounded-xl shadow-[0_0_15px_rgba(204,0,0,0.4)] hover:shadow-[0_0_25px_rgba(255,102,0,0.6)] transition-all"
                 >
                   Become a member!
                 </Link>

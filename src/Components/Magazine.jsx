@@ -5,7 +5,7 @@ export const Magazine = () => {
   const scrollItems = [...magazines, ...magazines, ...magazines, ...magazines, ...magazines, ...magazines];
 
   return (
-    <section className="py-24 bg-card dark:bg-[#0c111c] transition-colors duration-500 overflow-hidden relative">
+    <section className="py-24 bg-card dark:bg-background transition-colors duration-500 overflow-hidden relative">
       
       {/* Soft Organic SVG Divider at Top */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-10">
@@ -38,7 +38,7 @@ export const Magazine = () => {
       </style>
 
       {/* Decorative background grid/mesh */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/15 via-secondary/10 to-transparent pointer-events-none z-0" />
 
       <div className="relative z-10 text-center mb-16 px-6 pt-10">
         <h1 className="text-4xl md:text-5xl lg:text-5xl leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tighter drop-shadow-sm select-none uppercase">
@@ -100,7 +100,7 @@ export const Magazine = () => {
                 href={mag.link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 mt-4 px-8 py-3 bg-card dark:bg-card border border-primary/20 rounded-full text-sm font-bold text-primary hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform group-hover:scale-105"
+                className="inline-flex items-center gap-2 mt-4 px-8 py-3 bg-card dark:bg-card border border-primary/20 rounded-full text-sm font-bold text-primary hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white dark:hover:bg-gradient-to-r dark:hover:from-primary dark:hover:to-secondary dark:hover:text-white hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform group-hover:scale-105"
               >
                 Open Volume 
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>

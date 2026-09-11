@@ -4,29 +4,34 @@
 
 @layer base {
   :root {
-    /* Meraki Theme Light Mode (RGB values for Tailwind opacity support) */
-    --background: 241 245 249;
+    /* Rotaract Theme Light Mode (RGB values for Tailwind opacity support) */
+    /* Rotaract colors: Red, Orange, Yellow with Beige background */
+    --background: 245 245 220;
     --card: 255 255 255;
-    --foreground: 15 23 42;
-    --muted: 100 116 139;
+    --foreground: 30 30 30;
+    --muted: 80 80 80;
     
-    --primary: 110 159 159;
-    --primary-hover: 90 135 135;
-    --primary-light: 224 242 254;
-    --secondary: 184 128 106;
+    --primary: 204 0 0;
+    --primary-hover: 180 0 0;
+    --primary-light: 255 220 220;
+    --secondary: 255 102 0;
+    --secondary-hover: 230 80 0;
+    --accent: 255 204 0;
   }
   
   .dark {
-    /* Meraki Theme Dark Mode */
+    /* Rotaract Theme Dark Mode */
     --background: 15 23 42;
     --card: 30 41 59;
     --foreground: 248 250 252;
     --muted: 148 163 184;
     
-    --primary: 110 159 159;
-    --primary-hover: 129 185 181;
+    --primary: 220 50 50;
+    --primary-hover: 240 70 70;
     --primary-light: 30 41 59;
-    --secondary: 184 128 106;
+    --secondary: 255 120 50;
+    --secondary-hover: 255 140 70;
+    --accent: 255 180 50;
   }
 }
 
