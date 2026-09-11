@@ -132,6 +132,6 @@ VITE_FIREBASE_APP_ID=your_firebase_app_id
 
 <div align="center">
 
-Built by [Shaurya Chopra](https://shauryachopra.dev/)
+Built by Rotaract Tech Team
 
 </div>
