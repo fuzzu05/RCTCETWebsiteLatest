@@ -5,15 +5,7 @@ export const Magazine = () => {
   const scrollItems = [...magazines, ...magazines, ...magazines, ...magazines, ...magazines, ...magazines];
 
   return (
-    <section className="py-24 bg-background dark:bg-[#0c111c] transition-colors duration-500 overflow-hidden relative">
-      
-      {/* Soft Organic SVG Divider at Top */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-10">
-          <svg className="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-background"></path>
-          </svg>
-      </div>
-
+    <section className="py-20 bg-transparent dark:bg-[#0c111c] transition-colors duration-500 overflow-hidden relative">
       <style>
         {`
           @keyframes scroll-left {
@@ -37,11 +29,7 @@ export const Magazine = () => {
         `}
       </style>
 
-      {/* Decorative background ambient glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none z-0" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none z-0" />
-
-      <div className="relative z-10 text-center mb-16 px-6 pt-10">
+      <div className="relative z-10 text-center mb-16 px-6 pt-4">
         <h1 className="text-4xl md:text-5xl lg:text-5xl leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tighter drop-shadow-sm select-none uppercase">
           The Rotaract Library
         </h1>
@@ -57,14 +45,14 @@ export const Magazine = () => {
             className="
               group
               w-[280px] sm:w-[320px] shrink-0
-              bg-white/80 dark:bg-card/80
+              bg-white/45 dark:bg-card/80
               backdrop-blur-md
               rounded-[2rem]
-              shadow-sm shadow-black/5 dark:shadow-black/40
+              shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-black/40
               hover:shadow-card-light-hover hover:shadow-primary/20
               hover:-translate-y-4 hover:rotate-2
               transition-all duration-500 ease-out
-              border border-primary/10 dark:border-white/5
+              border border-white/60 dark:border-white/5
             "
           >
             <div className="relative aspect-[3/4] p-5 rounded-t-[2rem] overflow-hidden bg-primary/5 dark:bg-card/40">
