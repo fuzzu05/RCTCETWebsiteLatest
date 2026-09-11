@@ -227,7 +227,7 @@ export const Achievement = () => {
 
                 <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary rounded-full mb-10 shadow-[0_0_15px_rgb(var(--primary)/0.5)]" />
 
-                <div className="flex flex-col items-center lg:items-start bg-white/45 dark:bg-black/30 backdrop-blur-md border border-white/60 dark:border-white/10 shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] rounded-3xl p-8 sm:p-10 max-w-lg transition-transform hover:-translate-y-2 w-full">
+                <div className="flex flex-col items-center lg:items-start bg-white/70 dark:bg-black/30 backdrop-blur-md border border-stone-200/50 dark:border-white/10 shadow-sm rounded-3xl p-8 sm:p-10 max-w-lg transition-transform hover:-translate-y-1 w-full">
                   {(() => {
                     const da = districtAssemblyByYear[selectedYear];
                     if (!da) return null;

@@ -45,14 +45,14 @@ export const Magazine = () => {
             className="
               group
               w-[280px] sm:w-[320px] shrink-0
-              bg-white/45 dark:bg-card/80
+              bg-white/70 dark:bg-card/80
               backdrop-blur-md
               rounded-[2rem]
-              shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-black/40
+              shadow-sm dark:shadow-black/40
               hover:shadow-card-light-hover hover:shadow-primary/20
               hover:-translate-y-4 hover:rotate-2
               transition-all duration-500 ease-out
-              border border-white/60 dark:border-white/5
+              border border-stone-200/50 dark:border-white/5
             "
           >
             <div className="relative aspect-[3/4] p-5 rounded-t-[2rem] overflow-hidden bg-primary/5 dark:bg-card/40">

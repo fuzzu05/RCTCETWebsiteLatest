@@ -6,7 +6,7 @@ function FounderCard() {
   return (
     <SpotlightCard
       spotlightColor="rgba(215, 25, 33, 0.14)"
-      className="group h-full rounded-[2rem] shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-black/50 border border-white/60 dark:border-white/10 bg-white/45 dark:bg-black/20 backdrop-blur-md transition-all duration-500 hover:shadow-card-light-hover hover:-translate-y-2"
+      className="group h-full rounded-[2rem] shadow-sm dark:shadow-black/50 border border-stone-200/50 dark:border-white/10 bg-white/70 dark:bg-black/20 backdrop-blur-md transition-all duration-500 hover:shadow-md hover:-translate-y-1"
     >
       {/* Subtle glow effect on hover */}
       <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />

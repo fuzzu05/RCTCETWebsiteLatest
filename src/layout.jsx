@@ -7,11 +7,11 @@ import AuroraBackground from './Components/ReactBits/AuroraBackground';
 const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF7F2] dark:bg-[#1a1410] relative selection:bg-primary/20">
-      {/* 1. Dynamic React Bits Aurora Canvas (Light Mode Only, High Contrast Rotaract Palette) */}
+      {/* 1. Dynamic React Bits Aurora Canvas (Light Mode Only, Soft Warm Editorial Palette) */}
       <AuroraBackground
-        colorStops={["#C2131A", "#E05A0B", "#E6AF19"]}
-        opacity={0.52}
-        speed={0.6}
+        colorStops={["#F3E8DC", "#F7DED0", "#D71921"]}
+        opacity={0.07}
+        speed={0.35}
         className="dark:hidden"
       />
 

@@ -66,7 +66,7 @@ export const Avenue = () => {
             <motion.div
               variants={itemVariants}
               key={index}
-              className="imp-hoverable group relative w-full h-auto min-h-[450px] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] dark:shadow-black/50 border border-white/60 dark:border-white/10 bg-white/45 dark:bg-black/30 backdrop-blur-xl flex flex-col"
+              className="imp-hoverable group relative w-full h-auto min-h-[450px] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-sm dark:shadow-black/50 border border-stone-200/50 dark:border-white/10 bg-white/70 dark:bg-black/30 backdrop-blur-md flex flex-col"
             >
               {/* Image Container */}
               <div className="w-full h-[250px] p-4 relative overflow-hidden flex-shrink-0">

@@ -1,20 +1,19 @@
 import React, { useEffect, useRef } from "react";
 
 /**
- * AuroraBackground — High-Visibility Dynamic Ambient Gradient Mesh
- * Inspired by React Bits (DavidHDev/react-bits)
+ * AuroraBackground — Subtle Editorial Ambient Canvas
+ * Guided by Leonxlnx/taste-skill and pbakaus/impeccable
  * 
  * Features:
- * - High contrast Rotaract colors: Cranberry (#C2131A), Warm Orange (#E05A0B), Gold (#E6AF19)
- * - Focused blur (35px - 45px) to prevent colors from washing out into flat gray
- * - 100% reliable hybrid engine: CSS animated floating gradient orbs + HTML5 Canvas wave motion
- * - Guaranteed non-zero sizing with z-0 positioning above background and behind z-10 content
- * - Full Dark Mode isolation (.dark:hidden)
+ * - Ultra-light neutral palette: Warm Oat (#F3E8DC), Muted Peach (#F7DED0), and whisper of Rotaract Cranberry (#D71921 @ ~3-4%)
+ * - High Gaussian diffusion (blur-[140px] md:blur-[180px]) melting colors into a seamless warm ambient glow
+ * - Controlled low opacity (0.06 - 0.08 max) preserving clean typography and contrast
+ * - Fully isolated from Dark Mode (.dark:hidden)
  */
 const AuroraBackground = ({
-  colorStops = ["#C2131A", "#E05A0B", "#E6AF19"],
-  opacity = 0.52,
-  speed = 0.6,
+  colorStops = ["#F3E8DC", "#F7DED0", "#D71921"],
+  opacity = 0.07,
+  speed = 0.35,
   className = "",
 }) => {
   const canvasRef = useRef(null);
@@ -51,52 +50,62 @@ const AuroraBackground = ({
     resize();
     window.addEventListener("resize", resize);
 
-    // Dynamic wave emitters with compound harmonic paths
+    // Emitters with gentle, slow harmonic drift
     const emitters = [
       {
-        color: colors[0] || { r: 194, g: 19, b: 26 }, // Cranberry
-        baseX: 0.2,
-        baseY: 0.25,
-        radius: 0.45,
-        fx: 0.7,
-        fy: 0.5,
-        phase: 0.0,
-      },
-      {
-        color: colors[1] || { r: 224, g: 90, b: 11 }, // Warm Orange
-        baseX: 0.8,
-        baseY: 0.3,
-        radius: 0.5,
-        fx: 0.5,
-        fy: 0.8,
-        phase: 1.7,
-      },
-      {
-        color: colors[2] || { r: 230, g: 175, b: 25 }, // Gold
-        baseX: 0.5,
-        baseY: 0.65,
-        radius: 0.55,
-        fx: 0.6,
-        fy: 0.6,
-        phase: 3.4,
-      },
-      {
-        color: colors[0] || { r: 194, g: 19, b: 26 }, // Cranberry bottom-right
-        baseX: 0.85,
-        baseY: 0.8,
-        radius: 0.42,
+        // Soft Warm Oat
+        color: colors[0] || { r: 243, g: 232, b: 220 },
+        baseX: 0.25,
+        baseY: 0.2,
+        radius: 0.6,
         fx: 0.4,
-        fy: 0.7,
-        phase: 4.8,
+        fy: 0.3,
+        phase: 0.0,
+        alphaMult: 1.0,
       },
       {
-        color: colors[1] || { r: 224, g: 90, b: 11 }, // Warm Orange bottom-left
-        baseX: 0.15,
-        baseY: 0.75,
-        radius: 0.45,
-        fx: 0.8,
+        // Ultra-light muted peach
+        color: colors[1] || { r: 247, g: 222, b: 208 },
+        baseX: 0.75,
+        baseY: 0.35,
+        radius: 0.65,
+        fx: 0.3,
+        fy: 0.5,
+        phase: 1.5,
+        alphaMult: 0.9,
+      },
+      {
+        // Subtle Rotaract Cranberry whisper (max ~4%)
+        color: colors[2] || { r: 215, g: 25, b: 33 },
+        baseX: 0.5,
+        baseY: 0.6,
+        radius: 0.55,
+        fx: 0.35,
         fy: 0.4,
-        phase: 5.6,
+        phase: 3.0,
+        alphaMult: 0.5, // 0.07 * 0.5 = 0.035 (3.5% max)
+      },
+      {
+        // Soft Warm Oat lower accent
+        color: colors[0] || { r: 243, g: 232, b: 220 },
+        baseX: 0.8,
+        baseY: 0.8,
+        radius: 0.55,
+        fx: 0.25,
+        fy: 0.45,
+        phase: 4.2,
+        alphaMult: 0.85,
+      },
+      {
+        // Ultra-light muted peach lower-left
+        color: colors[1] || { r: 247, g: 222, b: 208 },
+        baseX: 0.2,
+        baseY: 0.75,
+        radius: 0.6,
+        fx: 0.45,
+        fy: 0.25,
+        phase: 5.4,
+        alphaMult: 0.85,
       },
     ];
 
@@ -111,30 +120,31 @@ const AuroraBackground = ({
 
     const render = (now) => {
       if (!isPaused) {
-        const t = (now - start) * 0.0004 * speed;
+        const t = (now - start) * 0.0003 * speed;
         ctx.clearRect(0, 0, width, height);
 
         emitters.forEach((e) => {
           const time = t + e.phase;
           const cx =
-            (e.baseX + Math.sin(time * e.fx) * 0.18 + Math.cos(time * 0.3) * 0.08) *
+            (e.baseX + Math.sin(time * e.fx) * 0.12 + Math.cos(time * 0.2) * 0.06) *
             width;
           const cy =
-            (e.baseY + Math.cos(time * e.fy) * 0.16 + Math.sin(time * 0.4) * 0.08) *
+            (e.baseY + Math.cos(time * e.fy) * 0.1 + Math.sin(time * 0.25) * 0.05) *
             height;
 
-          const r = Math.min(width, height) * e.radius * (1 + 0.12 * Math.sin(time * 1.1));
+          const r = Math.min(width, height) * e.radius * (1 + 0.08 * Math.sin(time * 0.8));
 
           const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+          const currentAlpha = (opacity * e.alphaMult).toFixed(4);
           grad.addColorStop(
             0,
-            `rgba(${e.color.r}, ${e.color.g}, ${e.color.b}, ${opacity})`
+            `rgba(${e.color.r}, ${e.color.g}, ${e.color.b}, ${currentAlpha})`
           );
           grad.addColorStop(
-            0.5,
-            `rgba(${e.color.r}, ${e.color.g}, ${e.color.b}, ${(opacity * 0.45).toFixed(
-              3
-            )})`
+            0.6,
+            `rgba(${e.color.r}, ${e.color.g}, ${e.color.b}, ${(
+              currentAlpha * 0.4
+            ).toFixed(4)})`
           );
           grad.addColorStop(
             1,
@@ -165,34 +175,23 @@ const AuroraBackground = ({
       className={`fixed inset-0 w-full h-full min-h-screen z-0 pointer-events-none overflow-hidden select-none ${className}`}
       aria-hidden="true"
     >
-      {/* 1. CSS Animated Gradient Mesh Base (Instant, 100% Reliable Render) */}
-      <div className="absolute inset-0 w-full h-full opacity-60">
-        {/* Cranberry Orb */}
+      {/* 1. Ultra-soft Warm Ambient Underlay */}
+      <div className="absolute inset-0 w-full h-full opacity-30">
         <div
-          className="absolute -top-[15%] -left-[10%] w-[55vw] h-[55vw] rounded-full bg-[#C2131A]/40 blur-[40px] md:blur-[45px] animate-pulse"
-          style={{ animationDuration: "14s" }}
+          className="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-[#F3E8DC] blur-[140px] md:blur-[180px]"
         />
-        {/* Warm Orange Orb */}
         <div
-          className="absolute top-[20%] -right-[15%] w-[60vw] h-[60vw] rounded-full bg-[#E05A0B]/40 blur-[40px] md:blur-[45px] animate-pulse"
-          style={{ animationDuration: "18s", animationDelay: "2s" }}
+          className="absolute top-[25%] -right-[10%] w-[55vw] h-[55vw] rounded-full bg-[#F7DED0] blur-[140px] md:blur-[180px]"
         />
-        {/* Gold Accent Orb */}
         <div
-          className="absolute -bottom-[10%] left-[25%] w-[50vw] h-[50vw] rounded-full bg-[#E6AF19]/35 blur-[35px] md:blur-[40px] animate-pulse"
-          style={{ animationDuration: "16s", animationDelay: "4s" }}
-        />
-        {/* Secondary Cranberry/Orange Glow */}
-        <div
-          className="absolute bottom-[20%] -left-[15%] w-[45vw] h-[45vw] rounded-full bg-[#C2131A]/35 blur-[35px] md:blur-[45px] animate-pulse"
-          style={{ animationDuration: "20s", animationDelay: "6s" }}
+          className="absolute -bottom-[10%] left-[25%] w-[45vw] h-[45vw] rounded-full bg-[#F3E8DC] blur-[140px] md:blur-[180px]"
         />
       </div>
 
-      {/* 2. Fluid HTML5 Canvas Harmonic Aurora Layer */}
+      {/* 2. Fluid Harmonic Canvas Wave Layer with Deep Diffusion */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full filter blur-[30px] md:blur-[40px] transform-gpu will-change-transform"
+        className="absolute inset-0 w-full h-full filter blur-[140px] md:blur-[180px] transform-gpu will-change-transform"
       />
     </div>
   );
