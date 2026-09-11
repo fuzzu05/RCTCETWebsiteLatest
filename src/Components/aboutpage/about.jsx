@@ -92,7 +92,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, type: "spring" }}
-            className="relative rounded-[2.5rem] p-6 lg:p-10 aspect-square w-full max-w-[400px] md:max-w-none md:w-[28vw] overflow-visible flex-shrink-0 bg-white/70 dark:bg-card/40 backdrop-blur-md border border-stone-200/50 dark:border-white/10 shadow-sm group hover:border-primary/40 transition-colors duration-500"
+            className="relative rounded-[2.5rem] p-6 lg:p-10 aspect-square w-full max-w-[400px] md:max-w-none md:w-[28vw] overflow-visible flex-shrink-0 bg-white/60 dark:bg-card/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm group hover:border-primary/40 transition-colors duration-500"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--primary)/0.1)_0%,transparent_70%)]" />
             <LazyLoadImage
