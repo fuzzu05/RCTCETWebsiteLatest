@@ -84,7 +84,7 @@ export const Magazine = () => {
             </div>
 
             <div className="px-6 pb-8 text-center relative z-10 -mt-6">
-              <span className="inline-block px-3 py-1 bg-card rounded-full border border-black/5 dark:border-white/5 shadow-sm text-xs font-bold text-primary tracking-widest mb-3">
+              <span className="inline-block px-3 py-1 bg-card rounded-full border border-primary/15 dark:border-white/5 shadow-sm text-xs font-bold text-primary tracking-widest mb-3">
                 {mag.year}
               </span>
 
@@ -100,7 +100,7 @@ export const Magazine = () => {
                 href={mag.link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 mt-4 px-8 py-3 bg-card dark:bg-card border border-primary/20 rounded-full text-sm font-bold text-primary hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform group-hover:scale-105"
+                className="inline-flex items-center gap-2 mt-4 px-8 py-3 bg-card dark:bg-card border border-primary/30 dark:border-white/5 rounded-full text-sm font-bold text-primary hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 transform group-hover:scale-105"
               >
                 Open Volume 
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>

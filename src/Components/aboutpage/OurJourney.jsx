@@ -186,7 +186,7 @@ const MobileJourney = ({ onSelectYear }) => {
                         viewport={{ once: true, margin: "-50px" }}
                         className="relative z-10 w-full mb-16 last:mb-0"
                     >
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white dark:border-muted shadow-md z-20" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background dark:border-muted shadow-md z-20" />
 
                         <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${isPhotoLeft ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}>
                             <div

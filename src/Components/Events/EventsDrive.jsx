@@ -37,7 +37,7 @@ export default function EventsDrive() {
 
   if (loading) {
     return (
-      <p className="text-center mt-12 text-gray-500">
+      <p className="text-center mt-12 text-muted">
         Loading recent drives...
       </p>
     );
@@ -59,11 +59,11 @@ export default function EventsDrive() {
             key={idx}
             className="
               bg-card
-              border border-primary dark:border-muted
+              border border-primary/20 dark:border-muted
               rounded-2xl
               p-6
-              shadow-md
-              hover:shadow-xl
+              shadow-card-light dark:shadow-md
+              hover:shadow-card-light-hover dark:hover:shadow-xl
               transition-all
               hover:-translate-y-1
               flex flex-col
@@ -71,7 +71,7 @@ export default function EventsDrive() {
           >
           
             <div className="mb-4">
-              <span className="text-xs uppercase tracking-wide text-gray-400">
+              <span className="text-xs uppercase tracking-wide text-muted">
                 Event / Drive
               </span>
               <h3 className="mt-1 text-lg font-semibold text-primary dark:text-secondary leading-snug">
@@ -80,7 +80,7 @@ export default function EventsDrive() {
             </div>
 
          
-            <div className="border-t border-gray-200 dark:border-muted my-4"></div>
+            <div className="border-t border-primary/10 dark:border-muted my-4"></div>
 
            
             {event.driveLink && (
