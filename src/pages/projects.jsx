@@ -140,7 +140,7 @@ function Projects() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-[5rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 tracking-tighter drop-shadow-sm select-none uppercase mb-4"
+              className="text-5xl md:text-7xl lg:text-[5rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 tracking-tighter drop-shadow-sm select-none uppercase mb-4"
             >
               EXPLORE OUR <br className="md:hidden" />
               <span className="bg-gradient-to-b from-primary to-primary/60 bg-clip-text text-transparent">
@@ -152,7 +152,7 @@ function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-2 text-sm md:text-lg max-w-2xl text-white/80 font-medium tracking-wide drop-shadow-md mb-8"
+              className="mt-2 text-sm md:text-lg max-w-2xl text-white/90 dark:text-white/80 font-medium tracking-wide drop-shadow-md mb-8"
             >
               Discover the transformative initiatives that define our commitment to positive change in the community.
             </motion.p>
@@ -161,7 +161,7 @@ function Projects() {
               <div className="relative w-48 sm:w-56">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center justify-between w-full py-2.5 px-5 text-sm sm:text-base border border-white/20 rounded-full bg-black/30 backdrop-blur-xl text-white font-bold outline-none cursor-pointer hover:bg-black/50 transition-all shadow-xl shadow-black/20 uppercase tracking-widest"
+                  className="flex items-center justify-between w-full py-2.5 px-5 text-sm sm:text-base border border-white/40 rounded-full bg-black/40 dark:bg-black/30 backdrop-blur-xl text-white font-bold outline-none cursor-pointer hover:bg-black/50 transition-all shadow-xl shadow-black/20 uppercase tracking-widest"
                 >
                   <span className="flex-1 text-center">{selectedYear}</span>
                   <ChevronDown 
@@ -187,9 +187,9 @@ function Projects() {
                             setIsDropdownOpen(false);
                           }}
                           className={`w-full text-center py-3 px-5 font-bold text-sm sm:text-base transition-colors duration-300 uppercase tracking-wider shrink-0
-                            ${selectedYear === year 
-                              ? 'bg-primary/40 text-white shadow-inner' 
-                              : 'text-white/80 hover:bg-white/10 hover:text-white'
+                            ${selectedYear === year
+                              ? 'bg-primary/40 text-white shadow-inner'
+                              : 'text-white/90 dark:text-white/80 hover:bg-white/10 hover:text-white'
                             }
                           `}
                         >
@@ -363,12 +363,14 @@ function SliderSection({ section, index }) {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
     >
+      <div className="absolute -top-20 left-0 w-full h-40 bg-gradient-to-b from-primary/5 to-transparent blur-3xl pointer-events-none" />
+
       <h2 className="text-4xl md:text-5xl lg:text-6xl text-center font-black mb-12 text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 uppercase tracking-tight drop-shadow-sm">
         {section.title}
       </h2>
 
       <div className="relative max-w-6xl mx-auto group perspective-1000">
-        <div className="bg-white/70 dark:bg-black/20 backdrop-blur-md border border-stone-200/60 dark:border-white/10 rounded-3xl shadow-sm p-4 sm:p-8 transition-transform duration-500 hover:-translate-y-1">
+        <div className="bg-white/45 dark:bg-black/20 backdrop-blur-md border border-white/60 dark:border-white/10 rounded-3xl shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] p-4 sm:p-8 transition-transform duration-500 hover:-translate-y-2">
 
           {/* Arrows */}
           {total > 1 && (

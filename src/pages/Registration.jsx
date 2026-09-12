@@ -396,7 +396,7 @@ const RegistrationForm = () => {
                     accept="image/*,.pdf"
                     required
                     onChange={(e) => setPaymentReceipt(e.target.files[0])}
-                    className="w-full max-w-sm p-2.5 rounded-xl border border-white/20 dark:border-white/10 bg-white/40 dark:bg-black/40 text-foreground text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90 transition-all cursor-pointer"
+                    className="w-full max-w-sm p-2.5 rounded-xl border border-white/40 dark:border-white/10 bg-white/80 dark:bg-black/40 text-foreground text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90 transition-all cursor-pointer"
                   />
                 </div>
               </div>
@@ -425,14 +425,17 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-transparent transition-colors flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden">
+    <div className="min-h-screen bg-background transition-colors flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden">
       <SEO title="Join RCTCET" description="Register to become a member of the Rotaract Club of TCET." />
+
+      <div className="absolute top-0 right-0 w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-4xl bg-white/70 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[2.5rem] shadow-sm dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-stone-200/60 dark:border-white/10 relative z-10"
+        className="w-full max-w-4xl bg-white/95 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/40 dark:border-white/10 relative z-10"
       >
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-3 uppercase tracking-tighter drop-shadow-sm">
@@ -460,7 +463,7 @@ const RegistrationForm = () => {
             <button
               type="button"
               onClick={prevStep}
-              className={`px-6 py-3 font-bold text-foreground bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-all shadow-sm ${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+              className={`px-6 py-3 font-bold text-foreground bg-white/90 hover:bg-white border border-white/40 rounded-xl transition-all shadow-sm ${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
             >
               Back
             </button>

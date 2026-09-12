@@ -178,7 +178,7 @@ const EventRegistration = () => {
   const yearOptions = isFromTcet ? TCET_YEARS : EXTERNAL_YEARS;
 
   return (
-    <div className="min-h-screen bg-transparent transition-colors py-12 px-4 flex justify-center">
+    <div className="min-h-screen bg-background transition-colors py-12 px-4 flex justify-center">
       <SEO title={`Register — ${eventData.eventName}`} description={eventData.eventDescription} />
       <Toaster />
 
@@ -190,7 +190,7 @@ const EventRegistration = () => {
       >
         {/* ── Left: Event Details ── */}
         <div className="md:col-span-2">
-          <div className="sticky top-24 bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-3xl overflow-hidden shadow-sm border border-stone-200/60 dark:border-white/10">
+          <div className="sticky top-24 bg-white/90 dark:bg-black/30 backdrop-blur-2xl rounded-3xl overflow-hidden shadow-2xl border border-white/40 dark:border-white/10">
             <img src={eventData.eventImage} alt={eventData.eventName} className="w-full h-52 object-cover" />
             <div className="p-6 flex flex-col gap-3">
               <span className="inline-block bg-primary/10 text-primary px-3 py-1 border border-primary/20 rounded-full text-xs font-bold uppercase tracking-wider w-fit">
@@ -220,21 +220,21 @@ const EventRegistration = () => {
         </div>
 
         {/* ── Right: Form ── */}
-        <div className="md:col-span-3 bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200/60 dark:border-white/10">
+        <div className="md:col-span-3 bg-white/90 dark:bg-black/30 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/40 dark:border-white/10">
           <h3 className="text-lg font-black text-foreground mb-6 border-b border-white/10 pb-4 uppercase tracking-wider">Participant Details</h3>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
             {/* External toggle */}
             {eventData.externalAllowed && (
-              <div className="flex gap-3 p-4 rounded-2xl border border-white/20 dark:border-white/10 bg-white/10 dark:bg-black/20">
+              <div className="flex gap-3 p-4 rounded-2xl border border-white/40 dark:border-white/10 bg-white/90 dark:bg-black/20">
                 <span className="text-sm font-semibold text-foreground/70 mr-1">Are you from TCET?</span>
                 {["Yes", "No"].map(v => (
                   <button
                     key={v}
                     type="button"
                     onClick={() => { setIsFromTcet(v === "Yes"); setFormData(p => ({ ...p, yearOfStudy: "" })); }}
-                    className={`px-4 py-1.5 rounded-full text-sm font-bold border transition-all ${isFromTcet === (v === "Yes") ? "bg-primary text-white border-primary" : "bg-transparent text-foreground/60 border-white/20"}`}
+                    className={`px-4 py-1.5 rounded-full text-sm font-bold border transition-all ${isFromTcet === (v === "Yes") ? "bg-primary text-white border-primary" : "bg-white/90 text-foreground border-white/40"}`}
                   >
                     {v}
                   </button>
@@ -289,7 +289,7 @@ const EventRegistration = () => {
                 {field.type === "radio" && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1.5">
                     {field.options?.map(o => (
-                      <label key={o} className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/10 dark:bg-black/20 hover:bg-white/20 dark:hover:bg-black/30 transition-colors cursor-pointer shadow-sm">
+                      <label key={o} className="flex items-center gap-3 p-3.5 rounded-xl border border-white/40 bg-white/90 dark:bg-black/20 hover:bg-white dark:hover:bg-black/30 transition-colors cursor-pointer shadow-sm">
                         <input type="radio" name={field.label} value={o} required={field.required} onChange={() => handleCustomChange(field.label, o)} className="w-4 h-4 accent-primary flex-shrink-0" />
                         <span className="text-sm font-semibold text-foreground/80">{o}</span>
                       </label>
@@ -299,7 +299,7 @@ const EventRegistration = () => {
                 {field.type === "checkbox" && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1.5">
                     {field.options?.map(o => (
-                      <label key={o} className="flex items-center gap-3 p-3.5 rounded-xl border border-white/10 bg-white/10 dark:bg-black/20 hover:bg-white/20 dark:hover:bg-black/30 transition-colors cursor-pointer shadow-sm">
+                      <label key={o} className="flex items-center gap-3 p-3.5 rounded-xl border border-white/40 bg-white/90 dark:bg-black/20 hover:bg-white dark:hover:bg-black/30 transition-colors cursor-pointer shadow-sm">
                         <input
                           type="checkbox"
                           value={o}
@@ -320,7 +320,7 @@ const EventRegistration = () => {
 
             {/* Payment section */}
             {effectivePrice !== "Free" && (
-              <div className="p-5 rounded-2xl border border-white/20 dark:border-white/10 bg-white/10 dark:bg-black/20">
+              <div className="p-5 rounded-2xl border border-white/40 dark:border-white/10 bg-white/90 dark:bg-black/20">
                 <h4 className="font-black text-foreground mb-1">Payment — ₹{effectivePrice}</h4>
                 <p className="text-sm text-foreground/50 mb-4">Scan the QR code below to pay via UPI</p>
                 {upiLink && (

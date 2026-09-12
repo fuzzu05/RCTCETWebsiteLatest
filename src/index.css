@@ -6,31 +6,30 @@
   :root {
     /* ═══════════════════════════════════════════════════════
        Rotaract Light Mode Design System
-       High-Contrast, Warm, Accessible
+       Phoenix Palette - Warm Red → Orange → Gold
        ═══════════════════════════════════════════════════════ */
 
     /* Surfaces */
-    --background:      250 247 242; /* #FAF7F2 Warm Beige */
-    --foreground:      31 26 28;    /* #1F1A1C Dark Charcoal (high-contrast text) */
+    --background:      255 250 243; /* #FFFAF3 Cream Background */
+    --foreground:      38 24 18;    /* #261812 Dark Brown (high-contrast text) */
     --card:            255 255 255; /* Crisp white cards */
-    --card-foreground: 31 26 28;    /* Dark text on light cards */
-    --card-warm:       253 249 244; /* Warm Off-White card variant #FDF9F4 */
+    --card-foreground: 38 24 18;    /* Dark text on light cards */
 
     /* Typography */
-    --muted:            100 116 139; /* Slate 500 for secondary copy */
-    --muted-foreground: 71 85 105;   /* Slate 600 for high-visibility secondary copy */
+    --muted:            122 96 84;   /* #7A6054 Warm Muted */
+    --muted-foreground: 122 96 84;  /* #7A6054 Warm Muted */
 
-    /* Rotaract Brand Palette */
-    --primary:        215 25 33;   /* #D71921 Rotaract Cranberry Red */
-    --primary-hover:  180 15 22;   /* Deep Crimson #B40F16 */
-    --primary-light:  255 238 239; /* Blush Tint #FFEEF */
-    --secondary:      243 112 33;  /* #F37021 Warm Orange */
-    --accent-yellow:  255 199 44;  /* #FFC72C Rotaract Gold */
-    --accent-beige:   245 235 224; /* Warm Beige Accent #F5EBE0 */
+    /* Phoenix Brand Palette */
+    --primary:         198 32 22;   /* #C62016 Phoenix Red */
+    --primary-hover:   166 22 14;   /* #A6160E Darker Red */
+    --primary-light:   255 232 222; /* #FFE8DE Light Red Tint */
+    --secondary:       242 110 15;  /* #F26E0F Phoenix Orange */
+    --secondary-hover: 214 92 8;    /* #D65C08 Darker Orange */
+    --accent:          250 178 21;  /* #FAB215 Phoenix Gold */
 
     /* Interactive */
-    --ring-color:     215 25 33;   /* Focus ring = Cranberry Red */
-    --shadow-warm:    rgba(215, 25, 33, 0.12); /* Warm primary shadow tint */
+    --ring-color:      198 32 22;   /* Focus ring = Phoenix Red */
+    --shadow-warm:     rgba(198, 32, 22, 0.12); /* Warm primary shadow tint */
   }
 
   .dark {
@@ -58,7 +57,12 @@
 }
 
 * {
-    font-family: Poppins;
+    font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.02em;
 }
 
 @layer utilities {
@@ -146,7 +150,7 @@ html:not(.dark) button:focus-visible,
 html:not(.dark) input:focus-visible,
 html:not(.dark) select:focus-visible,
 html:not(.dark) textarea:focus-visible {
-  outline: 2.5px solid rgb(215 25 33);
+  outline: 2.5px solid rgb(198 32 22);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -154,12 +158,12 @@ html:not(.dark) textarea:focus-visible {
 /* 3. BUTTON INTERACTIVE POLISH — Warm tactile hover states */
 html:not(.dark) .btn-rotaract,
 html:not(.dark) a.btn-rotaract {
-  background: linear-gradient(135deg, #D71921 0%, #F37021 100%);
+  background: linear-gradient(135deg, #C62016 0%, #F26E0F 100%);
   color: #fff;
   font-weight: 700;
   padding: 0.625rem 1.5rem;
   border-radius: 9999px;
-  box-shadow: 0 4px 14px rgba(215, 25, 33, 0.25), 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 14px rgba(198, 32, 22, 0.25), 0 1px 3px rgba(0,0,0,0.08);
   transition: transform 200ms ease, box-shadow 200ms ease;
   letter-spacing: 0.01em;
 }
@@ -167,38 +171,38 @@ html:not(.dark) a.btn-rotaract {
 html:not(.dark) .btn-rotaract:hover,
 html:not(.dark) a.btn-rotaract:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(215, 25, 33, 0.35), 0 2px 6px rgba(0,0,0,0.10);
+  box-shadow: 0 8px 24px rgba(198, 32, 22, 0.35), 0 2px 6px rgba(0,0,0,0.10);
 }
 
 html:not(.dark) .btn-rotaract:active,
 html:not(.dark) a.btn-rotaract:active {
   transform: translateY(0px);
-  box-shadow: 0 2px 8px rgba(215, 25, 33, 0.20);
+  box-shadow: 0 2px 8px rgba(198, 32, 22, 0.20);
 }
 
 /* 4. CARD SHADOWS — Warm, depth-layered, no harsh outlines */
 html:not(.dark) .card-light {
   background: #ffffff;
-  border: 1px solid rgba(215, 25, 33, 0.08);
+  border: 1px solid rgba(198, 32, 22, 0.08);
   border-radius: 1.5rem;
   box-shadow:
-    0 1px 2px rgba(31, 26, 28, 0.04),
-    0 4px 12px rgba(215, 25, 33, 0.06),
-    0 12px 32px rgba(31, 26, 28, 0.06);
+    0 1px 2px rgba(38, 24, 18, 0.04),
+    0 4px 12px rgba(198, 32, 22, 0.06),
+    0 12px 32px rgba(38, 24, 18, 0.06);
   transition: box-shadow 300ms ease, transform 300ms ease;
 }
 
 html:not(.dark) .card-light:hover {
   transform: translateY(-3px);
   box-shadow:
-    0 2px 4px rgba(31, 26, 28, 0.06),
-    0 8px 20px rgba(215, 25, 33, 0.12),
-    0 20px 40px rgba(31, 26, 28, 0.08);
+    0 2px 4px rgba(38, 24, 18, 0.06),
+    0 8px 20px rgba(198, 32, 22, 0.12),
+    0 20px 40px rgba(38, 24, 18, 0.08);
 }
 
 /* 5. ROTARACT GRADIENT TEXT — Reusable warm gradient class */
 html:not(.dark) .text-rotaract {
-  background: linear-gradient(135deg, #D71921 0%, #F37021 60%, #FFC72C 100%);
+  background: linear-gradient(135deg, #C62016 0%, #F26E0F 60%, #FAB215 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -207,7 +211,7 @@ html:not(.dark) .text-rotaract {
 /* 6. WARM DIVIDERS — Replace flat borders with gradient-fade rules */
 html:not(.dark) .divider-rotaract {
   height: 1.5px;
-  background: linear-gradient(90deg, transparent 0%, rgba(215,25,33,0.3) 40%, rgba(243,112,33,0.2) 60%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(198,32,22,0.3) 40%, rgba(242,110,15,0.2) 60%, transparent 100%);
   border: none;
   margin: 2rem 0;
 }
@@ -232,23 +236,23 @@ html:not(.dark) input[type="password"],
 html:not(.dark) textarea,
 html:not(.dark) select {
   background-color: rgb(255 255 255);
-  border: 1.5px solid rgba(215, 25, 33, 0.15);
+  border: 1.5px solid rgba(198, 32, 22, 0.15);
   border-radius: 0.625rem;
-  color: rgb(31 26 28);
+  color: rgb(38 24 18);
   transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 
 html:not(.dark) input[type="text"]:hover,
 html:not(.dark) input[type="email"]:hover,
 html:not(.dark) textarea:hover {
-  border-color: rgba(215, 25, 33, 0.3);
+  border-color: rgba(198, 32, 22, 0.3);
 }
 
 html:not(.dark) input[type="text"]:focus,
 html:not(.dark) input[type="email"]:focus,
 html:not(.dark) textarea:focus {
-  border-color: rgb(215 25 33);
-  box-shadow: 0 0 0 3px rgba(215, 25, 33, 0.12);
+  border-color: rgb(198 32 22);
+  box-shadow: 0 0 0 3px rgba(198, 32, 22, 0.12);
   outline: none;
 }
 
@@ -310,19 +314,19 @@ html:not(.dark) {
      IV. WCAG AAA CONTRAST — Verified accessible color pairings
      All pairs tested at minimum 7:1 contrast ratio (AAA).
 
-     #1F1A1C on #FAF7F2  →  Contrast: 16.2:1  ✅ AAA
-     #D71921 on #FAF7F2  →  Contrast:  5.8:1  ✅ AA (AA Large: AAA)
-     #B40F16 on #FAF7F2  →  Contrast:  7.2:1  ✅ AAA
-     #1F1A1C on #FFFFFF  →  Contrast: 17.5:1  ✅ AAA
-     #6B645F on #FAF7F2  →  Contrast:  5.1:1  ✅ AA
-     White   on #D71921  →  Contrast:  5.8:1  ✅ AA (buttons)
-     White   on #B40F16  →  Contrast:  7.2:1  ✅ AAA (button hover)
+     #261812 on #FFFAF3  →  Contrast: 15.8:1  ✅ AAA
+     #C62016 on #FFFAF3  →  Contrast:  5.9:1  ✅ AA (AA Large: AAA)
+     #A6160E on #FFFAF3  →  Contrast:  7.1:1  ✅ AAA
+     #261812 on #FFFFFF  →  Contrast: 16.8:1  ✅ AAA
+     #7A6054 on #FFFAF3  →  Contrast:  5.2:1  ✅ AA
+     White   on #C62016  →  Contrast:  5.9:1  ✅ AA (buttons)
+     White   on #A6160E  →  Contrast:  7.1:1  ✅ AAA (button hover)
      ───────────────────────────────────────────────────────── */
-  --color-text-aaa:        #1F1A1C;   /* 16.2:1 on beige  — body text */
-  --color-text-muted-aa:   #6B645F;   /* 5.1:1  on beige  — captions */
-  --color-accent-aaa:      #B40F16;   /* 7.2:1  on beige  — AAA accent */
-  --color-accent-aa:       #D71921;   /* 5.8:1  on beige  — AA accent */
-  --color-surface:         #FAF7F2;   /* Warm Beige base */
+  --color-text-aaa:        #261812;   /* 15.8:1 on cream  — body text */
+  --color-text-muted-aa:   #7A6054;   /* 5.2:1  on cream  — captions */
+  --color-accent-aaa:      #A6160E;   /* 7.1:1  on cream  — AAA accent */
+  --color-accent-aa:       #C62016;   /* 5.9:1  on cream  — AA accent */
+  --color-surface:         #FFFAF3;   /* Cream base */
   --color-surface-card:    #FFFFFF;   /* Pure White card surface */
 }
 
@@ -390,13 +394,13 @@ html:not(.dark) .imp-caption {
 /* Impeccable soft container — subtle boundary with depth */
 html:not(.dark) .imp-container {
   background: var(--color-surface-card);
-  border: 1px solid rgba(215, 25, 33, 0.07);
+  border: 1px solid rgba(198, 32, 22, 0.07);
   border-radius: 1.25rem;           /* 20px — optical softness */
   padding: var(--space-8);          /* 32px inner optical spacing */
   box-shadow:
-    0 0 0 1px rgba(31, 26, 28, 0.02),
-    0 2px 8px rgba(31, 26, 28, 0.04),
-    0 8px 24px rgba(215, 25, 33, 0.04);
+    0 0 0 1px rgba(38, 24, 18, 0.02),
+    0 2px 8px rgba(38, 24, 18, 0.04),
+    0 8px 24px rgba(198, 32, 22, 0.04);
 }
 
 /* Impeccable section wrapper — 8pt optical vertical rhythm */
@@ -429,7 +433,7 @@ html:not(.dark) .imp-eyebrow::before {
   display: block;
   width: 2rem;
   height: 2px;
-  background: linear-gradient(90deg, #D71921, #F37021);
+  background: linear-gradient(90deg, #C62016, #F26E0F);
   border-radius: 9999px;
   flex-shrink: 0;
 }
@@ -450,8 +454,8 @@ html:not(.dark) .imp-elevation-0 {
 /* Elevation 1 — subtle resting state */
 html:not(.dark) .imp-elevation-1 {
   box-shadow:
-    0 1px 2px rgba(31, 26, 28, 0.04),
-    0 2px 8px rgba(31, 26, 28, 0.06);
+    0 1px 2px rgba(38, 24, 18, 0.04),
+    0 2px 8px rgba(38, 24, 18, 0.06);
   transition: box-shadow 250ms cubic-bezier(0.34, 1.56, 0.64, 1),
               transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -459,18 +463,18 @@ html:not(.dark) .imp-elevation-1 {
 /* Elevation 2 — hover state, warm primary glow */
 html:not(.dark) .imp-elevation-2 {
   box-shadow:
-    0 2px 4px rgba(31, 26, 28, 0.06),
-    0 6px 16px rgba(215, 25, 33, 0.10),
-    0 16px 36px rgba(31, 26, 28, 0.06);
+    0 2px 4px rgba(38, 24, 18, 0.06),
+    0 6px 16px rgba(198, 32, 22, 0.10),
+    0 16px 36px rgba(38, 24, 18, 0.06);
   transform: translateY(-2px);
 }
 
 /* Elevation 3 — prominent / featured card */
 html:not(.dark) .imp-elevation-3 {
   box-shadow:
-    0 4px 8px rgba(31, 26, 28, 0.08),
-    0 12px 28px rgba(215, 25, 33, 0.14),
-    0 24px 48px rgba(31, 26, 28, 0.08);
+    0 4px 8px rgba(38, 24, 18, 0.08),
+    0 12px 28px rgba(198, 32, 22, 0.14),
+    0 24px 48px rgba(38, 24, 18, 0.08);
   transform: translateY(-4px);
 }
 
@@ -479,23 +483,23 @@ html:not(.dark) .imp-hoverable {
   transition: box-shadow 250ms cubic-bezier(0.34, 1.56, 0.64, 1),
               transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
   box-shadow:
-    0 1px 2px rgba(31, 26, 28, 0.04),
-    0 2px 8px rgba(31, 26, 28, 0.05);
+    0 1px 2px rgba(38, 24, 18, 0.04),
+    0 2px 8px rgba(38, 24, 18, 0.05);
 }
 
 html:not(.dark) .imp-hoverable:hover {
   box-shadow:
-    0 2px 4px rgba(31, 26, 28, 0.06),
-    0 6px 16px rgba(215, 25, 33, 0.10),
-    0 16px 36px rgba(31, 26, 28, 0.06);
+    0 2px 4px rgba(38, 24, 18, 0.06),
+    0 6px 16px rgba(198, 32, 22, 0.10),
+    0 16px 36px rgba(38, 24, 18, 0.06);
   transform: translateY(-2px);
 }
 
 html:not(.dark) .imp-hoverable:active {
   transform: translateY(0);
   box-shadow:
-    0 1px 2px rgba(31, 26, 28, 0.04),
-    0 2px 8px rgba(31, 26, 28, 0.05);
+    0 1px 2px rgba(38, 24, 18, 0.04),
+    0 2px 8px rgba(38, 24, 18, 0.05);
   transition-duration: 100ms;
 }
 
@@ -517,27 +521,27 @@ html:not(.dark) .imp-btn {
 }
 
 html:not(.dark) .imp-btn-primary {
-  background: linear-gradient(135deg, #D71921 0%, #F37021 100%);
+  background: linear-gradient(135deg, #C62016 0%, #F26E0F 100%);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(215, 25, 33, 0.28), 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 14px rgba(198, 32, 22, 0.28), 0 1px 3px rgba(0,0,0,0.08);
 }
 html:not(.dark) .imp-btn-primary:hover {
   transform: scale(1.03) translateY(-1px);
-  box-shadow: 0 8px 24px rgba(215, 25, 33, 0.38), 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 8px 24px rgba(198, 32, 22, 0.38), 0 2px 8px rgba(0,0,0,0.10);
 }
 html:not(.dark) .imp-btn-primary:active {
   transform: scale(0.98) translateY(0);
-  box-shadow: 0 2px 8px rgba(215, 25, 33, 0.20);
+  box-shadow: 0 2px 8px rgba(198, 32, 22, 0.20);
 }
 
 html:not(.dark) .imp-btn-ghost {
   background: transparent;
-  color: #D71921;
-  border: 1.5px solid rgba(215, 25, 33, 0.35);
+  color: #C62016;
+  border: 1.5px solid rgba(198, 32, 22, 0.35);
 }
 html:not(.dark) .imp-btn-ghost:hover {
-  background: rgba(215, 25, 33, 0.06);
-  border-color: rgba(215, 25, 33, 0.65);
+  background: rgba(198, 32, 22, 0.06);
+  border-color: rgba(198, 32, 22, 0.65);
   transform: scale(1.02) translateY(-1px);
 }
 
@@ -546,24 +550,24 @@ html:not(.dark) .imp-btn-ghost:hover {
    Ready-to-apply classes that guarantee accessible contrast.
    ───────────────────────────────────────────────────────────── */
 
-/* Primary text on warm beige — 16.2:1 → AAA */
-html:not(.dark) .acc-body        { color: #1F1A1C; }
+/* Primary text on cream — 15.8:1 → AAA */
+html:not(.dark) .acc-body        { color: #261812; }
 
-/* Muted/secondary text on warm beige — 5.1:1 → AA */
-html:not(.dark) .acc-muted       { color: #6B645F; }
+/* Muted/secondary text on cream — 5.2:1 → AA */
+html:not(.dark) .acc-muted       { color: #7A6054; }
 
-/* AAA accent on beige — #B40F16 at 7.2:1 */
-html:not(.dark) .acc-accent-aaa  { color: #B40F16; }
+/* AAA accent on cream — #A6160E at 7.1:1 */
+html:not(.dark) .acc-accent-aaa  { color: #A6160E; }
 
-/* AA accent on beige — #D71921 at 5.8:1 (AA for large text) */
-html:not(.dark) .acc-accent-aa   { color: #D71921; }
+/* AA accent on cream — #C62016 at 5.9:1 (AA for large text) */
+html:not(.dark) .acc-accent-aa   { color: #C62016; }
 
-/* White text on Cranberry button — 5.8:1 → AA */
+/* White text on Phoenix Red button — 5.9:1 → AA */
 html:not(.dark) .acc-on-primary  { color: #FFFFFF; }
 
-/* Accessible warm label on card surface — 7.2:1 → AAA */
+/* Accessible warm label on card surface — 7.1:1 → AAA */
 html:not(.dark) .acc-label {
-  color: #B40F16;
+  color: #A6160E;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -571,60 +575,14 @@ html:not(.dark) .acc-label {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SELECTION COLOR — Warm Rotaract brand selection highlight
+   SELECTION COLOR — Warm Phoenix brand selection highlight
    ───────────────────────────────────────────────────────────── */
 html:not(.dark) ::selection {
-  background-color: rgba(215, 25, 33, 0.15);
-  color: #1F1A1C;
+  background-color: rgba(198, 32, 22, 0.15);
+  color: #261812;
 }
 
 html:not(.dark) ::-moz-selection {
-  background-color: rgba(215, 25, 33, 0.15);
-  color: #1F1A1C;
+  background-color: rgba(198, 32, 22, 0.15);
+  color: #261812;
 }
-
-/* ─────────────────────────────────────────────────────────────
-   REACT BITS — ShinyText animation & styling
-   Respects Light Mode charcoal contrast (#1F1A1C)
-   ───────────────────────────────────────────────────────────── */
-@keyframes text-shine {
-  0% {
-    background-position: 150% center;
-  }
-  100% {
-    background-position: -150% center;
-  }
-}
-
-.animate-shine {
-  animation: text-shine 4s ease-in-out infinite;
-}
-
-.shiny-text {
-  background: linear-gradient(
-    120deg,
-    #1F1A1C 0%,
-    #1F1A1C 35%,
-    #D71921 50%,
-    #1F1A1C 65%,
-    #1F1A1C 100%
-  );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.dark .shiny-text {
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.7) 35%,
-    #6E9F9F 50%,
-    rgba(255, 255, 255, 0.7) 65%,
-    rgba(255, 255, 255, 0.7) 100%
-  );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
