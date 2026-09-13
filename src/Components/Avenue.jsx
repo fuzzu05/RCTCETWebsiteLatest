@@ -1,6 +1,31 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import { avenuesInfo as allinfo } from "../data/avenues";
+import SEO from "./SEO";
+
+function AvenueCardImage({ src, alt }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <>
+      {!loaded && (
+        <div className="absolute inset-0 z-0 rounded-[2rem] bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        className={`max-h-full max-w-full object-contain relative z-10 transition-all duration-700 group-hover:scale-110 drop-shadow-2xl ${loaded ? 'opacity-100' : 'opacity-0'}`}
+      />
+    </>
+  );
+}
+
+AvenueCardImage.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+};
 
 export const Avenue = () => {
   const containerVariants = {
@@ -18,6 +43,7 @@ export const Avenue = () => {
 
   return (
     <section className="bg-transparent dark:bg-card text-foreground transition-colors duration-300 relative overflow-hidden min-h-screen pt-24 pb-20">
+      <SEO title="Avenues" description="Explore the avenues of service and initiatives of the Rotaract Club of TCET." />
       <div className="flex flex-col items-center justify-center text-center px-4 mb-20 relative z-10 w-full max-w-5xl mx-auto">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
@@ -73,24 +99,8 @@ export const Avenue = () => {
               <div className="w-full h-[250px] p-4 relative overflow-hidden flex-shrink-0">
                 <div className="w-full h-full bg-primary/5 dark:bg-black/40 rounded-[2rem] flex items-center justify-center p-4 relative overflow-hidden shadow-inner">
                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
-                   {/* Below-fold card image: shimmer skeleton until loaded to avoid blank grey box */}
-                   {(() => {
-                     const [loaded, setLoaded] = useState(false);
-                     return (
-                       <>
-                         {!loaded && (
-                           <div className="absolute inset-0 z-0 rounded-[2rem] bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
-                         )}
-                         <img
-                           src={item.img}
-                           alt={item.title}
-                           loading="lazy"
-                           onLoad={() => setLoaded(true)}
-                           className={`max-h-full max-w-full object-contain relative z-10 transition-all duration-700 group-hover:scale-110 drop-shadow-2xl ${loaded ? 'opacity-100' : 'opacity-0'}`}
-                         />
-                       </>
-                     );
-                   })()}
+                   {/* Below-fold card image: shimmer skeleton until loaded */}
+                   <AvenueCardImage src={item.img} alt={item.title} />
                 </div>
               </div>
 

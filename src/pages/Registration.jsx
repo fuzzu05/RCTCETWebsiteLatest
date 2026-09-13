@@ -359,7 +359,7 @@ const RegistrationForm = () => {
             <InputField label="Do you have any special recognition/achievement in any of the above cultural activities?" name="culturalAchievement" isTextarea formData={formData} handleChange={handleChange} />
           </motion.div>
         );
-      case 5:
+      case 5: {
         // Dynamic QR code generation for UPI
         const upiString = `upi://pay?pa=ajayboss004@okaxis&pn=Ajay%20Sharma&am=${generalMembershipEvent.price}&cu=INR`;
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiString)}`;
@@ -419,6 +419,7 @@ const RegistrationForm = () => {
             </div>
           </motion.div>
         );
+      }
       default:
         return null;
     }

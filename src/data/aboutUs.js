@@ -9,16 +9,7 @@ export const aboutImages = {
   rightMost: "https://res.cloudinary.com/dtc2xaeaf/image/upload/v1757942004/image_20_lnce80.webp",
 };
 
-export const preloadImages = [
-  "https://www.rc.tcetmumbai.in/About%20us/Baseline%20grid%20bg.webp",
-  "https://www.rc.tcetmumbai.in/About%20us/About%20us.webp",
-  "https://www.rc.tcetmumbai.in/About%20us/download%201.webp",
-  "https://www.rc.tcetmumbai.in/About%20us/download%202.webp",
-  "https://www.rc.tcetmumbai.in/About%20us/image%2013.webp",
-  "https://www.rc.tcetmumbai.in/About%20us/image%2014.webp",
-  "https://res.cloudinary.com/dtc2xaeaf/image/upload/v1787043285/Meraki_kvjeog.png",
-  "https://www.rc.tcetmumbai.in/About%20us/people-cliff-giving-himself-handshake_1160-629%201.webp",
-];
+export const preloadImages = Object.values(aboutImages);
 
 export const objectivesList = [
   {

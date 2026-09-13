@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "../themeButton";
 import LimelightIndicator from "./LimelightIndicator";
 import MobileMenu from "./MobileMenu";
-import { Users, Compass, Award, MessageSquare, ChevronDown, Menu, X } from "lucide-react";
+import { Users, Compass, Award, MessageSquare, ChevronDown, Menu } from "lucide-react";
 
 function Header() {
   const [activeLink, setActiveLink] = useState("");
@@ -49,6 +49,8 @@ function Header() {
 
   useEffect(() => {
     const path = location.pathname;
+    setIsMenuOpen(false);
+    setIsClubDropdownOpen(false);
     if (path === "/") setActiveLink("Home");
     else if (path === "/about") setActiveLink("About us");
     else if (path === "/projects") setActiveLink("Projects");

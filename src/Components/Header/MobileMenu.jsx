@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown, ArrowRight } from "lucide-react";
 import ThemeToggle from "../themeButton";
@@ -72,6 +73,7 @@ export default function MobileMenu({
   clubLinks,
   triggerRef,
 }) {
+  const location = useLocation();
   const [mounted, setMounted] = useState(false);
   const [isClubDropdownOpen, setIsClubDropdownOpen] = useState(false);
   const menuRef = useRef(null);
@@ -81,6 +83,13 @@ export default function MobileMenu({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Close menu automatically whenever route changes
+  useEffect(() => {
+    if (isOpen) {
+      onClose();
+    }
+  }, [location.pathname, isOpen, onClose]);
 
   // Check user OS preference for reduced motion
   const prefersReducedMotion =
@@ -178,21 +187,21 @@ export default function MobileMenu({
           >
             {/* Panel Top Header: Brand Info + Close Button */}
             <div className="flex items-center justify-between pb-4 border-b border-primary/10">
-              <div className="flex items-center gap-3">
+              <Link to="/" onClick={onClose} className="flex items-center gap-3 group">
                 <img
                   src="https://res.cloudinary.com/dtc2xaeaf/image/upload/v1757125056/logo_pdqctw_ztwsvl.png"
                   alt="Rotaract Club Logo"
-                  className="h-9 w-9 object-contain"
+                  className="h-9 w-9 object-contain group-hover:rotate-12 transition-transform duration-300"
                 />
                 <div className="flex flex-col">
-                  <span className="font-black text-sm tracking-tight text-foreground">
+                  <span className="font-black text-sm tracking-tight text-foreground group-hover:text-primary transition-colors">
                     ROTARACT CLUB
                   </span>
                   <span className="text-[10px] font-bold tracking-widest text-primary uppercase">
                     OF TCET • RID 3141
                   </span>
                 </div>
-              </div>
+              </Link>
 
               <button
                 type="button"
@@ -349,3 +358,26 @@ export default function MobileMenu({
     document.body
   );
 }
+
+MobileMenu.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  activeLink: PropTypes.string,
+  navLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  clubLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired,
+      icon: PropTypes.elementType,
+    })
+  ).isRequired,
+  triggerRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any }),
+  ]),
+};
