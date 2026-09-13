@@ -3,6 +3,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { motion } from "framer-motion";
 
 import { aboutImages, preloadImages as images } from "../../data/aboutUs";
+// NOTE: Hero/above-fold images use native <img loading="eager"> to avoid grey placeholder flash.
+// Below-fold decorative images keep LazyLoadImage for bandwidth savings.
 
 const floatAnimation1 = {
   y: [0, -15, 0],
@@ -30,10 +32,12 @@ const AboutSection = () => {
       {/* Dynamic Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(110,159,159,0.08)_0%,transparent_100%)] pointer-events-none" />
 
-      {/* Background Image (faded) */}
-      <LazyLoadImage
+      {/* Background Image (faded) — eager to avoid grey flash on above-fold hero area */}
+      <img
         src={aboutImages.background}
         alt="Baseline Grid Background"
+        loading="eager"
+        fetchPriority="low"
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-100 dark:opacity-20 top-7 pointer-events-none mix-blend-overlay"
       />
 
@@ -97,9 +101,12 @@ const AboutSection = () => {
             className="relative rounded-[2.5rem] p-6 lg:p-10 aspect-square w-full max-w-[400px] md:max-w-none md:w-[28vw] overflow-visible flex-shrink-0 bg-white/40 dark:bg-card/40 backdrop-blur-3xl border border-primary/20 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] group hover:border-primary/40 transition-colors duration-500"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(110,159,159,0.1)_0%,transparent_70%)]" />
-            <LazyLoadImage
+            {/* Centre hero image — eager so it renders before the fold without a grey box */}
+            <img
               src={aboutImages.themeLogo}
               alt="Theme Logo Meraki"
+              loading="eager"
+              fetchPriority="high"
               className="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
             />
           </motion.div>

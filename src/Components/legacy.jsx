@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 function FounderCard() {
@@ -9,12 +10,24 @@ function FounderCard() {
       <div className="relative z-10 p-6 md:p-8 flex flex-col h-full">
         <div className="w-full h-64 md:h-72 overflow-hidden rounded-2xl mb-6 shadow-inner relative">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10 opacity-60" />
-          <img
-            src="https://res.cloudinary.com/dtc2xaeaf/image/upload/f_auto,q_auto:eco,w_800,c_limit/v1756748768/founders_evg6h2.svg"
-            alt="Founder and early members of Rotary International"
-            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-out"
-            loading={"lazy"}
-          />
+          {/* Founder card image: shimmer skeleton until loaded */}
+          {(() => {
+            const [loaded, setLoaded] = useState(false);
+            return (
+              <>
+                {!loaded && (
+                  <div className="absolute inset-0 z-0 bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
+                )}
+                <img
+                  src="https://res.cloudinary.com/dtc2xaeaf/image/upload/f_auto,q_auto:eco,w_800,c_limit/v1756748768/founders_evg6h2.svg"
+                  alt="Founder and early members of Rotary International"
+                  className={`w-full h-full object-cover transform group-hover:scale-110 transition-all duration-1000 ease-out ${loaded ? 'opacity-100' : 'opacity-0'}`}
+                  loading="lazy"
+                  onLoad={() => setLoaded(true)}
+                />
+              </>
+            );
+          })()}
           <h2 className="absolute bottom-4 left-4 z-20 text-2xl font-black text-white tracking-wide drop-shadow-md">THE FOUNDER</h2>
         </div>
 
@@ -37,7 +50,24 @@ function FounderCard() {
 function Card({ title, image, description, isBig, url }) {
   return (
     <div className="relative w-full rounded-[2rem] shadow-lg overflow-hidden group h-full min-h-[350px]">
-      <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover object-[center_10%] transform group-hover:scale-105 transition-transform duration-1000" loading={"lazy"} />
+      {/* Rotary/District card image: shimmer skeleton until loaded to avoid blank grey box on scroll */}
+      {(() => {
+        const [loaded, setLoaded] = useState(false);
+        return (
+          <>
+            {!loaded && (
+              <div className="absolute inset-0 z-0 bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
+            )}
+            <img
+              src={image}
+              alt={title}
+              className={`absolute inset-0 w-full h-full object-cover object-[center_10%] transform group-hover:scale-105 transition-all duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+              loading="lazy"
+              onLoad={() => setLoaded(true)}
+            />
+          </>
+        );
+      })()}
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 pointer-events-none" />
       <div className="absolute inset-0 backdrop-blur-none group-hover:backdrop-blur-md bg-black/0 group-hover:bg-black/30 transition-all duration-700 ease-in-out pointer-events-none" />

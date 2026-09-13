@@ -64,7 +64,7 @@ export const journeyTimeline = [
   {
     year: "2019-2020",
     name: "Rtr. Harshali Yeram",
-    rank: "42th Best Club",
+    rank: "42nd Best Club", // Fix: was incorrectly "42th" (ordinal for 42 is "42nd")
     image: "https://res.cloudinary.com/dtc2xaeaf/image/upload/f_auto,q_auto:eco,w_800,c_limit/v1756744428/Rtr._Harshali_Yeram___President_2_IMGCentury_8_IMGCentury_ksypwa.jpg",
   },
   {

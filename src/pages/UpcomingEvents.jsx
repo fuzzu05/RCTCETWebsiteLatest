@@ -13,13 +13,23 @@ const UpcomingEvents = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
+      // Use AbortController to enforce a 9-second request timeout.
+      // Without this, a slow/unresponsive Apps Script call left the skeleton loader stuck indefinitely.
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 9000); // 9-second timeout
+
       try {
-        const res = await fetch(`${APPS_SCRIPT_URL}?action=getEvents`);
+        const res = await fetch(`${APPS_SCRIPT_URL}?action=getEvents`, {
+          signal: controller.signal,
+        });
         const data = await res.json();
         setEvents(Array.isArray(data) ? data : []);
-      } catch {
+      } catch (err) {
+        // AbortError means the request timed out; other errors are network/parse failures.
+        // In either case, show the friendly fallback instead of a stuck skeleton.
         setError(true);
       } finally {
+        clearTimeout(timeoutId);
         setLoading(false);
       }
     };
@@ -66,10 +76,12 @@ const UpcomingEvents = () => {
           </div>
         )}
 
-        {/* Error state */}
+        {/* Error / timeout state — friendly fallback instead of leaving the skeleton stuck */}
         {!loading && error && (
           <div className="text-center py-20">
-            <p className="text-foreground/50 text-lg font-medium">Failed to load events. Please try again later.</p>
+            <Calendar className="mx-auto text-foreground/20 mb-4" size={56} />
+            <h3 className="text-2xl font-semibold text-foreground/50">More events coming soon!</h3>
+            <p className="text-foreground/40 mt-2 text-sm">Check back later for upcoming Rotaract events.</p>
           </div>
         )}
 

@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { magazines } from "../data/magazines";
 
 export const Magazine = () => {
-  // Duplicate array multiple times for a seamless infinite scroll on wide screens
-  const scrollItems = [...magazines, ...magazines, ...magazines, ...magazines, ...magazines, ...magazines];
+  // Duplicate array exactly twice for a seamless infinite scroll:
+  // the animation translates to -50% (one full copy width), so 2 copies are sufficient.
+  // Using more copies caused each of the 4 items to appear many times (duplicated list bug).
+  const scrollItems = [...magazines, ...magazines];
 
   return (
     <section className="py-24 bg-card dark:bg-background transition-colors duration-500 overflow-hidden relative">
@@ -66,20 +69,25 @@ export const Magazine = () => {
             "
           >
             <div className="relative aspect-[3/4] p-5 rounded-t-[2rem] overflow-hidden bg-background">
-              <img
-                src={mag.cover}
-                alt={mag.title}
-                loading="lazy"
-                decoding="async"
-                className="
-                  w-full h-full
-                  object-contain
-                  rounded-[1.5rem]
-                  transition-transform duration-700 ease-out
-                  group-hover:scale-110
-                  drop-shadow-xl
-                "
-              />
+              {/* Library card image: shimmer skeleton until loaded to avoid blank grey placeholder */}
+              {(() => {
+                const [loaded, setLoaded] = useState(false);
+                return (
+                  <>
+                    {!loaded && (
+                      <div className="absolute inset-2 z-0 rounded-[1.5rem] bg-gradient-to-r from-foreground/5 via-foreground/10 to-foreground/5 animate-pulse" />
+                    )}
+                    <img
+                      src={mag.cover}
+                      alt={mag.title}
+                      loading="lazy"
+                      decoding="async"
+                      onLoad={() => setLoaded(true)}
+                      className={`w-full h-full object-contain rounded-[1.5rem] transition-all duration-700 ease-out group-hover:scale-110 drop-shadow-xl ${loaded ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                  </>
+                );
+              })()}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
             </div>
 

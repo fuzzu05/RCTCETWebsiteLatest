@@ -41,9 +41,12 @@ export const Achievement = () => {
         <div className="relative w-full sm:w-[95%] md:w-[90%] h-[70vh] sm:h-[85vh] rounded-none sm:rounded-[3rem] shadow-2xl">
           {/* Background and Image Wrapper */}
           <div className="absolute inset-0 w-full h-full overflow-hidden rounded-none sm:rounded-[3rem]">
+            {/* Hero image — load eagerly to avoid blank grey box on page load */}
             <img
               src={heroImages[selectedYear] || heroImages['2024-2025']}
               alt={`Achievements Hero ${selectedYear}`}
+              loading="eager"
+              fetchPriority="high"
               className="absolute inset-0 h-full w-full object-cover object-[center_30%] scale-105 transition-all duration-700"
               style={{
                 maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
