@@ -11,6 +11,7 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
   const [indicatorState, setIndicatorState] = useState({
     left: 0,
     width: 0,
+    height: 40,
     opacity: 0,
     isReady: false,
   });
@@ -34,12 +35,12 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       const containerRect = container.getBoundingClientRect();
       const itemRect = activeItem.getBoundingClientRect();
 
-      // Shift slightly to the right as requested (+6px)
-      const shiftX = 6;
-      const left = itemRect.left - containerRect.left + shiftX;
+      // Perfectly centered over the active item (0 offset)
+      const left = itemRect.left - containerRect.left;
       const width = itemRect.width;
+      const height = itemRect.height;
 
-      return { left, width };
+      return { left, width, height };
     },
     [navItemRefs, containerRef]
   );
@@ -59,6 +60,7 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       setIndicatorState((prev) => ({
         left: geom.left,
         width: geom.width,
+        height: geom.height,
         opacity: 1,
         isReady: smooth ? prev.isReady : false,
       }));
@@ -84,7 +86,6 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
           }, 60);
         }
       } else if (retryCount < 6) {
-        // Retry on next animation frame if DOM refs are still attaching
         requestAnimationFrame(() => attemptPosition(retryCount + 1));
       }
     };
@@ -114,7 +115,6 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       document.fonts.ready.then(handleReposition).catch(() => {});
     }
 
-    // Periodic check to ensure position is accurate after page fonts/assets finish loading
     const t1 = setTimeout(handleReposition, 100);
     const t2 = setTimeout(handleReposition, 350);
 
@@ -137,7 +137,9 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
     ? "left 400ms cubic-bezier(0.22, 1, 0.36, 1), width 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease"
     : "opacity 200ms ease";
 
-  const lampWidth = Math.max(28, Math.min(52, indicatorState.width * 0.55));
+  const lampRatio = 0.55; // Lamp bar is 55% of the active item width
+  const lampLeftPct = ((1 - lampRatio) / 2) * 100; // 22.5%
+  const lampRightPct = (1 - (1 - lampRatio) / 2) * 100; // 77.5%
 
   return (
     <div
@@ -147,52 +149,55 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       style={{
         left: `${indicatorState.left}px`,
         width: `${indicatorState.width}px`,
+        height: `${indicatorState.height + 4}px`,
         transition: transitionStyle,
       }}
       aria-hidden="true"
     >
-      {/* 1. Horizontal glowing lamp emitter bar */}
-      <div className="flex justify-center w-full">
-        <div
-          className="h-[3.5px] rounded-full bg-primary relative z-20"
-          style={{
-            width: `${lampWidth}px`,
-            boxShadow:
-              "0 0 10px rgb(var(--primary)), 0 0 20px rgb(var(--primary) / 0.9), 0 0 32px rgb(var(--primary) / 0.5)",
-          }}
-        />
-      </div>
-
-      {/* 2. Intense spotlight cone expanding to cover full item width from start to end */}
+      {/* 1. Floor puddle: Ground spotlight reflection at the base (as in reference image) */}
       <div
-        className="absolute left-0 top-[2px] w-full h-14 pointer-events-none z-0"
+        className="absolute left-1/2 -translate-x-1/2 bottom-[-3px] pointer-events-none rounded-full z-0"
         style={{
+          width: "65%",
+          height: "14px",
           background:
-            "linear-gradient(to bottom, rgb(var(--primary) / 0.65) 0%, rgb(var(--primary) / 0.32) 42%, rgb(var(--primary) / 0.08) 78%, transparent 100%)",
-          clipPath: "polygon(22% 0%, 78% 0%, 100% 100%, 0% 100%)",
+            "radial-gradient(ellipse at center, rgb(var(--primary) / 0.35) 0%, rgb(var(--primary) / 0.12) 55%, transparent 100%)",
           filter: "blur(3px)",
         }}
       />
 
-      {/* 3. Core luminous ray column directly beneath the lamp */}
+      {/* 2. Spotlight cone: Clean downward trapezoid beam expanding from lamp to item width */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-[1px] w-[70%] h-10 pointer-events-none z-0 rounded-b-xl"
+        className="absolute left-0 top-[3px] w-full h-[calc(100%-4px)] pointer-events-none z-0"
         style={{
           background:
-            "radial-gradient(ellipse 65% 85% at 50% 0%, rgb(var(--primary) / 0.70) 0%, rgb(var(--primary) / 0.28) 55%, transparent 100%)",
-          filter: "blur(2px)",
+            "linear-gradient(to bottom, rgb(var(--primary) / 0.45) 0%, rgb(var(--primary) / 0.22) 40%, rgb(var(--primary) / 0.06) 80%, transparent 100%)",
+          clipPath: `polygon(${lampLeftPct}% 0%, ${lampRightPct}% 0%, 100% 100%, 0% 100%)`,
+          filter: "blur(1.5px)",
         }}
       />
 
-      {/* 4. Ambient light wash spreading softly across and beyond the item */}
+      {/* 3. Soft ambient glow around the beam for natural atmosphere */}
       <div
-        className="absolute -left-[10%] top-0 w-[120%] h-16 pointer-events-none z-0 rounded-b-full"
+        className="absolute -left-[6%] top-0 w-[112%] h-[calc(100%+2px)] pointer-events-none z-0 rounded-b-xl"
         style={{
           background:
-            "radial-gradient(ellipse 70% 85% at 50% 0%, rgb(var(--primary) / 0.35) 0%, rgb(var(--primary) / 0.12) 60%, transparent 100%)",
-          filter: "blur(6px)",
+            "radial-gradient(ellipse 65% 85% at 50% 0%, rgb(var(--primary) / 0.20) 0%, rgb(var(--primary) / 0.06) 60%, transparent 95%)",
+          filter: "blur(4px)",
         }}
       />
+
+      {/* 4. Top horizontal glowing lamp emitter bar */}
+      <div className="flex justify-center w-full relative z-20">
+        <div
+          className="h-[3.5px] rounded-full bg-primary"
+          style={{
+            width: `${lampRatio * 100}%`,
+            boxShadow:
+              "0 0 8px rgb(var(--primary)), 0 0 16px rgb(var(--primary) / 0.8), 0 0 24px rgb(var(--primary) / 0.4)",
+          }}
+        />
+      </div>
     </div>
   );
 };
