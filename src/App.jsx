@@ -24,7 +24,6 @@ function ScrollToTop() {
 // Manages Lenis Smooth Scroll, GSAP ScrollTrigger synchronization, and Rotaract Light Mode animations
 function AnimationManager({ children }) {
   const { theme } = useTheme();
-  const location = useLocation();
 
   useEffect(() => {
     // 1. Initialize Lenis Smooth Scroll
@@ -45,13 +44,15 @@ function AnimationManager({ children }) {
 
   useEffect(() => {
     // 3. Trigger Rotaract Light Mode visual effects (gradient shift & entrance effects)
+    // Only re-runs when the theme changes — NOT on every route change to prevent
+    // GSAP ScrollTrigger instances from accumulating and causing lag.
     const cleanupAnimations = initRotaractLightAnimations(theme);
     ScrollTrigger.refresh();
 
     return () => {
       cleanupAnimations();
     };
-  }, [theme, location.pathname]);
+  }, [theme]);
 
   return children;
 }

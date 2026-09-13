@@ -2,7 +2,6 @@ import SEO from "../Components/SEO";
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { OurJourney } from '../Components/aboutpage/OurJourney';
-import AboutAvenue from '../Components/AboutAvenue';
 import { Link } from 'react-router-dom';
 const AboutSection = React.lazy(() => import('../Components/aboutpage/about'));
 const Objectives = React.lazy(() => import('../Components/aboutpage/objective'));
@@ -16,15 +15,19 @@ const About = () => {
   return (
     <div className="bg-transparent dark:bg-card min-h-screen">
       <SEO title="About Us" description="Learn about the objectives, history, and journey of the Rotaract Club of TCET." />
-      <Suspense fallback={<div>Loading...</div>}>
-        <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
+      <Suspense fallback={
+        <div className="min-h-[50vh] flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+      }>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: "easeOut" }}>
           <AboutSection />
         </motion.div>
-        <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
+        <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-20px" }}>
           <Objectives />
         </motion.div>
 
-        <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
+        <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-20px" }}>
           <OurJourney />
         </motion.div>
 

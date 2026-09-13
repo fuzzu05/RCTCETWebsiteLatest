@@ -36,7 +36,6 @@ const AboutSection = () => {
         src={aboutImages.background}
         alt="Baseline Grid Background"
         loading="eager"
-        fetchPriority="low"
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-100 dark:opacity-20 top-7 pointer-events-none mix-blend-overlay"
       />
 
@@ -108,7 +107,6 @@ const AboutSection = () => {
               src={aboutImages.themeLogo}
               alt="Theme Logo Meraki"
               loading="eager"
-              fetchPriority="high"
               className="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
             />
           </motion.div>

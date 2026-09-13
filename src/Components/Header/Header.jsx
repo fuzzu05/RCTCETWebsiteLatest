@@ -7,7 +7,6 @@ import MobileMenu from "./MobileMenu";
 import { Users, Compass, Award, MessageSquare, ChevronDown, Menu } from "lucide-react";
 
 function Header() {
-  const [activeLink, setActiveLink] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClubDropdownOpen, setIsClubDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,13 +21,13 @@ function Header() {
   const handleCloseMenu = useCallback(() => setIsMenuOpen(false), []);
   const handleOpenMenu = useCallback(() => setIsMenuOpen(true), []);
 
-  const getActiveIndex = () => {
-    const rawPath = location.pathname || "/";
-    const path = (rawPath.replace(/\/+$/, "") || "/").toLowerCase();
-    if (path === "/" || path === "") return 0;
-    if (path === "/about") return 1;
-    if (path === "/projects") return 2;
-    if (path === "/events" || path.startsWith("/event")) return 3;
+  // Single, synchronous routing source of truth
+  const getActiveNav = (rawPath) => {
+    const path = ((rawPath || "/").replace(/\/+$/, "") || "/").toLowerCase();
+    if (path === "/" || path === "") return { index: 0, name: "Home" };
+    if (path === "/about") return { index: 1, name: "About us" };
+    if (path === "/projects") return { index: 2, name: "Projects" };
+    if (path === "/events" || path.startsWith("/event")) return { index: 3, name: "Upcoming Events" };
     if (
       [
         "/meet-the-team",
@@ -44,41 +43,22 @@ function Header() {
       path.startsWith("/feedback") ||
       path.startsWith("/saa-fine")
     ) {
-      return 4;
+      return { index: 4, name: "Club hub" };
     }
-    return -1;
+    return { index: -1, name: "" };
   };
 
-  const activeIndex = getActiveIndex();
+  const activeNav = getActiveNav(location.pathname);
+  const activeIndex = activeNav.index;
+  const activeLink = activeNav.name;
 
+  // Auto-close drawers when navigating between different routes
   useEffect(() => {
-    const path = location.pathname;
-    if (prevPathRef.current !== path) {
-      prevPathRef.current = path;
+    if (prevPathRef.current !== location.pathname) {
+      prevPathRef.current = location.pathname;
       setIsMenuOpen(false);
       setIsClubDropdownOpen(false);
     }
-    if (path === "/") setActiveLink("Home");
-    else if (path === "/about") setActiveLink("About us");
-    else if (path === "/projects") setActiveLink("Projects");
-    else if (path === "/events" || path.startsWith("/event/")) setActiveLink("Upcoming Events");
-    else if (
-      [
-        "/meet-the-team",
-        "/achievement",
-        "/club-insight",
-        "/avenue",
-        "/feedback",
-        "/saa-fine",
-      ].includes(path) ||
-      path.startsWith("/meet-the-team") ||
-      path.startsWith("/achievement") ||
-      path.startsWith("/avenue") ||
-      path.startsWith("/feedback") ||
-      path.startsWith("/saa-fine")
-    ) {
-      setActiveLink("Club hub");
-    } else setActiveLink("");
   }, [location.pathname]);
 
   useEffect(() => {

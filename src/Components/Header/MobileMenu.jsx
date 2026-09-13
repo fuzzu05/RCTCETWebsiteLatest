@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown, ArrowRight } from "lucide-react";
 import ThemeToggle from "../themeButton";
@@ -74,6 +74,7 @@ export default function MobileMenu({
   triggerRef,
 }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mounted, setMounted] = useState(false);
   const [isClubDropdownOpen, setIsClubDropdownOpen] = useState(false);
   const menuRef = useRef(null);
@@ -84,22 +85,19 @@ export default function MobileMenu({
     setMounted(true);
   }, []);
 
-  const prevPathRef = useRef(location.pathname);
+  const handleLinkClick = (e, to) => {
+    e.preventDefault();
+    onClose();
+    navigate(to);
+  };
 
-  // Close menu automatically whenever route changes (e.g. navigation or history popstate)
-  useEffect(() => {
-    if (prevPathRef.current !== location.pathname) {
-      prevPathRef.current = location.pathname;
-      if (isOpen) {
-        onClose();
-      }
-    }
-  }, [location.pathname, isOpen, onClose]);
-
-  // Check user OS preference for reduced motion
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Check user OS preference for reduced motion — computed once, stable across renders
+  const prefersReducedMotion = useMemo(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    []
+  );
 
   // Handle ESC key, body scroll locking, and accessible focus restoration
   useEffect(() => {
@@ -192,7 +190,11 @@ export default function MobileMenu({
           >
             {/* Panel Top Header: Brand Info + Close Button */}
             <div className="flex items-center justify-between pb-4 border-b border-primary/10">
-              <Link to="/" onClick={onClose} className="flex items-center gap-3 group">
+              <a
+                href="/"
+                onClick={(e) => handleLinkClick(e, "/")}
+                className="flex items-center gap-3 group"
+              >
                 <img
                   src="https://res.cloudinary.com/dtc2xaeaf/image/upload/v1757125056/logo_pdqctw_ztwsvl.png"
                   alt="Rotaract Club Logo"
@@ -206,7 +208,7 @@ export default function MobileMenu({
                     OF TCET • RID 3141
                   </span>
                 </div>
-              </Link>
+              </a>
 
               <button
                 type="button"
@@ -237,26 +239,25 @@ export default function MobileMenu({
                       variants={prefersReducedMotion ? undefined : itemVariants}
                       className="border-b border-primary/10 last:border-b-0"
                     >
-                      <Link
-                        to={link.to}
-                        onClick={onClose}
-                        className={`group flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-300 ${
+                      <a
+                        href={link.to}
+                        onClick={(e) => handleLinkClick(e, link.to)}
+                        className={`flex items-center justify-between py-3.5 px-3 rounded-xl transition-colors duration-200 select-none ${
                           isActive
-                            ? "text-primary font-black"
-                            : "text-foreground font-bold hover:text-primary"
+                            ? "text-primary font-black bg-primary/10"
+                            : "text-foreground font-semibold hover:text-primary active:bg-primary/5"
                         }`}
                       >
-                        <span className="text-xl tracking-tight transition-transform duration-300 ease-out group-hover:translate-x-1.5">
+                        <span className="text-xl tracking-tight">
                           {link.name}
                         </span>
-                        <ArrowRight
-                          className={`w-5 h-5 text-primary transition-all duration-300 ${
-                            isActive
-                              ? "opacity-100 translate-x-0"
-                              : "opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
-                          }`}
-                        />
-                      </Link>
+                        {isActive && (
+                          <ArrowRight
+                            className="w-5 h-5 text-primary opacity-100 translate-x-0"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </a>
                     </motion.li>
                   );
                 })}
@@ -269,15 +270,15 @@ export default function MobileMenu({
                   <button
                     type="button"
                     onClick={() => setIsClubDropdownOpen(!isClubDropdownOpen)}
-                    className={`group w-full flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-300 ${
+                    className={`group w-full flex items-center justify-between py-3.5 px-3 rounded-xl transition-all duration-200 ${
                       activeLink === "Club hub" || isClubDropdownOpen
-                        ? "text-primary font-black"
-                        : "text-foreground font-bold hover:text-primary"
+                        ? "text-primary font-black bg-primary/5"
+                        : "text-foreground font-semibold hover:text-primary active:bg-primary/5"
                     }`}
                     aria-expanded={isClubDropdownOpen}
                     aria-label="Toggle Club Hub submenu"
                   >
-                    <span className="text-xl tracking-tight transition-transform duration-300 ease-out group-hover:translate-x-1.5">
+                    <span className="text-xl tracking-tight">
                       Club Hub
                     </span>
                     <ChevronDown
@@ -298,19 +299,28 @@ export default function MobileMenu({
                         className="overflow-hidden"
                       >
                         <div className="pl-3 pr-2 py-2 mb-2 bg-primary/5 rounded-2xl flex flex-col gap-1 border border-primary/10">
-                          {clubLinks.map((link) => (
-                            <Link
-                              key={link.name}
-                              to={link.to}
-                              onClick={onClose}
-                              className="flex items-center justify-between py-2 px-3 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-colors font-semibold text-sm"
-                            >
-                              <span>{link.name}</span>
-                              <span className="text-xs text-muted font-normal">
-                                {link.desc ? link.desc.slice(0, 22) + "..." : ""}
-                              </span>
-                            </Link>
-                          ))}
+                          {clubLinks.map((link) => {
+                            const isSubActive =
+                              (location.pathname || "").toLowerCase() ===
+                              (link.to || "").toLowerCase();
+                            return (
+                              <a
+                                key={link.name}
+                                href={link.to}
+                                onClick={(e) => handleLinkClick(e, link.to)}
+                                className={`flex items-center justify-between py-2 px-3 rounded-lg transition-colors font-semibold text-sm ${
+                                  isSubActive
+                                    ? "text-primary font-black bg-primary/15"
+                                    : "text-foreground hover:text-primary hover:bg-primary/10"
+                                }`}
+                              >
+                                <span>{link.name}</span>
+                                <span className="text-xs text-muted font-normal">
+                                  {link.desc ? link.desc.slice(0, 22) + "..." : ""}
+                                </span>
+                              </a>
+                            );
+                          })}
                         </div>
                       </motion.div>
                     )}
@@ -322,13 +332,13 @@ export default function MobileMenu({
                   variants={prefersReducedMotion ? undefined : itemVariants}
                   className="pt-4"
                 >
-                  <Link
-                    to="/join"
-                    onClick={onClose}
+                  <a
+                    href="/join"
+                    onClick={(e) => handleLinkClick(e, "/join")}
                     className="btn-rotaract flex justify-center items-center w-full bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold py-3.5 px-4 rounded-2xl shadow-[0_0_15px_rgba(234,88,12,0.35)] hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] transition-all tracking-wide text-base"
                   >
                     Become a member!
-                  </Link>
+                  </a>
                 </motion.li>
 
                 {/* Dedicated Mobile Theme Control Row (Reference Style) */}
