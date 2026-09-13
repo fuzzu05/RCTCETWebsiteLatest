@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "../themeButton";
+import LimelightIndicator from "./LimelightIndicator";
 import { Users, Compass, Award, MessageSquare, ChevronDown, Menu, X } from "lucide-react";
 
 function Header() {
@@ -12,13 +13,43 @@ function Header() {
 
   const location = useLocation();
   const clubDropdownRef = useRef(null);
+  const navItemRefs = useRef([]);
+  const navRef = useRef(null);
+
+  const getActiveIndex = () => {
+    const path = location.pathname;
+    if (path === "/") return 0;
+    if (path === "/about") return 1;
+    if (path === "/projects") return 2;
+    if (path === "/events" || path.startsWith("/event/")) return 3;
+    if (
+      [
+        "/meet-the-team",
+        "/achievement",
+        "/club-insight",
+        "/avenue",
+        "/feedback",
+        "/saa-fine",
+      ].includes(path) ||
+      path.startsWith("/meet-the-team") ||
+      path.startsWith("/achievement") ||
+      path.startsWith("/avenue") ||
+      path.startsWith("/feedback") ||
+      path.startsWith("/saa-fine")
+    ) {
+      return 4;
+    }
+    return -1;
+  };
+
+  const activeIndex = getActiveIndex();
 
   useEffect(() => {
     const path = location.pathname;
     if (path === "/") setActiveLink("Home");
     else if (path === "/about") setActiveLink("About us");
     else if (path === "/projects") setActiveLink("Projects");
-    else if (path === "/events") setActiveLink("Upcoming Events");
+    else if (path === "/events" || path.startsWith("/event/")) setActiveLink("Upcoming Events");
     else if (
       [
         "/meet-the-team",
@@ -26,7 +57,13 @@ function Header() {
         "/club-insight",
         "/avenue",
         "/feedback",
-      ].includes(path)
+        "/saa-fine",
+      ].includes(path) ||
+      path.startsWith("/meet-the-team") ||
+      path.startsWith("/achievement") ||
+      path.startsWith("/avenue") ||
+      path.startsWith("/feedback") ||
+      path.startsWith("/saa-fine")
     ) {
       setActiveLink("Club hub");
     } else setActiveLink("");
@@ -92,26 +129,30 @@ function Header() {
           </Link>
         </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex justify-center items-center space-x-2 xl:space-x-4">
-          {navLinks.map((link) => (
+        {/* Desktop Nav with Limelight */}
+        <nav
+          ref={navRef}
+          className="relative hidden lg:flex justify-center items-center space-x-2 xl:space-x-4"
+        >
+          {/* Limelight Indicator */}
+          <LimelightIndicator
+            activeIndex={activeIndex}
+            navItemRefs={navItemRefs}
+            containerRef={navRef}
+          />
+
+          {navLinks.map((link, index) => (
             <Link
               key={link.name}
+              ref={(el) => (navItemRefs.current[index] = el)}
               to={link.to}
-              className="relative px-3 py-2 rounded-full text-base font-bold tracking-wide group transition-colors"
+              className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group transition-all duration-300 ${
+                activeIndex === index
+                  ? "text-primary opacity-100"
+                  : "text-foreground opacity-75 hover:opacity-100 hover:text-primary"
+              }`}
             >
-              {activeLink === link.name && (
-                <motion.div
-                  layoutId="activeNavPill"
-                  className="absolute inset-0 bg-primary/20 dark:bg-primary/25 rounded-full z-0"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              <span
-                className={`relative z-10 transition-colors duration-300 ${
-                  activeLink === link.name ? "text-primary font-bold" : "text-foreground group-hover:text-primary"
-                }`}
-              >
+              <span className="relative z-10 transition-colors duration-300">
                 {link.name}
               </span>
             </Link>
@@ -125,21 +166,15 @@ function Header() {
             onMouseLeave={() => setIsClubDropdownOpen(false)}
           >
             <button
+              ref={(el) => (navItemRefs.current[4] = el)}
               onClick={() => setIsClubDropdownOpen(!isClubDropdownOpen)}
-              className="relative px-3 py-2 rounded-full text-base font-bold tracking-wide group flex items-center gap-1.5 transition-colors"
+              className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group flex items-center gap-1.5 transition-all duration-300 ${
+                activeIndex === 4
+                  ? "text-primary opacity-100"
+                  : "text-foreground opacity-75 hover:opacity-100 hover:text-primary"
+              }`}
             >
-              {activeLink === "Club hub" && (
-                <motion.div
-                  layoutId="activeNavPill"
-                  className="absolute inset-0 bg-primary/20 dark:bg-primary/25 rounded-full z-0"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              <span
-                className={`relative z-10 flex items-center gap-1.5 transition-colors duration-300 ${
-                  activeLink === "Club hub" ? "text-primary font-bold" : "text-foreground group-hover:text-primary"
-                }`}
-              >
+              <span className="relative z-10 flex items-center gap-1.5 transition-colors duration-300">
                 Club Hub
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-300 ${
@@ -194,14 +229,14 @@ function Header() {
             <span className="relative z-10 text-sm tracking-wide">Become a member</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
           </Link>
-          <div className="p-1 bg-background rounded-full border border-primary/10 shadow-sm flex items-center justify-center h-10 w-10">
+          <div className="flex items-center justify-center">
             <ThemeToggle />
           </div>
         </div>
 
         {/* Mobile Menu Button & Theme Toggle */}
         <div className="lg:hidden flex flex-1 justify-end items-center space-x-3">
-          <div className="p-1 bg-background rounded-full border border-primary/10 shadow-sm flex items-center justify-center h-10 w-10">
+          <div className="flex items-center justify-center">
             <ThemeToggle />
           </div>
           <button
