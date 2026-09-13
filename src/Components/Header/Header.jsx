@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "../themeButton";
@@ -13,10 +13,14 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useLocation();
+  const prevPathRef = useRef(location.pathname);
   const clubDropdownRef = useRef(null);
   const navItemRefs = useRef([]);
   const navRef = useRef(null);
   const menuTriggerRef = useRef(null);
+
+  const handleCloseMenu = useCallback(() => setIsMenuOpen(false), []);
+  const handleOpenMenu = useCallback(() => setIsMenuOpen(true), []);
 
   const getActiveIndex = () => {
     const rawPath = location.pathname || "/";
@@ -49,8 +53,11 @@ function Header() {
 
   useEffect(() => {
     const path = location.pathname;
-    setIsMenuOpen(false);
-    setIsClubDropdownOpen(false);
+    if (prevPathRef.current !== path) {
+      prevPathRef.current = path;
+      setIsMenuOpen(false);
+      setIsClubDropdownOpen(false);
+    }
     if (path === "/") setActiveLink("Home");
     else if (path === "/about") setActiveLink("About us");
     else if (path === "/projects") setActiveLink("Projects");
@@ -72,7 +79,7 @@ function Header() {
     ) {
       setActiveLink("Club hub");
     } else setActiveLink("");
-  }, [location]);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -246,7 +253,7 @@ function Header() {
           </div>
           <button
             ref={menuTriggerRef}
-            onClick={() => setIsMenuOpen(true)}
+            onClick={handleOpenMenu}
             className="p-2 bg-primary/10 text-primary rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary hover:bg-primary/20 transition-all duration-300"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu-portal"
@@ -260,7 +267,7 @@ function Header() {
       {/* Full-Screen Glass Editorial Mobile Navigation Layer (from reference) */}
       <MobileMenu
         isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
+        onClose={handleCloseMenu}
         activeLink={activeLink}
         navLinks={navLinks}
         clubLinks={clubLinks}

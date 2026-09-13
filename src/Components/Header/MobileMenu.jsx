@@ -84,10 +84,15 @@ export default function MobileMenu({
     setMounted(true);
   }, []);
 
-  // Close menu automatically whenever route changes
+  const prevPathRef = useRef(location.pathname);
+
+  // Close menu automatically whenever route changes (e.g. navigation or history popstate)
   useEffect(() => {
-    if (isOpen) {
-      onClose();
+    if (prevPathRef.current !== location.pathname) {
+      prevPathRef.current = location.pathname;
+      if (isOpen) {
+        onClose();
+      }
     }
   }, [location.pathname, isOpen, onClose]);
 
@@ -366,13 +371,14 @@ MobileMenu.propTypes = {
   navLinks: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
+      to: PropTypes.string.isRequired,
     })
   ).isRequired,
   clubLinks: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
+      to: PropTypes.string.isRequired,
+      desc: PropTypes.string,
       icon: PropTypes.elementType,
     })
   ).isRequired,
