@@ -111,14 +111,19 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       resizeObserver.observe(containerRef.current);
     }
 
+    let isMounted = true;
+
     if (document.fonts) {
-      document.fonts.ready.then(handleReposition).catch(() => {});
+      document.fonts.ready.then(() => {
+        if (isMounted) handleReposition();
+      }).catch(() => {});
     }
 
     const t1 = setTimeout(handleReposition, 100);
     const t2 = setTimeout(handleReposition, 350);
 
     return () => {
+      isMounted = false;
       window.removeEventListener("resize", handleReposition);
       if (resizeObserver) resizeObserver.disconnect();
       clearTimeout(t1);

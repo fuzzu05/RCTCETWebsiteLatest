@@ -12,10 +12,12 @@ const EASE_EDITORIAL = [0.16, 1, 0.3, 1];
 const backdropVariants = {
   open: {
     opacity: 1,
+    pointerEvents: "auto",
     transition: { duration: 0.5, ease: EASE_EDITORIAL },
   },
   closed: {
     opacity: 0,
+    pointerEvents: "none",
     transition: { duration: 0.45, ease: EASE_EDITORIAL },
   },
 };
@@ -23,10 +25,12 @@ const backdropVariants = {
 const panelVariants = {
   open: {
     x: 0,
+    pointerEvents: "auto",
     transition: { duration: 0.55, ease: EASE_EDITORIAL },
   },
   closed: {
     x: "100%",
+    pointerEvents: "none",
     transition: { duration: 0.5, ease: EASE_EDITORIAL },
   },
 };
@@ -80,6 +84,7 @@ export default function MobileMenu({
   const menuRef = useRef(null);
   const closeBtnRef = useRef(null);
   const wasOpenRef = useRef(false);
+  const isNavigatingRef = useRef(false);
 
   useEffect(() => {
     setMounted(true);
@@ -90,8 +95,16 @@ export default function MobileMenu({
   // regardless of touch event synthesis quirks.
   const handleLinkClick = (e, to) => {
     e.preventDefault();
+    if (isNavigatingRef.current) return;
+    
+    isNavigatingRef.current = true;
     onClose();
     navigate(to);
+
+    // Release the lock after the exit animation completes
+    setTimeout(() => {
+      isNavigatingRef.current = false;
+    }, 600);
   };
 
   // Check user OS preference for reduced motion — computed once, stable across renders
