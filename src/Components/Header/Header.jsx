@@ -17,11 +17,12 @@ function Header() {
   const navRef = useRef(null);
 
   const getActiveIndex = () => {
-    const path = location.pathname;
-    if (path === "/") return 0;
+    const rawPath = location.pathname || "/";
+    const path = (rawPath.replace(/\/+$/, "") || "/").toLowerCase();
+    if (path === "/" || path === "") return 0;
     if (path === "/about") return 1;
     if (path === "/projects") return 2;
-    if (path === "/events" || path.startsWith("/event/")) return 3;
+    if (path === "/events" || path.startsWith("/event")) return 3;
     if (
       [
         "/meet-the-team",
@@ -134,13 +135,6 @@ function Header() {
           ref={navRef}
           className="relative hidden lg:flex justify-center items-center space-x-2 xl:space-x-4"
         >
-          {/* Limelight Indicator */}
-          <LimelightIndicator
-            activeIndex={activeIndex}
-            navItemRefs={navItemRefs}
-            containerRef={navRef}
-          />
-
           {navLinks.map((link, index) => (
             <Link
               key={link.name}
@@ -218,6 +212,13 @@ function Header() {
               )}
             </AnimatePresence>
           </div>
+
+          {/* Limelight Indicator mounted after nav items for reliable ref binding */}
+          <LimelightIndicator
+            activeIndex={activeIndex}
+            navItemRefs={navItemRefs}
+            containerRef={navRef}
+          />
         </nav>
 
         {/* Desktop Contact & Theme Toggle */}
