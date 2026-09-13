@@ -92,12 +92,15 @@ function Footer() {
         />
       </div>
 
-      {/* Massive Footer Text */}
-      <div className="relative w-full mt-16 pt-8 border-t border-primary/20 flex flex-col justify-center items-end overflow-hidden z-10 px-4">
+      {/* Massive Footer Text — CodeRabbit-inspired outlined atmospheric typography */}
+      <div className="relative w-full mt-16 pt-8 border-t border-primary/20 flex flex-col justify-center items-center overflow-hidden z-10 px-4 pointer-events-none">
         <div className="divider-rotaract w-full mb-2" />
-        <h1 className="text-[18vw] leading-[0.75] font-black text-primary/25 dark:text-primary/5 select-none uppercase tracking-tighter w-full text-center">
-          RC TCET
-        </h1>
+        <div
+          aria-hidden="true"
+          className="rctcet-footer-wordmark uppercase w-full text-center"
+        >
+          RCTCET
+        </div>
       </div>
     </footer>
   );
