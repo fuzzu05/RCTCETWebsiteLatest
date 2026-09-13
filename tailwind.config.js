@@ -10,11 +10,11 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(135deg, #FF6600 0%, #CC0000 50%, #FFCC00 100%)',
-        'logo-gradient': 'linear-gradient(135deg, #CC0000 0%, #FF6600 50%, #FFCC00 100%)',
-        'light-gradient': 'linear-gradient(180deg, #F5F5DC 0%, #FFF8DC 100%)',
-        'rotaract-gradient': 'linear-gradient(135deg, #CC0000 0%, #FF6600 50%, #FFCC00 100%)',
-        'rotaract-warm': 'linear-gradient(180deg, #F5F5DC 0%, #FFF8DC 100%)',
+        'custom-gradient': 'linear-gradient(135deg, #EA580C 0%, #F97316 50%, #F59E0B 100%)',
+        'logo-gradient': 'linear-gradient(135deg, #EA580C 0%, #F97316 50%, #FBBF24 100%)',
+        'light-gradient': 'linear-gradient(180deg, #FFFDF9 0%, #FFF8F0 100%)',
+        'rotaract-gradient': 'linear-gradient(135deg, #EA580C 0%, #F97316 50%, #F59E0B 100%)',
+        'rotaract-warm': 'linear-gradient(180deg, #FFFDF9 0%, #FFF8F0 100%)',
       },
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',
@@ -42,20 +42,21 @@ export default {
           beige:   'rgb(var(--accent-beige, var(--card)) / <alpha-value>)',
         },
         rotaract: {
-          red:      '#CC0000',
-          orange:   '#FF6600',
-          yellow:   '#FFCC00',
-          gold:     '#FFCC00',
-          beige:    '#F5F5DC',
+          primary:  '#EA580C',
+          orange:   '#EA580C',
+          secondary:'#F97316',
+          yellow:   '#F59E0B',
+          gold:     '#F59E0B',
+          beige:    '#FFFAF3',
           charcoal: '#1E1E1E',
         },
       },
       boxShadow: {
-        'card-light':       '0 1px 2px rgba(30,30,30,0.04), 0 4px 12px rgba(204,0,0,0.06), 0 12px 32px rgba(30,30,30,0.06)',
-        'card-light-hover': '0 2px 4px rgba(30,30,30,0.06), 0 8px 20px rgba(204,0,0,0.12), 0 20px 40px rgba(30,30,30,0.08)',
-        'primary-sm':       '0 4px 14px rgba(204,0,0,0.25)',
-        'primary-md':       '0 8px 24px rgba(204,0,0,0.35)',
-        'primary-glow':     '0 0 20px rgba(204,0,0,0.20)',
+        'card-light':       '0 1px 2px rgba(30,30,30,0.04), 0 4px 12px rgba(234,88,12,0.06), 0 12px 32px rgba(30,30,30,0.06)',
+        'card-light-hover': '0 2px 4px rgba(30,30,30,0.06), 0 8px 20px rgba(234,88,12,0.12), 0 20px 40px rgba(30,30,30,0.08)',
+        'primary-sm':       '0 4px 14px rgba(234,88,12,0.25)',
+        'primary-md':       '0 8px 24px rgba(234,88,12,0.35)',
+        'primary-glow':     '0 0 20px rgba(234,88,12,0.20)',
       },
       keyframes: {
         slider: {

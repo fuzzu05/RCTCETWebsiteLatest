@@ -15,7 +15,7 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
   });
 
   const isFirstRender = useRef(true);
-  const limelightWidth = 48; // 48px width for the horizontal lamp
+  const limelightWidth = 36; // 36px sleek width for the horizontal lamp
 
   const calculateLeft = useCallback(
     (index) => {
@@ -132,7 +132,7 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
 
   return (
     <div
-      className={`absolute top-[-4px] z-20 pointer-events-none w-12 transition-opacity ${
+      className={`absolute -top-1 pointer-events-none w-9 transition-opacity ${
         indicatorState.opacity === 1 ? "opacity-100" : "opacity-0"
       }`}
       style={{
@@ -141,32 +141,32 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       }}
       aria-hidden="true"
     >
-      {/* 1. Horizontal glowing bar (the limelight lamp emitter) */}
+      {/* 1. Horizontal glowing lamp emitter bar */}
       <div
-        className="w-12 h-[4px] rounded-full bg-primary"
+        className="w-9 h-[3px] rounded-full bg-primary relative z-10"
         style={{
           boxShadow:
-            "0 0 10px rgb(var(--primary)), 0 0 20px rgb(var(--primary) / 0.8), 0 0 32px rgb(var(--primary) / 0.5)",
+            "0 0 8px rgb(var(--primary)), 0 0 16px rgb(var(--primary) / 0.6)",
         }}
       />
 
-      {/* 2. Soft ambient aura (wide diffused light wash over active item) */}
+      {/* 2. Soft focused light beam directly underneath the lamp */}
       <div
-        className="absolute left-[-60%] top-[2px] w-[220%] h-16 pointer-events-none rounded-full"
+        className="absolute left-1/2 -translate-x-1/2 top-[2px] w-20 h-10 pointer-events-none rounded-b-2xl"
         style={{
           background:
-            "radial-gradient(ellipse at top, rgb(var(--primary) / 0.40) 0%, rgb(var(--primary) / 0.12) 50%, transparent 75%)",
-          filter: "blur(6px)",
+            "radial-gradient(ellipse 65% 90% at 50% 0%, rgb(var(--primary) / 0.22) 0%, rgb(var(--primary) / 0.08) 55%, transparent 90%)",
+          filter: "blur(2px)",
         }}
       />
 
-      {/* 3. Tapered spotlight cone (clear, visible light beam shining down over the text) */}
+      {/* 3. Soft ambient glow wash spreading softly around active item */}
       <div
-        className="absolute left-[-35%] top-[4px] w-[170%] h-14 pointer-events-none"
+        className="absolute left-1/2 -translate-x-1/2 top-0 w-28 h-12 pointer-events-none rounded-b-full"
         style={{
           background:
-            "linear-gradient(to bottom, rgb(var(--primary) / 0.65) 0%, rgb(var(--primary) / 0.28) 40%, rgb(var(--primary) / 0.06) 80%, transparent 100%)",
-          clipPath: "polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%)",
+            "radial-gradient(ellipse 60% 85% at 50% 0%, rgb(var(--primary) / 0.14) 0%, rgb(var(--primary) / 0.04) 65%, transparent 100%)",
+          filter: "blur(5px)",
         }}
       />
     </div>

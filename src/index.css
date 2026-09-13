@@ -15,19 +15,19 @@
     --muted:            80 80 80;   /* Muted text */
     --muted-foreground: 80 80 80;
 
-    /* Rotaract Brand Palette */
-    --primary:         204 0 0;     /* Rotaract Red */
-    --primary-hover:   180 0 0;     /* Darker Red */
-    --primary-light:   255 220 220; /* Light Red Tint */
-    --secondary:       255 102 0;   /* Rotaract Orange */
-    --secondary-hover: 230 80 0;    /* Darker Orange */
-    --accent:          255 204 0;   /* Rotaract Yellow */
-    --accent-yellow:   255 204 0;
-    --accent-beige:    245 245 220;
+    /* Rotaract Brand Palette — Warm Orange (#EA580C / orange-600 from previous commits) */
+    --primary:         234 88 12;   /* #EA580C Orange-600 */
+    --primary-hover:   194 65 12;   /* #C2410C Orange-700 */
+    --primary-light:   255 237 213; /* #FFEDD5 Orange-100 */
+    --secondary:       249 115 22;  /* #F97316 Orange-500 */
+    --secondary-hover: 234 88 12;   /* #EA580C */
+    --accent:          245 158 11;  /* #F59E0B Rotary Gold */
+    --accent-yellow:   245 158 11;
+    --accent-beige:    255 250 243;
 
     /* Interactive */
-    --ring-color:      204 0 0;
-    --shadow-warm:     rgba(204, 0, 0, 0.12);
+    --ring-color:      234 88 12;
+    --shadow-warm:     rgba(234, 88, 12, 0.15);
   }
 
   .dark {
@@ -39,13 +39,13 @@
     --muted:           148 163 184;
     --muted-foreground: 148 163 184;
 
-    --primary:         220 50 50;
-    --primary-hover:   240 70 70;
+    --primary:         249 115 22;  /* #F97316 Vibrant Orange for dark mode */
+    --primary-hover:   251 146 60;  /* #FB923C */
     --primary-light:   30 41 59;
-    --secondary:       255 120 50;
-    --secondary-hover: 255 140 70;
-    --accent:          255 180 50;
-    --accent-yellow:   255 180 50;
+    --secondary:       251 146 60;
+    --secondary-hover: 253 186 116;
+    --accent:          245 158 11;
+    --accent-yellow:   245 158 11;
     --accent-beige:    30 41 59;
   }
 
