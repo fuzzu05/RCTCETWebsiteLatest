@@ -10,14 +10,14 @@ import { useState, useRef, useLayoutEffect, useEffect, useCallback } from "react
 const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
   const [indicatorState, setIndicatorState] = useState({
     left: 0,
+    width: 0,
     opacity: 0,
     isReady: false,
   });
 
   const isFirstRender = useRef(true);
-  const limelightWidth = 36; // 36px sleek width for the horizontal lamp
 
-  const calculateLeft = useCallback(
+  const calculateGeometry = useCallback(
     (index) => {
       if (
         index === -1 ||
@@ -29,13 +29,19 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       }
 
       const activeItem = navItemRefs.current[index];
-      return (
-        activeItem.offsetLeft +
-        activeItem.offsetWidth / 2 -
-        limelightWidth / 2
-      );
+      const container = containerRef.current;
+
+      const containerRect = container.getBoundingClientRect();
+      const itemRect = activeItem.getBoundingClientRect();
+
+      // Shift slightly to the right as requested (+6px)
+      const shiftX = 6;
+      const left = itemRect.left - containerRect.left + shiftX;
+      const width = itemRect.width;
+
+      return { left, width };
     },
-    [navItemRefs, containerRef, limelightWidth]
+    [navItemRefs, containerRef]
   );
 
   const applyPosition = useCallback(
@@ -45,19 +51,20 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
         return true;
       }
 
-      const newLeft = calculateLeft(activeIndex);
-      if (newLeft === null) {
+      const geom = calculateGeometry(activeIndex);
+      if (geom === null) {
         return false;
       }
 
       setIndicatorState((prev) => ({
-        left: newLeft,
+        left: geom.left,
+        width: geom.width,
         opacity: 1,
         isReady: smooth ? prev.isReady : false,
       }));
       return true;
     },
-    [activeIndex, calculateLeft]
+    [activeIndex, calculateGeometry]
   );
 
   // Measure on layout effect and handle first render with animation frame retries
@@ -127,46 +134,63 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
   const transitionStyle = prefersReducedMotion
     ? "opacity 200ms ease"
     : indicatorState.isReady
-    ? "left 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease"
+    ? "left 400ms cubic-bezier(0.22, 1, 0.36, 1), width 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease"
     : "opacity 200ms ease";
+
+  const lampWidth = Math.max(28, Math.min(52, indicatorState.width * 0.55));
 
   return (
     <div
-      className={`absolute -top-1 pointer-events-none w-9 transition-opacity ${
+      className={`absolute -top-1 pointer-events-none transition-opacity !m-0 ${
         indicatorState.opacity === 1 ? "opacity-100" : "opacity-0"
       }`}
       style={{
         left: `${indicatorState.left}px`,
+        width: `${indicatorState.width}px`,
         transition: transitionStyle,
       }}
       aria-hidden="true"
     >
       {/* 1. Horizontal glowing lamp emitter bar */}
+      <div className="flex justify-center w-full">
+        <div
+          className="h-[3.5px] rounded-full bg-primary relative z-20"
+          style={{
+            width: `${lampWidth}px`,
+            boxShadow:
+              "0 0 10px rgb(var(--primary)), 0 0 20px rgb(var(--primary) / 0.9), 0 0 32px rgb(var(--primary) / 0.5)",
+          }}
+        />
+      </div>
+
+      {/* 2. Intense spotlight cone expanding to cover full item width from start to end */}
       <div
-        className="w-9 h-[3px] rounded-full bg-primary relative z-10"
+        className="absolute left-0 top-[2px] w-full h-14 pointer-events-none z-0"
         style={{
-          boxShadow:
-            "0 0 8px rgb(var(--primary)), 0 0 16px rgb(var(--primary) / 0.6)",
+          background:
+            "linear-gradient(to bottom, rgb(var(--primary) / 0.65) 0%, rgb(var(--primary) / 0.32) 42%, rgb(var(--primary) / 0.08) 78%, transparent 100%)",
+          clipPath: "polygon(22% 0%, 78% 0%, 100% 100%, 0% 100%)",
+          filter: "blur(3px)",
         }}
       />
 
-      {/* 2. Soft focused light beam directly underneath the lamp */}
+      {/* 3. Core luminous ray column directly beneath the lamp */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-[2px] w-20 h-10 pointer-events-none rounded-b-2xl"
+        className="absolute left-1/2 -translate-x-1/2 top-[1px] w-[70%] h-10 pointer-events-none z-0 rounded-b-xl"
         style={{
           background:
-            "radial-gradient(ellipse 65% 90% at 50% 0%, rgb(var(--primary) / 0.22) 0%, rgb(var(--primary) / 0.08) 55%, transparent 90%)",
+            "radial-gradient(ellipse 65% 85% at 50% 0%, rgb(var(--primary) / 0.70) 0%, rgb(var(--primary) / 0.28) 55%, transparent 100%)",
           filter: "blur(2px)",
         }}
       />
 
-      {/* 3. Soft ambient glow wash spreading softly around active item */}
+      {/* 4. Ambient light wash spreading softly across and beyond the item */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-0 w-28 h-12 pointer-events-none rounded-b-full"
+        className="absolute -left-[10%] top-0 w-[120%] h-16 pointer-events-none z-0 rounded-b-full"
         style={{
           background:
-            "radial-gradient(ellipse 60% 85% at 50% 0%, rgb(var(--primary) / 0.14) 0%, rgb(var(--primary) / 0.04) 65%, transparent 100%)",
-          filter: "blur(5px)",
+            "radial-gradient(ellipse 70% 85% at 50% 0%, rgb(var(--primary) / 0.35) 0%, rgb(var(--primary) / 0.12) 60%, transparent 100%)",
+          filter: "blur(6px)",
         }}
       />
     </div>

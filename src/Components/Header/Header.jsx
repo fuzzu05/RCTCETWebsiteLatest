@@ -146,7 +146,7 @@ function Header() {
                   : "text-foreground opacity-75 hover:opacity-100 hover:text-primary"
               }`}
             >
-              <span className="relative z-10 transition-colors duration-300">
+              <span className="relative z-20 transition-colors duration-300">
                 {link.name}
               </span>
             </Link>
@@ -168,7 +168,7 @@ function Header() {
                   : "text-foreground opacity-75 hover:opacity-100 hover:text-primary"
               }`}
             >
-              <span className="relative z-10 flex items-center gap-1.5 transition-colors duration-300">
+              <span className="relative z-20 flex items-center gap-1.5 transition-colors duration-300">
                 Club Hub
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-300 ${
