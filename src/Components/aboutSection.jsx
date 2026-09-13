@@ -1,22 +1,21 @@
 import React from 'react';
+import ShinyText from './ReactBits/ShinyText';
 
 const Anantya = () => {
   return (
     <>
-      <div className="w-full flex justify-center pb-24 bg-card rounded-t-3xl relative z-20 overflow-hidden">
-
-        {/* Shadow only at top to prevent bleeding onto Meraki */}
-        <div className="absolute top-0 left-0 w-full h-[100px] rounded-t-3xl shadow-[0_-20px_60px_rgba(0,0,0,0.2)] dark:shadow-[0_-20px_60px_rgba(0,0,0,0.8)] -z-10"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[300px] bg-primary/20 blur-[100px] pointer-events-none rounded-full" />
-
-        <div className="relative w-full overflow-hidden pt-12 lg:pt-20">
+      <div className="w-full flex justify-center pb-20 bg-transparent relative z-20 overflow-hidden">
+        <div className="relative w-full overflow-hidden pt-8 lg:pt-16">
 
           {/* Centered Content with Glassmorphism */}
           <div className="relative z-10 flex flex-col md:flex-row h-full p-6 lg:px-24 justify-center items-center gap-12 max-w-7xl mx-auto">
 
             {/* Text Side - Glass Card */}
-            <div className="flex-grow md:w-1/2 p-8 md:p-10 rounded-3xl bg-white/40 dark:bg-black/20 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-xl shadow-primary/5 transition-transform hover:-translate-y-1 duration-500 relative overflow-hidden group">
+            <div className="flex-grow md:w-1/2 p-8 md:p-10 rounded-3xl bg-white/70 dark:bg-black/20 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm transition-transform hover:-translate-y-1 duration-500 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-secondary transform -translate-x-1 group-hover:translate-x-0 transition-transform duration-500" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm mb-4 w-fit">
+                <ShinyText text="WHO WE ARE" className="text-xs font-bold tracking-widest" />
+              </div>
               <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-[2.2rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tighter drop-shadow-sm select-none uppercase mb-6 xl:whitespace-nowrap">ROTARACT CLUB OF TCET</h2>
               <p className="text-foreground text-lg leading-relaxed mb-6 font-medium">
                 At Rotaract Club of TCET, wellbeing is at the forefront of what we're
@@ -46,14 +45,7 @@ const Anantya = () => {
       </div>
 
       {/* Meraki: Infinite By Souls Section */}
-      <div className="relative w-full bg-background py-20 pb-32 overflow-hidden">
-
-        {/* Soft Organic SVG Divider at Top */}
-        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-10">
-          <svg className="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-card"></path>
-          </svg>
-        </div>
+      <div className="relative w-full bg-transparent py-16 pb-28 overflow-hidden">
 
         <div className="relative z-20 flex flex-col md:flex-row items-center max-w-7xl mx-auto px-6 md:px-12 mt-10">
           <div className="md:w-5/12 flex items-center justify-center relative group perspective-1000">
@@ -66,6 +58,9 @@ const Anantya = () => {
             />
           </div>
           <div className="md:w-7/12 md:pl-16 mt-12 md:mt-0">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 dark:bg-black/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm mb-4">
+              <ShinyText text="MERAKI • 2024-25 THEME" className="text-xs font-bold tracking-widest" />
+            </div>
             <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] leading-none font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tighter drop-shadow-sm select-none uppercase mb-8">
               MERAKI: <span className="bg-gradient-to-b from-primary to-primary/60 bg-clip-text text-transparent">INFINITE BY SOUL</span>
             </h2>

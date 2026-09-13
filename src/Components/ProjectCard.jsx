@@ -14,20 +14,20 @@ function ProjectCard({ imageUrl, title, objective, impact }) {
       </div>
 
       {/* Right Content */}
-      <div className="w-full md:w-7/12 bg-card dark:bg-card rounded-lg shadow dark:shadow-black/50 p-3 sm:p-4 border dark:border-muted">
+      <div className="w-full md:w-7/12 bg-card dark:bg-card rounded-lg shadow dark:shadow-black/50 p-3 sm:p-4 border border-primary/15 dark:border-muted">
         <h3 className="text-lg sm:text-xl font-bold text-primary dark:text-secondary mb-2">
           {title}
         </h3>
 
         <div className="space-y-2 text-sm sm:text-base leading-relaxed">
           <div>
-            <p className="font-semibold text-gray-900 dark:text-foreground">Objective:</p>
-            <p className="text-gray-700 dark:text-muted">{objective}</p>
+            <p className="font-semibold text-foreground dark:text-foreground">Objective:</p>
+            <p className="text-muted dark:text-muted">{objective}</p>
           </div>
 
           <div>
-            <p className="font-semibold text-gray-900 dark:text-foreground">Impact:</p>
-            <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-muted">
+            <p className="font-semibold text-foreground dark:text-foreground">Impact:</p>
+            <ul className="list-disc list-inside space-y-1 text-muted dark:text-muted">
               {impact.map((point, i) => (
                 <li key={i}>{point}</li>
               ))}

@@ -13,7 +13,7 @@ const FloatingCard = ({ obj, index, delay }) => (
     <motion.div
       animate={{ y: [0, -10, 0] }}
       transition={{ repeat: Infinity, duration: 4 + (index % 3), ease: "easeInOut", delay: delay }}
-      className="group relative bg-white/20 dark:bg-black/30 backdrop-blur-2xl border border-white/30 dark:border-white/10 rounded-[2.5rem] p-8 lg:p-10 hover:border-primary/60 hover:bg-white/30 dark:hover:bg-black/40 transition-all duration-500 overflow-hidden shadow-xl hover:shadow-2xl z-30"
+      className="group relative bg-white/70 dark:bg-black/30 backdrop-blur-md border border-stone-200/60 dark:border-white/10 rounded-[2.5rem] p-8 lg:p-10 hover:border-primary/60 hover:bg-white/80 dark:hover:bg-black/40 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md z-30"
     >
       {/* Giant Background Number */}
       <div className="absolute -bottom-8 -right-4 text-[10rem] md:text-[12rem] font-black text-black/5 dark:text-white/5 transition-colors duration-500 select-none leading-none pointer-events-none">
@@ -40,11 +40,7 @@ const FloatingCard = ({ obj, index, delay }) => (
 
 const Objectives = () => {
   return (
-    <div className="relative bg-background py-24 px-4 lg:px-16 w-full overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-primary/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
-
+    <div className="relative bg-transparent py-24 px-4 lg:px-16 w-full overflow-hidden">
       <div className="max-w-[1400px] mx-auto relative z-10">
 
         {/* Section Header */}
@@ -63,7 +59,7 @@ const Objectives = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-24 h-1.5 bg-primary mx-auto rounded-full shadow-[0_0_15px_rgba(110,159,159,0.5)]"
+            className="w-24 h-1.5 bg-primary mx-auto rounded-full shadow-[0_0_15px_rgb(var(--primary)/0.5)]"
           />
         </div>
 

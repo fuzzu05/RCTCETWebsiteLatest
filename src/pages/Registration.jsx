@@ -396,7 +396,7 @@ const RegistrationForm = () => {
                     accept="image/*,.pdf"
                     required
                     onChange={(e) => setPaymentReceipt(e.target.files[0])}
-                    className="w-full max-w-sm p-2.5 rounded-xl border border-white/20 dark:border-white/10 bg-white/40 dark:bg-black/40 text-foreground text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90 transition-all cursor-pointer"
+                    className="w-full max-w-sm p-2.5 rounded-xl border border-white/40 dark:border-white/10 bg-white/80 dark:bg-black/40 text-foreground text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90 transition-all cursor-pointer"
                   />
                 </div>
               </div>
@@ -435,7 +435,7 @@ const RegistrationForm = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-4xl bg-white/10 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 dark:border-white/10 relative z-10"
+        className="w-full max-w-4xl bg-white/95 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/40 dark:border-white/10 relative z-10"
       >
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-3 uppercase tracking-tighter drop-shadow-sm">
@@ -463,7 +463,7 @@ const RegistrationForm = () => {
             <button
               type="button"
               onClick={prevStep}
-              className={`px-6 py-3 font-bold text-foreground bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-all shadow-sm ${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+              className={`px-6 py-3 font-bold text-foreground bg-white/90 hover:bg-white border border-white/40 rounded-xl transition-all shadow-sm ${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
             >
               Back
             </button>
@@ -480,7 +480,7 @@ const RegistrationForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`px-10 py-3 font-black text-white bg-gradient-to-r from-primary to-secondary hover:shadow-[0_10px_30px_rgba(110,159,159,0.5)] border border-white/20 rounded-xl transition-all shadow-xl hover:-translate-y-1 tracking-widest uppercase
+                className={`px-10 py-3 font-black text-white bg-gradient-to-r from-primary to-secondary hover:shadow-[0_10px_30px_rgb(var(--primary)/0.5)] border border-white/20 rounded-xl transition-all shadow-xl hover:-translate-y-1 tracking-widest uppercase
                            ${isSubmitting ? "opacity-70 cursor-not-allowed transform-none hover:shadow-none" : ""}`}
               >
                 {isSubmitting ? "SUBMITTING..." : "SUBMIT FORM"}

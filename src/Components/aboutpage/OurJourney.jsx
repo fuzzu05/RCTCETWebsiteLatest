@@ -18,7 +18,7 @@ const TeamModal = ({ year, onClose }) => {
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, y: 20 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-background dark:bg-card p-6 md:p-10 rounded-3xl max-w-5xl w-full shadow-2xl relative"
+                className="bg-white/70 dark:bg-card backdrop-blur-xl p-6 md:p-10 rounded-3xl max-w-5xl w-full shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-stone-200/60 dark:border-white/10 relative"
             >
                 <button
                     onClick={onClose}
@@ -78,10 +78,10 @@ const DesktopJourney = ({ onSelectYear }) => {
                 <motion.path
                     d={pathData}
                     fill="none"
-                    stroke="#6e9f9f"
+                    stroke="rgb(var(--primary))"
                     strokeWidth="8"
                     strokeLinecap="round"
-                    className="drop-shadow-[0_0_12px_rgba(110,159,159,1)]"
+                    className="drop-shadow-[0_0_12px_rgb(var(--primary))]"
                     initial={{ pathLength: 0, pathOffset: 0, opacity: 1 }}
                     whileInView={{
                         pathLength: [0, 1, 1, 1],
@@ -121,7 +121,7 @@ const DesktopJourney = ({ onSelectYear }) => {
                             className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20 transition-transform duration-300 hover:scale-110 hover:z-30 w-20 h-20 xl:w-24 xl:h-24"
                         >
                             {/* The Circle Shape */}
-                            <div className="w-full h-full bg-card border-4 border-primary rounded-full shadow-[0_0_15px_rgba(110,159,159,0.6)] p-1 flex items-center justify-center">
+                            <div className="w-full h-full bg-card border-4 border-primary rounded-full shadow-[0_0_15px_rgb(var(--primary)/0.6)] p-1 flex items-center justify-center">
                                 <div className="w-full h-full rounded-full overflow-hidden border-2 border-muted dark:border-muted bg-card">
                                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                 </div>
@@ -168,7 +168,7 @@ const MobileJourney = ({ onSelectYear }) => {
                         repeat: Infinity,
                         repeatDelay: 0.5
                     }}
-                    className="absolute left-0 w-full bg-primary shadow-[0_0_12px_rgba(110,159,159,1)] rounded-full"
+                    className="absolute left-0 w-full bg-primary shadow-[0_0_12px_rgb(var(--primary))] rounded-full"
                 />
             </div>
 
@@ -186,7 +186,7 @@ const MobileJourney = ({ onSelectYear }) => {
                         viewport={{ once: true, margin: "-50px" }}
                         className="relative z-10 w-full mb-16 last:mb-0"
                     >
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary border-4 border-white dark:border-muted shadow-md z-20" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background dark:border-muted shadow-md z-20" />
 
                         <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${isPhotoLeft ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}>
                             <div
@@ -241,7 +241,7 @@ export const OurJourney = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="w-24 h-1.5 bg-primary mx-auto mt-6 rounded-full shadow-[0_0_15px_rgba(110,159,159,0.5)]"
+                        className="w-24 h-1.5 bg-primary mx-auto mt-6 rounded-full shadow-[0_0_15px_rgb(var(--primary)/0.5)]"
                     />
                 </div>
 

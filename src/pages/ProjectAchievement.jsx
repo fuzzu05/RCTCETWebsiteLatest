@@ -155,7 +155,7 @@ const Projectachievement = ({ selectedYear }) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative group bg-gradient-to-br from-white/40 to-white/10 dark:from-black/40 dark:to-black/10 backdrop-blur-2xl border border-white/40 dark:border-white/10 p-10 rounded-[3rem] shadow-2xl hover:shadow-[0_20px_40px_rgba(110,159,159,0.2)] hover:-translate-y-3 transition-all duration-500 overflow-hidden"
+            className="relative group bg-gradient-to-br from-white/40 to-white/10 dark:from-black/40 dark:to-black/10 backdrop-blur-2xl border border-white/40 dark:border-white/10 p-10 rounded-[3rem] shadow-2xl hover:shadow-[0_20px_40px_rgb(var(--primary)/0.25)] hover:-translate-y-3 transition-all duration-500 overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="absolute -right-8 -bottom-8 text-primary/5 group-hover:text-primary/10 transition-all duration-500 rotate-[-15deg] group-hover:rotate-0 group-hover:scale-110">
@@ -251,7 +251,7 @@ const Projectachievement = ({ selectedYear }) => {
                   variants={fadeUp}
                   initial="hidden"
                   animate="visible"
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 py-3.5 px-5 rounded-2xl bg-white/15 dark:bg-white/5 border border-white/15 dark:border-white/5 hover:border-primary/30 hover:bg-primary/5 hover:-translate-y-0.5 transition-all duration-250 group"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 py-3.5 px-5 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-md border border-stone-200/60 dark:border-white/5 shadow-sm hover:border-primary/30 hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-250 group"
                 >
                   <div className="flex items-center gap-3 sm:w-2/5">
                     <span className="w-1 h-5 rounded-full bg-primary opacity-40 group-hover:opacity-100 transition-opacity flex-shrink-0" />
@@ -275,8 +275,8 @@ const Projectachievement = ({ selectedYear }) => {
       <SectionTitle>Achievement Moments</SectionTitle>
 
       <div className="w-full py-4 relative overflow-hidden mb-16">
-        <div className="absolute inset-y-0 left-0 w-1/12 bg-gradient-to-r from-card to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-1/12 bg-gradient-to-l from-card to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-1/12 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-1/12 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
         <Swiper
           modules={[Autoplay]}
           loop

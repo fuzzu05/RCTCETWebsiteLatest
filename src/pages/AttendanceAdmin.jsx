@@ -277,7 +277,7 @@ function AttendanceAdmin() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full inline-flex justify-center items-center gap-3 bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white font-black text-lg py-4 px-10 rounded-full shadow-[0_10px_30px_rgba(110,159,159,0.3)] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(110,159,159,0.4)] disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none mt-6"
+              className="w-full inline-flex justify-center items-center gap-3 bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white font-black text-lg py-4 px-10 rounded-full shadow-[0_10px_30px_rgb(var(--primary)/0.3)] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_15px_40px_rgb(var(--primary)/0.4)] disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none mt-6"
             >
               {loading ? "SUBMITTING..." : "LOG ATTENDANCE"}
               {!loading && <span className="text-2xl leading-none">↗</span>}

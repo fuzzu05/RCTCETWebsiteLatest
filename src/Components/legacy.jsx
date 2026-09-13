@@ -1,11 +1,16 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import SpotlightCard from "./ReactBits/SpotlightCard";
+import SplitText from "./ReactBits/SplitText";
 
 function FounderCard() {
   return (
-    <div className="relative overflow-hidden group h-full rounded-[2rem] shadow-xl dark:shadow-black/50 border border-white/60 dark:border-white/10 bg-white/40 dark:bg-black/20 backdrop-blur-2xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+    <SpotlightCard
+      spotlightColor="rgba(215, 25, 33, 0.14)"
+      className="group h-full rounded-[2rem] shadow-sm dark:shadow-black/50 border border-stone-200/60 dark:border-white/10 bg-white/70 dark:bg-black/20 backdrop-blur-md transition-all duration-500 hover:shadow-md hover:-translate-y-1"
+    >
       {/* Subtle glow effect on hover */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
       <div className="relative z-10 p-6 md:p-8 flex flex-col h-full">
         <div className="w-full h-64 md:h-72 overflow-hidden rounded-2xl mb-6 shadow-inner relative">
@@ -42,7 +47,7 @@ function FounderCard() {
           </div>
         </div>
       </div>
-    </div>
+    </SpotlightCard>
   );
 }
 
@@ -119,7 +124,6 @@ function Legacy() {
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-card dark:fill-background"></path>
         </svg>
       </div>
-
       <div className="p-8 md:p-16 lg:py-24 flex justify-center items-center relative z-10">
         <div
           className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] pointer-events-none invert dark:invert-0"
@@ -134,7 +138,15 @@ function Legacy() {
 
         <div className="max-w-7xl w-full relative z-10">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl lg:text-5xl leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40 tracking-tighter drop-shadow-sm select-none uppercase">Rotary & Rotaract</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-5xl leading-none font-black tracking-tighter drop-shadow-sm select-none uppercase">
+              <SplitText
+                text="Rotary & Rotaract"
+                className="justify-center"
+                charClassName="text-transparent bg-clip-text bg-gradient-to-b from-foreground to-foreground/50 dark:from-white dark:to-white/40"
+                delay={0.03}
+                duration={0.45}
+              />
+            </h1>
             <p className="mt-4 text-muted text-lg font-medium max-w-2xl mx-auto">The foundation of service, leadership, and professional development.</p>
           </div>
 

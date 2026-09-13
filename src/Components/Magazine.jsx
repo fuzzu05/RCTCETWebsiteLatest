@@ -8,7 +8,7 @@ export const Magazine = () => {
   const scrollItems = [...magazines, ...magazines];
 
   return (
-    <section className="py-24 bg-card dark:bg-background transition-colors duration-500 overflow-hidden relative">
+    <section className="py-24 bg-card/60 dark:bg-background transition-colors duration-500 overflow-hidden relative">
       
       {/* Soft Organic SVG Divider at Top */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-10">
@@ -16,7 +16,6 @@ export const Magazine = () => {
               <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-background"></path>
           </svg>
       </div>
-
       <style>
         {`
           @keyframes scroll-left {
@@ -59,13 +58,14 @@ export const Magazine = () => {
             className="
               group
               w-[280px] sm:w-[320px] shrink-0
-              bg-background
+              bg-white/70 dark:bg-card/80
+              backdrop-blur-md
               rounded-[2rem]
-              shadow-lg shadow-black/5 dark:shadow-black/40
-              hover:shadow-2xl hover:shadow-primary/20
+              shadow-sm dark:shadow-black/40
+              hover:shadow-card-light-hover hover:shadow-primary/20
               hover:-translate-y-4 hover:rotate-2
               transition-all duration-500 ease-out
-              border border-black/5 dark:border-white/5
+              border border-stone-200/60 dark:border-white/5
             "
           >
             <div className="relative aspect-[3/4] p-5 rounded-t-[2rem] overflow-hidden bg-background">
@@ -92,7 +92,7 @@ export const Magazine = () => {
             </div>
 
             <div className="px-6 pb-8 text-center relative z-10 -mt-6">
-              <span className="inline-block px-3 py-1 bg-card rounded-full border border-black/5 dark:border-white/5 shadow-sm text-xs font-bold text-primary tracking-widest mb-3">
+              <span className="inline-block px-3 py-1 bg-card rounded-full border border-primary/15 dark:border-white/5 shadow-sm text-xs font-bold text-primary tracking-widest mb-3">
                 {mag.year}
               </span>
 

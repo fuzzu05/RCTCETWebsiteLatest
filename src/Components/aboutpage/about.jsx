@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { motion } from "framer-motion";
+import ShinyText from "../ReactBits/ShinyText";
 
 import { aboutImages, preloadImages as images } from "../../data/aboutUs";
 // NOTE: Hero/above-fold images use native <img loading="eager"> to avoid grey placeholder flash.
@@ -28,9 +29,7 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <div className="relative bg-background min-h-[90vh] flex flex-col justify-center overflow-hidden pt-10 pb-20">
-      {/* Dynamic Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(110,159,159,0.08)_0%,transparent_100%)] pointer-events-none" />
+    <div className="relative bg-transparent min-h-[90vh] flex flex-col justify-center overflow-hidden pt-10 pb-20">
 
       {/* Background Image (faded) — eager to avoid grey flash on above-fold hero area */}
       <img
@@ -46,6 +45,9 @@ const AboutSection = () => {
         
         {/* Massive Title */}
         <div className="mb-16 w-full mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 dark:bg-black/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm mb-6">
+            <ShinyText text="MERAKI • 2024-2025" className="text-xs font-bold tracking-widest" />
+          </div>
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,7 +60,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-32 h-1.5 bg-primary mx-auto mt-8 rounded-full shadow-[0_0_15px_rgba(110,159,159,0.5)]"
+            className="w-32 h-1.5 bg-primary mx-auto mt-8 rounded-full shadow-[0_0_15px_rgb(var(--primary)/0.5)]"
           />
         </div>
 
@@ -98,9 +100,9 @@ const AboutSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, type: "spring" }}
-            className="relative rounded-[2.5rem] p-6 lg:p-10 aspect-square w-full max-w-[400px] md:max-w-none md:w-[28vw] overflow-visible flex-shrink-0 bg-white/40 dark:bg-card/40 backdrop-blur-3xl border border-primary/20 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] group hover:border-primary/40 transition-colors duration-500"
+            className="relative rounded-[2.5rem] p-6 lg:p-10 aspect-square w-full max-w-[400px] md:max-w-none md:w-[28vw] overflow-visible flex-shrink-0 bg-white/70 dark:bg-card/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm group hover:border-primary/40 transition-colors duration-500"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(110,159,159,0.1)_0%,transparent_70%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--primary)/0.1)_0%,transparent_70%)]" />
             {/* Centre hero image — eager so it renders before the fold without a grey box */}
             <img
               src={aboutImages.themeLogo}

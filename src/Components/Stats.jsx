@@ -21,7 +21,7 @@ const AnimatedCounter20 = () => {
     }, [count2]);
 
     return (
-        <div className="text-3xl font-medium text-foreground w-20 text-center lg:mb-2 lg:ml-1 lg:text-5xl ">
+        <div className="text-3xl font-medium text-foreground dark:text-white w-20 text-center lg:mb-2 lg:ml-1 lg:text-5xl">
             {count2}+
         </div>
     );
@@ -44,7 +44,7 @@ function Zone({name, image, alt, data}) {
         <div className="flex justify-start items-center w-32 md:w-fit">
             <img src={image} alt={alt} className="w-11 mr-2 lg:mr-4 lg:w-16" loading={"lazy"}/>
             <div className="flex flex-col">
-                <p className="text-3xl font-medium text-foreground text-center lg:mb-2 lg:text-5xl">{data}</p>
+                <p className="text-3xl font-medium text-foreground dark:text-white text-center lg:mb-2 lg:text-5xl">{data}</p>
                 <p className="text-center text-muted text-sm lg:text-base">{name}</p>
             </div>
         </div>
@@ -56,7 +56,7 @@ function District({name, image, alt, data}) {
         <div className="flex justify-center items-center w-32 md:w-fit">
             <img src={image} alt={alt} className="w-12 mr-2 lg:mr-3 lg:w-20" loading={"lazy"}/>
             <div className="flex flex-col">
-                <p className="text-3xl font-medium text-foreground text-center lg:mb-2 lg:text-5xl">{data}</p>
+                <p className="text-3xl font-medium text-foreground dark:text-white text-center lg:mb-2 lg:text-5xl">{data}</p>
                 <p className="text-center text-muted text-sm lg:text-base">{name}</p>
             </div>
         </div>

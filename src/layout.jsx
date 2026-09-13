@@ -2,15 +2,22 @@ import React from 'react';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import { Outlet } from 'react-router-dom';
+import MeshBackground from './Components/Layout/MeshBackground';
 
 const Layout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-card dark:bg-background">
-      <Header />
-      <main className="flex-grow">
+    <div className="min-h-screen flex flex-col relative selection:bg-primary/20 bg-background">
+      {/* Pure CSS Ambient Mesh Background & Noise Overlay */}
+      <MeshBackground />
+      <div className="relative z-20">
+        <Header />
+      </div>
+      <main className="flex-grow relative z-10">
         <Outlet />
       </main>
-      <Footer />
+      <div className="relative z-20">
+        <Footer />
+      </div>
     </div>
   );
 };

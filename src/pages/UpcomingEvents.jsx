@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Users } from "lucide-react";
 import SEO from "../Components/SEO";
+import ShinyText from "../Components/ReactBits/ShinyText";
 
 const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
 
@@ -37,11 +38,14 @@ const UpcomingEvents = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background py-16 px-4 transition-colors">
+    <div className="min-h-screen bg-transparent py-16 px-4 transition-colors relative overflow-hidden">
       <SEO title="Upcoming Events" description="Check out the latest upcoming events by the Rotaract Club of TCET." />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 dark:bg-black/40 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm mb-4">
+            <ShinyText text="UPCOMING EVENTS" className="text-xs font-bold tracking-widest" />
+          </div>
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -104,7 +108,7 @@ const UpcomingEvents = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="bg-white/40 dark:bg-black/30 backdrop-blur-xl rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all border border-white/20 dark:border-white/10 flex flex-col group"
+                className="bg-white/70 dark:bg-black/30 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-stone-200/60 dark:border-white/10 flex flex-col group"
               >
                 <div className="overflow-hidden relative">
                   <img

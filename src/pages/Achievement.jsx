@@ -31,7 +31,7 @@ export const Achievement = () => {
   }, []);
 
   return (
-    <section className="bg-card dark:bg-card text-foreground transition-colors duration-300 relative overflow-hidden">
+    <section className="bg-transparent dark:bg-card text-foreground transition-colors duration-300 relative overflow-hidden">
       <SEO 
         title="Our Legacy & Achievements" 
         description="Discover the legacy, awards, and milestones achieved by the Rotaract Club of TCET (R.I.D 3141). See our outstanding projects, best club ranks, and individual rotaractor achievements." 
@@ -228,9 +228,9 @@ export const Achievement = () => {
                   {districtEventNameByYear[selectedYear] || "Dashak"}
                 </h2>
 
-                <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary rounded-full mb-10 shadow-[0_0_15px_rgba(110,159,159,0.5)]" />
+                <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-secondary rounded-full mb-10 shadow-[0_0_15px_rgb(var(--primary)/0.5)]" />
 
-                <div className="flex flex-col items-center lg:items-start bg-white/60 dark:bg-black/30 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-2xl rounded-3xl p-8 sm:p-10 max-w-lg transition-transform hover:-translate-y-2 w-full">
+                <div className="flex flex-col items-center lg:items-start bg-white/70 dark:bg-black/30 backdrop-blur-md border border-stone-200/60 dark:border-white/10 shadow-sm rounded-3xl p-8 sm:p-10 max-w-lg transition-transform hover:-translate-y-1 w-full">
                   {(() => {
                     const da = districtAssemblyByYear[selectedYear];
                     if (!da) return null;

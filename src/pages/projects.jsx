@@ -119,15 +119,15 @@ function Projects() {
   }, [activeTab]);
 
   return (
-    <div className="scroll-smooth bg-card dark:bg-card min-h-screen">
+    <div className="scroll-smooth bg-transparent dark:bg-card min-h-screen relative overflow-hidden">
       <SEO title="Our Projects" description="Explore our latest endeavors and community service projects." />
       {/* HERO — UPDATED TO CHEF'S KISS AESTHETIC */}
       <div className="flex md:min-h-[70vh] justify-center items-center sm:p-8 relative">
         <div className="relative w-full sm:w-[95%] md:w-[90%] h-[60vh] sm:h-[80vh] overflow-hidden rounded-none sm:rounded-3xl shadow-2xl">
+          {/* Hero image — load eagerly to avoid blank grey box on page load */}
           <img
             src={heroImage}
             alt={`Projects ${selectedYear}`}
-            {/* Hero image — load eagerly to avoid blank grey box on page load */}
             loading="eager"
             fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover object-[center_70%] scale-105 transition-all duration-700"
@@ -143,7 +143,7 @@ function Projects() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-[5rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 tracking-tighter drop-shadow-sm select-none uppercase mb-4"
+              className="text-5xl md:text-7xl lg:text-[5rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 tracking-tighter drop-shadow-sm select-none uppercase mb-4"
             >
               EXPLORE OUR <br className="md:hidden" />
               <span className="bg-gradient-to-b from-primary to-primary/60 bg-clip-text text-transparent">
@@ -155,7 +155,7 @@ function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-2 text-sm md:text-lg max-w-2xl text-white/80 font-medium tracking-wide drop-shadow-md mb-8"
+              className="mt-2 text-sm md:text-lg max-w-2xl text-white/90 dark:text-white/80 font-medium tracking-wide drop-shadow-md mb-8"
             >
               Discover the transformative initiatives that define our commitment to positive change in the community.
             </motion.p>
@@ -164,7 +164,7 @@ function Projects() {
               <div className="relative w-48 sm:w-56">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center justify-between w-full py-2.5 px-5 text-sm sm:text-base border border-white/20 rounded-full bg-black/30 backdrop-blur-xl text-white font-bold outline-none cursor-pointer hover:bg-black/50 transition-all shadow-xl shadow-black/20 uppercase tracking-widest"
+                  className="flex items-center justify-between w-full py-2.5 px-5 text-sm sm:text-base border border-white/40 rounded-full bg-black/40 dark:bg-black/30 backdrop-blur-xl text-white font-bold outline-none cursor-pointer hover:bg-black/50 transition-all shadow-xl shadow-black/20 uppercase tracking-widest"
                 >
                   <span className="flex-1 text-center">{selectedYear}</span>
                   <ChevronDown 
@@ -190,9 +190,9 @@ function Projects() {
                             setIsDropdownOpen(false);
                           }}
                           className={`w-full text-center py-3 px-5 font-bold text-sm sm:text-base transition-colors duration-300 uppercase tracking-wider shrink-0
-                            ${selectedYear === year 
-                              ? 'bg-primary/40 text-white shadow-inner' 
-                              : 'text-white/80 hover:bg-white/10 hover:text-white'
+                            ${selectedYear === year
+                              ? 'bg-primary/40 text-white shadow-inner'
+                              : 'text-white/90 dark:text-white/80 hover:bg-white/10 hover:text-white'
                             }
                           `}
                         >
@@ -216,7 +216,7 @@ function Projects() {
                   window.scrollTo({ top, behavior: 'smooth' });
                 }
               }}
-              className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-300 bg-primary/80 backdrop-blur-md rounded-full hover:bg-primary border border-white/20 shadow-[0_0_20px_rgba(110,159,159,0.3)] hover:shadow-[0_0_30px_rgba(110,159,159,0.6)] hover:-translate-y-1 overflow-hidden"
+              className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-300 bg-primary/80 backdrop-blur-md rounded-full hover:bg-primary border border-white/20 shadow-[0_0_20px_rgb(var(--primary)/0.3)] hover:shadow-[0_0_30px_rgb(var(--primary)/0.6)] hover:-translate-y-1 overflow-hidden"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
               <span className="relative z-10 flex items-center gap-2">
@@ -269,7 +269,7 @@ function Projects() {
                 {sec.title}
 
                 {activeTab === sec.id && (
-                  <span className="absolute left-0 bottom-0 h-[3px] w-full bg-primary dark:bg-primary rounded-full shadow-[0_0_10px_rgba(110,159,159,0.5)]" />
+                  <span className="absolute left-0 bottom-0 h-[3px] w-full bg-primary dark:bg-primary rounded-full shadow-[0_0_10px_rgb(var(--primary)/0.5)]" />
                 )}
               </a>
             ))}
@@ -308,7 +308,7 @@ function Projects() {
         </p>
         <Link
           to="/feedback"
-          className="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-black text-white transition-all duration-300 bg-gradient-to-r from-primary to-secondary rounded-full shadow-[0_10px_30px_rgba(110,159,159,0.4)] hover:shadow-[0_15px_40px_rgba(110,159,159,0.6)] hover:-translate-y-1 overflow-hidden"
+          className="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-black text-white transition-all duration-300 bg-gradient-to-r from-primary to-secondary rounded-full shadow-[0_10px_30px_rgb(var(--primary)/0.4)] hover:shadow-[0_15px_40px_rgb(var(--primary)/0.6)] hover:-translate-y-1 overflow-hidden"
         >
           <span className="relative z-10 flex items-center gap-2 uppercase tracking-widest drop-shadow-sm">
             Get in Touch With Us
@@ -373,7 +373,7 @@ function SliderSection({ section, index }) {
       </h2>
 
       <div className="relative max-w-6xl mx-auto group perspective-1000">
-        <div className="bg-white/40 dark:bg-black/20 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-3xl shadow-2xl shadow-primary/5 p-4 sm:p-8 transition-transform duration-500 hover:-translate-y-2">
+        <div className="bg-white/45 dark:bg-black/20 backdrop-blur-md border border-white/60 dark:border-white/10 rounded-3xl shadow-[0_4px_20px_-4px_rgba(215,25,33,0.06)] p-4 sm:p-8 transition-transform duration-500 hover:-translate-y-2">
 
           {/* Arrows */}
           {total > 1 && (

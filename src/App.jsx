@@ -1,11 +1,60 @@
 
 import { Suspense, lazy, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Layout from './layout';
 import { ThemeProvider } from './context/themeContext';
 import { HelmetProvider } from 'react-helmet-async';
 import { AdminAuthProvider } from './context/AdminAuthContext';
 import ProtectedRoute from './Components/Admin/ProtectedRoute';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
+import { setupLenisGsapTicker, initRotaractLightAnimations, ScrollTrigger } from './utils/gsapAnimations';
+import { useTheme } from './hooks/useTheme';
+
+// Scroll to top on route change with Lenis & ScrollTrigger compatibility
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    ScrollTrigger.refresh();
+  }, [pathname]);
+  return null;
+}
+
+// Manages Lenis Smooth Scroll, GSAP ScrollTrigger synchronization, and Rotaract Light Mode animations
+function AnimationManager({ children }) {
+  const { theme } = useTheme();
+  const location = useLocation();
+
+  useEffect(() => {
+    // 1. Initialize Lenis Smooth Scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    // 2. Synchronize Lenis with GSAP ScrollTrigger Ticker
+    const cleanupTicker = setupLenisGsapTicker(lenis);
+
+    return () => {
+      cleanupTicker();
+      lenis.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
+    // 3. Trigger Rotaract Light Mode visual effects (gradient shift & entrance effects)
+    const cleanupAnimations = initRotaractLightAnimations(theme);
+    ScrollTrigger.refresh();
+
+    return () => {
+      cleanupAnimations();
+    };
+  }, [theme, location.pathname]);
+
+  return children;
+}
 
 const Home = lazy(() => import('./pages/home'));
 const Achievement = lazy(() => import('./pages/Achievement').then(m => ({ default: m.Achievement })));
@@ -45,34 +94,37 @@ function App() {
       <ThemeProvider>
         <AdminAuthProvider>
           <Router basename="/">
-            <Suspense fallback={Loader}>
-              <Routes>
-                {/* ── Admin routes (no Layout wrapper) ── */}
-                <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-                <Route path="/admin/create-event" element={<ProtectedRoute><AdminCreateEvent /></ProtectedRoute>} />
-                <Route path="/admin/edit-event/:eventId" element={<ProtectedRoute><AdminEditEvent /></ProtectedRoute>} />
+            <AnimationManager>
+              <ScrollToTop />
+              <Suspense fallback={Loader}>
+                <Routes>
+                  {/* ── Admin routes (no Layout wrapper) ── */}
+                  <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+                  <Route path="/admin/login" element={<AdminLogin />} />
+                  <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+                  <Route path="/admin/create-event" element={<ProtectedRoute><AdminCreateEvent /></ProtectedRoute>} />
+                  <Route path="/admin/edit-event/:eventId" element={<ProtectedRoute><AdminEditEvent /></ProtectedRoute>} />
 
-                {/* ── Public routes (with Layout) ── */}
-                <Route path="/" element={<Layout />}>
-                  <Route index element={<Home />} />
-                  <Route path="projects" element={<Projects />} />
-                  <Route path="about" element={<About />} />
-                  {/* club hub start */}
-                  <Route path="avenue" element={<Avenue />} />
-                  <Route path="achievement" element={<Achievement />} />
-                  <Route path="saa-fine" element={<SaaFineTable />} />
-                  <Route path="meet-the-team" element={<TeamPage />} />
-                  <Route path="feedback" element={<FeedBack />} />
-                  <Route path="admin/attendance" element={<AttendanceAdmin />} />
-                  {/* club hub finish */}
-                  <Route path="join" element={<RegistrationForm />} />
-                  <Route path="events" element={<UpcomingEvents />} />
-                  <Route path="event/:eventId" element={<EventRegistration />} />
-                </Route>
-              </Routes>
-            </Suspense>
+                  {/* ── Public routes (with Layout) ── */}
+                  <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="projects" element={<Projects />} />
+                    <Route path="about" element={<About />} />
+                    {/* club hub start */}
+                    <Route path="avenue" element={<Avenue />} />
+                    <Route path="achievement" element={<Achievement />} />
+                    <Route path="saa-fine" element={<SaaFineTable />} />
+                    <Route path="meet-the-team" element={<TeamPage />} />
+                    <Route path="feedback" element={<FeedBack />} />
+                    <Route path="admin/attendance" element={<AttendanceAdmin />} />
+                    {/* club hub finish */}
+                    <Route path="join" element={<RegistrationForm />} />
+                    <Route path="events" element={<UpcomingEvents />} />
+                    <Route path="event/:eventId" element={<EventRegistration />} />
+                  </Route>
+                </Routes>
+              </Suspense>
+            </AnimationManager>
           </Router>
         </AdminAuthProvider>
       </ThemeProvider>
