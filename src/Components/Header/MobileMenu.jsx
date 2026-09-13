@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown, ArrowRight } from "lucide-react";
@@ -71,10 +72,15 @@ export default function MobileMenu({
   clubLinks,
   triggerRef,
 }) {
+  const [mounted, setMounted] = useState(false);
   const [isClubDropdownOpen, setIsClubDropdownOpen] = useState(false);
   const menuRef = useRef(null);
   const closeBtnRef = useRef(null);
   const wasOpenRef = useRef(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Check user OS preference for reduced motion
   const prefersReducedMotion =
@@ -132,12 +138,14 @@ export default function MobileMenu({
     };
   }, [isOpen, onClose, triggerRef]);
 
-  return (
+  if (!mounted || typeof document === "undefined" || !document.body) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div
           id="mobile-menu-portal"
-          className="fixed inset-0 z-[10001] lg:hidden"
+          className="fixed inset-0 z-[99999] lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation Menu"
@@ -150,19 +158,19 @@ export default function MobileMenu({
             animate="open"
             exit="closed"
             variants={prefersReducedMotion ? undefined : backdropVariants}
-            className="absolute inset-0 bg-black/40 backdrop-blur-md"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
             aria-hidden="true"
           />
 
-          {/* 2. Full-Height Editorial Panel (Slides in from Right) */}
+          {/* 2. Full-Height Editorial Panel (Slides in from Right with 100% Solid Opaque Background) */}
           <motion.div
             key="mobile-panel"
             initial={prefersReducedMotion ? { opacity: 0 } : "closed"}
             animate={prefersReducedMotion ? { opacity: 1 } : "open"}
             exit={prefersReducedMotion ? { opacity: 0 } : "closed"}
             variants={prefersReducedMotion ? undefined : panelVariants}
-            className="absolute top-0 right-0 w-full max-w-[420px] sm:max-w-[380px] h-[100dvh] bg-card/98 backdrop-blur-3xl border-l border-primary/15 shadow-[-8px_0_32px_rgba(0,0,0,0.2)] flex flex-col justify-between p-6 sm:p-7 overflow-y-auto"
+            className="absolute top-0 right-0 w-full sm:w-[380px] sm:max-w-[380px] h-[100dvh] bg-white dark:bg-[#0F172A] border-l border-primary/20 shadow-[-12px_0_40px_rgba(0,0,0,0.35)] flex flex-col justify-between p-6 sm:p-7 overflow-y-auto z-10"
             style={{
               paddingTop: "calc(1.25rem + env(safe-area-inset-top, 0px))",
               paddingBottom: "calc(1.25rem + env(safe-area-inset-bottom, 0px))",
@@ -337,6 +345,7 @@ export default function MobileMenu({
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
