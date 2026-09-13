@@ -88,7 +88,7 @@ export default function RotaractClubLayout() {
           <BlurText
             text="ROTARACT CLUB"
             className="justify-center whitespace-nowrap"
-            textClassName="text-[#1F1A1C] dark:text-white drop-shadow-[0_2px_12px_rgba(255,255,255,0.85)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+            textClassName="text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]"
             delay={0.08}
             startDelay={0.05}
             duration={0.65}
@@ -97,7 +97,7 @@ export default function RotaractClubLayout() {
           <BlurText
             text="OF TCET"
             className="justify-center whitespace-nowrap"
-            textClassName="text-[#1F1A1C] dark:text-white drop-shadow-[0_2px_12px_rgba(255,255,255,0.85)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+            textClassName="text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]"
             delay={0.08}
             startDelay={0.25}
             duration={0.65}
