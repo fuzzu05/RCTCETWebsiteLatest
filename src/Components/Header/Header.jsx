@@ -124,11 +124,26 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScroll =
+        window.scrollY ||
+        window.pageYOffset ||
+        (window.__lenis ? window.__lenis.scroll : 0) ||
+        0;
+      setIsScrolled(currentScroll > 20);
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    let unbindLenis;
+    if (window.__lenis) {
+      unbindLenis = window.__lenis.on("scroll", handleScroll);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (typeof unbindLenis === "function") unbindLenis();
+    };
   }, []);
 
   useEffect(() => {
