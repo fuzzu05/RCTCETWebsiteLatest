@@ -17,9 +17,35 @@ function Header() {
   const navItemRefs = useRef([]);
   const navRef = useRef(null);
   const menuTriggerRef = useRef(null);
+  const isHoverLockedRef = useRef(false);
 
   const handleCloseMenu = useCallback(() => setIsMenuOpen(false), []);
   const handleOpenMenu = useCallback(() => setIsMenuOpen(true), []);
+
+  const handleMouseEnterDropdown = () => {
+    if (isHoverLockedRef.current) return;
+    setIsClubDropdownOpen(true);
+  };
+
+  const handleMouseLeaveDropdown = () => {
+    isHoverLockedRef.current = false;
+    setIsClubDropdownOpen(false);
+  };
+
+  const handleNavClick = useCallback(() => {
+    // Immediately close both desktop dropdown and mobile menu
+    isHoverLockedRef.current = true;
+    setIsClubDropdownOpen(false);
+    setIsMenuOpen(false);
+
+    // Force instant scroll to top (handles same-page re-clicks as well)
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true });
+    }
+  }, []);
 
   // Single, synchronous routing source of truth
   const getActiveNav = (rawPath) => {
@@ -58,6 +84,7 @@ function Header() {
       prevPathRef.current = location.pathname;
       setIsMenuOpen(false);
       setIsClubDropdownOpen(false);
+      isHoverLockedRef.current = false;
     }
   }, [location.pathname]);
 
@@ -77,6 +104,7 @@ function Header() {
         !clubDropdownRef.current.contains(event.target)
       ) {
         setIsClubDropdownOpen(false);
+        isHoverLockedRef.current = false;
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -110,7 +138,7 @@ function Header() {
         
         {/* Logo */}
         <div className="flex-1 flex justify-start">
-          <Link to="/" className="flex items-center group">
+          <Link to="/" onClick={handleNavClick} className="flex items-center group">
             <img
               src="https://res.cloudinary.com/dtc2xaeaf/image/upload/v1757125056/logo_pdqctw_ztwsvl.png"
               alt="Rotaract Club of TCET Logo"
@@ -131,6 +159,7 @@ function Header() {
               key={link.name}
               ref={(el) => (navItemRefs.current[index] = el)}
               to={link.to}
+              onClick={handleNavClick}
               className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group transition-all duration-300 ${
                 activeIndex === index
                   ? "text-primary opacity-100"
@@ -147,12 +176,15 @@ function Header() {
           <div
             className="relative flex items-center h-full"
             ref={clubDropdownRef}
-            onMouseEnter={() => setIsClubDropdownOpen(true)}
-            onMouseLeave={() => setIsClubDropdownOpen(false)}
+            onMouseEnter={handleMouseEnterDropdown}
+            onMouseLeave={handleMouseLeaveDropdown}
           >
             <button
               ref={(el) => (navItemRefs.current[4] = el)}
-              onClick={() => setIsClubDropdownOpen(!isClubDropdownOpen)}
+              onClick={() => {
+                isHoverLockedRef.current = false;
+                setIsClubDropdownOpen((prev) => !prev);
+              }}
               className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group flex items-center gap-1.5 transition-all duration-300 ${
                 activeIndex === 4
                   ? "text-primary opacity-100"
@@ -184,7 +216,7 @@ function Header() {
                       <Link
                         key={link.name}
                         to={link.to}
-                        onClick={() => setIsClubDropdownOpen(false)}
+                        onClick={handleNavClick}
                         className="group/item flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors"
                       >
                         {/* Icons removed as per user request */}
@@ -216,6 +248,7 @@ function Header() {
         <div className="hidden lg:flex flex-1 justify-end space-x-3 items-center">
           <Link
             to="/join"
+            onClick={handleNavClick}
             className="btn-rotaract relative group bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold py-2 px-5 rounded-full shadow-[0_0_15px_rgba(234,88,12,0.35)] hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap overflow-hidden"
           >
             <span className="relative z-10 text-sm tracking-wide">Become a member</span>

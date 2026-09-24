@@ -57,6 +57,26 @@ export default function MobileMenu({
     };
   }, [isOpen, onClose]);
 
+  // Automatically minimize / collapse Club Hub submenu when the menu is closed
+  useEffect(() => {
+    if (!isOpen) {
+      setIsClubDropdownOpen(false);
+    }
+  }, [isOpen]);
+
+  const handleLinkClick = () => {
+    setIsClubDropdownOpen(false);
+    onClose();
+
+    // Instant scroll to top on mobile
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true });
+    }
+  };
+
   // If not mounted or no document, do not render portal
   if (!mounted || typeof document === "undefined" || !document.body) return null;
 
@@ -102,7 +122,7 @@ export default function MobileMenu({
         <div className="flex items-center justify-between pb-4 border-b border-primary/10 shrink-0">
           <Link
             to="/"
-            onClick={onClose}
+            onClick={handleLinkClick}
             className="flex items-center gap-3 group cursor-pointer touch-manipulation"
           >
             <img
@@ -153,7 +173,7 @@ export default function MobileMenu({
                 >
                   <Link
                     to={link.to}
-                    onClick={onClose}
+                    onClick={handleLinkClick}
                     className={`group flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-200 active:bg-primary/10 cursor-pointer touch-manipulation ${
                       isActive
                         ? "text-primary font-black"
@@ -226,7 +246,7 @@ export default function MobileMenu({
                       <Link
                         key={link.name}
                         to={link.to}
-                        onClick={onClose}
+                        onClick={handleLinkClick}
                         className="flex items-center justify-between py-2 px-3 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 active:bg-primary/15 transition-colors font-semibold text-sm cursor-pointer touch-manipulation"
                       >
                         <span>{link.name}</span>
@@ -257,7 +277,7 @@ export default function MobileMenu({
             >
               <Link
                 to="/join"
-                onClick={onClose}
+                onClick={handleLinkClick}
                 className="btn-rotaract flex justify-center items-center w-full bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold py-3.5 px-4 rounded-2xl shadow-[0_0_15px_rgba(234,88,12,0.35)] hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] active:scale-[0.98] transition-all tracking-wide text-base cursor-pointer touch-manipulation"
               >
                 Become a member!

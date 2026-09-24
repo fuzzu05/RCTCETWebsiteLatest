@@ -15,8 +15,26 @@ import { useTheme } from './hooks/useTheme';
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-    ScrollTrigger.refresh();
+    // 1. Immediate native scroll reset
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    // 2. Immediate Lenis virtual scroll reset
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true });
+    }
+
+    // 3. Post-render re-assertion to prevent late-loading element scroll drift
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      if (window.__lenis) {
+        window.__lenis.scrollTo(0, { immediate: true });
+      }
+      ScrollTrigger.refresh();
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [pathname]);
   return null;
 }
@@ -32,6 +50,7 @@ function AnimationManager({ children }) {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    window.__lenis = lenis;
 
     // 2. Synchronize Lenis with GSAP ScrollTrigger Ticker
     const cleanupTicker = setupLenisGsapTicker(lenis);
@@ -39,6 +58,7 @@ function AnimationManager({ children }) {
     return () => {
       cleanupTicker();
       lenis.destroy();
+      window.__lenis = null;
     };
   }, []);
 
