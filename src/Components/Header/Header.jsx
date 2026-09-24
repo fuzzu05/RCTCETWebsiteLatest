@@ -176,10 +176,10 @@ function Header() {
 
   return (
     <header
-      className={`pointer-events-auto mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] max-w-7xl rounded-full border border-primary/25 shadow-xl bg-card/90 backdrop-blur-2xl transition-all duration-300 ease-in-out ${
+      className={`pointer-events-auto transition-all duration-300 ease-in-out ${
         isScrolled
-          ? "py-2 px-5 md:px-8 shadow-2xl bg-card/95 border-primary/35"
-          : "py-2.5 px-6 md:px-8 lg:px-10"
+          ? "mt-3 md:mt-4 mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] max-w-7xl rounded-full border border-primary/25 shadow-2xl py-2 px-5 md:px-8 bg-card/90 backdrop-blur-2xl"
+          : "mt-0 mx-auto w-full max-w-full rounded-none border-b border-primary/20 shadow-sm py-3.5 px-6 md:px-8 lg:px-12 bg-card/95 backdrop-blur-md"
       }`}
     >
       <div className="max-w-screen-xl mx-auto flex justify-between items-center relative">
@@ -191,7 +191,7 @@ function Header() {
               src="https://res.cloudinary.com/dtc2xaeaf/image/upload/v1757125056/logo_pdqctw_ztwsvl.png"
               alt="Rotaract Club of TCET Logo"
               className={`transition-all duration-300 ease-in-out drop-shadow-md group-hover:rotate-12 ${
-                isScrolled ? "h-9 w-9" : "h-10 w-10"
+                isScrolled ? "h-9 w-9" : "h-11 w-11"
               }`}
             />
           </Link>
@@ -289,6 +289,7 @@ function Header() {
             activeIndex={activeIndex}
             navItemRefs={navItemRefs}
             containerRef={navRef}
+            isScrolled={isScrolled}
           />
         </nav>
 

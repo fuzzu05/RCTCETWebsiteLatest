@@ -10,7 +10,7 @@ import { useState, useRef, useLayoutEffect, useEffect, useCallback } from "react
  * Isolation: Strictly runs only on desktop viewports (>= 1024px) where the desktop navbar is visible.
  * Completely dormant on mobile viewports to prevent layout measurement loops, re-renders, and interference.
  */
-const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
+const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef, isScrolled }) => {
   const [isDesktop, setIsDesktop] = useState(
     typeof window !== "undefined" ? window.innerWidth >= 1024 : true
   );
@@ -161,6 +161,19 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       clearTimeout(t2);
     };
   }, [isDesktop, applyPosition, containerRef]);
+
+  // Keep limelight aligned during navbar morph transition (full-size <-> popup pill)
+  useEffect(() => {
+    if (!isDesktop) return;
+    const t1 = setTimeout(() => applyPosition(true), 60);
+    const t2 = setTimeout(() => applyPosition(true), 160);
+    const t3 = setTimeout(() => applyPosition(true), 320);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [isDesktop, isScrolled, applyPosition]);
 
   // Check user OS preference for reduced motion
   const prefersReducedMotion =
