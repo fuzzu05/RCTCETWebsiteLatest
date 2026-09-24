@@ -193,8 +193,8 @@ function Header() {
     <header
       className={`pointer-events-auto transition-all duration-300 ease-in-out ${
         isScrolled
-          ? "mt-3 md:mt-4 mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] max-w-7xl rounded-full border border-primary/25 shadow-2xl py-2 px-5 md:px-8 bg-card/90 backdrop-blur-2xl"
-          : "mt-0 mx-auto w-full max-w-full rounded-none border-b border-primary/20 shadow-sm py-3.5 px-6 md:px-8 lg:px-12 bg-card/95 backdrop-blur-md"
+          ? "mt-3 md:mt-4 mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] max-w-7xl rounded-full py-2 px-5 md:px-8 nav-glass-scrolled"
+          : "mt-0 mx-auto w-full max-w-full rounded-none py-3.5 px-6 md:px-8 lg:px-12 nav-glass-top"
       }`}
     >
       <div className="max-w-screen-xl mx-auto flex justify-between items-center relative">
@@ -226,7 +226,7 @@ function Header() {
               className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group transition-all duration-300 ${
                 activeIndex === index
                   ? "text-primary opacity-100"
-                  : "text-foreground opacity-75 hover:opacity-100 hover:text-primary"
+                  : "text-foreground opacity-90 hover:opacity-100 hover:text-primary"
               }`}
             >
               <span className="relative z-20 transition-colors duration-300">
@@ -248,7 +248,7 @@ function Header() {
               className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group flex items-center gap-1.5 transition-all duration-300 ${
                 activeIndex === 4
                   ? "text-primary opacity-100"
-                  : "text-foreground opacity-75 hover:opacity-100 hover:text-primary"
+                  : "text-foreground opacity-90 hover:opacity-100 hover:text-primary"
               }`}
             >
               <span className="relative z-20 flex items-center gap-1.5 transition-colors duration-300">
