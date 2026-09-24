@@ -17,24 +17,58 @@ function Header() {
   const navItemRefs = useRef([]);
   const navRef = useRef(null);
   const menuTriggerRef = useRef(null);
-  const isHoverLockedRef = useRef(false);
+  const isLockedClosedRef = useRef(false);
+  const closeTimeoutRef = useRef(null);
 
   const handleCloseMenu = useCallback(() => setIsMenuOpen(false), []);
   const handleOpenMenu = useCallback(() => setIsMenuOpen(true), []);
 
   const handleMouseEnterDropdown = () => {
-    if (isHoverLockedRef.current) return;
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    // If locked closed by a user click, do not reopen until mouse has left
+    if (isLockedClosedRef.current) return;
     setIsClubDropdownOpen(true);
   };
 
   const handleMouseLeaveDropdown = () => {
-    isHoverLockedRef.current = false;
-    setIsClubDropdownOpen(false);
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    // Small grace period ensuring smooth mouse movement, then resets lock
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsClubDropdownOpen(false);
+      isLockedClosedRef.current = false;
+    }, 120);
+  };
+
+  const handleToggleClubDropdown = (e) => {
+    e.stopPropagation();
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+
+    if (isClubDropdownOpen) {
+      // If currently open, user explicitly clicked to close it
+      setIsClubDropdownOpen(false);
+      isLockedClosedRef.current = true;
+    } else {
+      // If currently closed, user explicitly clicked to open it
+      isLockedClosedRef.current = false;
+      setIsClubDropdownOpen(true);
+    }
   };
 
   const handleNavClick = useCallback(() => {
-    // Immediately close both desktop dropdown and mobile menu
-    isHoverLockedRef.current = true;
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    // Immediately close dropdown & mobile drawer and lock hover until mouse leaves
+    isLockedClosedRef.current = true;
     setIsClubDropdownOpen(false);
     setIsMenuOpen(false);
 
@@ -79,12 +113,12 @@ function Header() {
   const activeLink = activeNav.name;
 
   // Auto-close drawers when navigating between different routes
+  // (Do NOT unlock hover here so that a freshly clicked link doesn't reopen under the cursor)
   useEffect(() => {
     if (prevPathRef.current !== location.pathname) {
       prevPathRef.current = location.pathname;
       setIsMenuOpen(false);
       setIsClubDropdownOpen(false);
-      isHoverLockedRef.current = false;
     }
   }, [location.pathname]);
 
@@ -103,13 +137,26 @@ function Header() {
         clubDropdownRef.current &&
         !clubDropdownRef.current.contains(event.target)
       ) {
+        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
         setIsClubDropdownOpen(false);
-        isHoverLockedRef.current = false;
+        isLockedClosedRef.current = false;
       }
     };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+        setIsClubDropdownOpen(false);
+        isLockedClosedRef.current = false;
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     };
   }, []);
 
@@ -181,10 +228,7 @@ function Header() {
           >
             <button
               ref={(el) => (navItemRefs.current[4] = el)}
-              onClick={() => {
-                isHoverLockedRef.current = false;
-                setIsClubDropdownOpen((prev) => !prev);
-              }}
+              onClick={handleToggleClubDropdown}
               className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group flex items-center gap-1.5 transition-all duration-300 ${
                 activeIndex === 4
                   ? "text-primary opacity-100"
@@ -211,6 +255,9 @@ function Header() {
                   transition={{ duration: 0.2, ease: "easeOut" }}
                   className="absolute top-[calc(100%+0.5rem)] left-1/2 -translate-x-1/2 z-[200] w-[320px]"
                 >
+                  {/* Invisible hover bridge to prevent dead-zone hover leaves when crossing the 8px gap */}
+                  <div className="absolute -top-3 left-0 right-0 h-3" aria-hidden="true" />
+
                   <div className="bg-card/95 backdrop-blur-3xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] rounded-2xl border border-primary/20 overflow-hidden p-2 grid grid-cols-1 gap-1">
                     {clubLinks.map((link) => (
                       <Link
