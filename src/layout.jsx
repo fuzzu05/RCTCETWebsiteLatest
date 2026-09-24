@@ -9,7 +9,7 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col relative selection:bg-primary/20 bg-background">
       {/* Pure CSS Ambient Mesh Background & Noise Overlay */}
       <MeshBackground />
-      <div className="relative z-20">
+      <div className="sticky top-0 z-[100] pt-3 md:pt-4 px-3 sm:px-4 pointer-events-none">
         <Header />
       </div>
       <main className="flex-grow relative z-10">

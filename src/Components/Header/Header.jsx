@@ -126,7 +126,7 @@ function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -176,10 +176,11 @@ function Header() {
 
   return (
     <header
-      className={`sticky z-[100] transition-all duration-500 ease-in-out ${isScrolled
-        ? "top-4 mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] rounded-full shadow-2xl py-2 px-6 md:px-8 lg:px-10 bg-card/90 backdrop-blur-2xl border border-primary/30"
-        : "top-0 mx-auto w-full rounded-none shadow-md py-4 px-6 md:px-8 lg:px-10 bg-card/98 backdrop-blur-md border-b border-primary/20"
-        }`}
+      className={`pointer-events-auto mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] max-w-7xl rounded-full border border-primary/25 shadow-xl bg-card/90 backdrop-blur-2xl transition-all duration-300 ease-in-out ${
+        isScrolled
+          ? "py-2 px-5 md:px-8 shadow-2xl bg-card/95 border-primary/35"
+          : "py-2.5 px-6 md:px-8 lg:px-10"
+      }`}
     >
       <div className="max-w-screen-xl mx-auto flex justify-between items-center relative">
         
@@ -189,8 +190,8 @@ function Header() {
             <img
               src="https://res.cloudinary.com/dtc2xaeaf/image/upload/v1757125056/logo_pdqctw_ztwsvl.png"
               alt="Rotaract Club of TCET Logo"
-              className={`transition-all duration-500 ease-in-out drop-shadow-md group-hover:rotate-12 ${
-                isScrolled ? "h-9 w-9" : "h-11 w-11"
+              className={`transition-all duration-300 ease-in-out drop-shadow-md group-hover:rotate-12 ${
+                isScrolled ? "h-9 w-9" : "h-10 w-10"
               }`}
             />
           </Link>
