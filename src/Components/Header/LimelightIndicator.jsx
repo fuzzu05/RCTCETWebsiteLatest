@@ -6,8 +6,15 @@ import { useState, useRef, useLayoutEffect, useEffect, useCallback } from "react
  * Renders a glowing horizontal light bar with a tapered spotlight cone
  * and soft ambient aura that dynamically centers over the active navigation item in the Header.
  * Automatically synchronizes with the active route and adapts to theme changes.
+ *
+ * Isolation: Strictly runs only on desktop viewports (>= 1024px) where the desktop navbar is visible.
+ * Completely dormant on mobile viewports to prevent layout measurement loops, re-renders, and interference.
  */
 const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : true
+  );
+
   const [indicatorState, setIndicatorState] = useState({
     left: 0,
     width: 0,
@@ -17,6 +24,17 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
   });
 
   const isFirstRender = useRef(true);
+
+  // Synchronize desktop detection on window resize
+  useEffect(() => {
+    const handleWindowResize = () => {
+      const desktop = window.innerWidth >= 1024;
+      setIsDesktop(desktop);
+    };
+
+    window.addEventListener("resize", handleWindowResize, { passive: true });
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
 
   const calculateGeometry = useCallback(
     (index) => {
@@ -32,10 +50,19 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       const activeItem = navItemRefs.current[index];
       const container = containerRef.current;
 
+      // Abort immediately if container or item is not visible (e.g. display: none on mobile)
+      if (container.offsetWidth === 0 || container.offsetHeight === 0) {
+        return null;
+      }
+
       const containerRect = container.getBoundingClientRect();
       const itemRect = activeItem.getBoundingClientRect();
 
-      // Perfectly centered over the active item (0 offset)
+      if (itemRect.width === 0 || itemRect.height === 0) {
+        return null;
+      }
+
+      // Center over the active item relative to container
       const left = itemRect.left - containerRect.left;
       const width = itemRect.width;
       const height = itemRect.height;
@@ -47,8 +74,8 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
 
   const applyPosition = useCallback(
     (smooth = true) => {
-      if (activeIndex === -1) {
-        setIndicatorState((prev) => ({ ...prev, opacity: 0 }));
+      if (!isDesktop || activeIndex === -1) {
+        setIndicatorState((prev) => (prev.opacity === 0 ? prev : { ...prev, opacity: 0 }));
         return true;
       }
 
@@ -66,11 +93,13 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       }));
       return true;
     },
-    [activeIndex, calculateGeometry]
+    [isDesktop, activeIndex, calculateGeometry]
   );
 
-  // Measure on layout effect and handle first render with animation frame retries
+  // Measure on layout effect when desktop
   useLayoutEffect(() => {
+    if (!isDesktop) return;
+
     let cancelled = false;
 
     const attemptPosition = (retryCount = 0) => {
@@ -95,10 +124,12 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
     return () => {
       cancelled = true;
     };
-  }, [activeIndex, applyPosition]);
+  }, [isDesktop, activeIndex, applyPosition]);
 
-  // Recalculate on window resize, observer resize, font loads, and layout stabilization
+  // Recalculate on window resize, observer resize, font loads, and layout stabilization (Desktop only)
   useEffect(() => {
+    if (!isDesktop) return;
+
     const handleReposition = () => {
       applyPosition(true);
     };
@@ -129,12 +160,17 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
       clearTimeout(t1);
       clearTimeout(t2);
     };
-  }, [applyPosition, containerRef]);
+  }, [isDesktop, applyPosition, containerRef]);
 
   // Check user OS preference for reduced motion
   const prefersReducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // On mobile screens, Limelight is completely dormant and renders nothing
+  if (!isDesktop) {
+    return null;
+  }
 
   const transitionStyle = prefersReducedMotion
     ? "opacity 200ms ease"

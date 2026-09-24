@@ -234,7 +234,7 @@ function Header() {
           <button
             ref={menuTriggerRef}
             onClick={handleOpenMenu}
-            className="p-2 bg-primary/10 text-primary rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary hover:bg-primary/20 transition-all duration-300"
+            className="p-2 bg-primary/10 text-primary rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary hover:bg-primary/20 active:scale-95 transition-all duration-200 cursor-pointer touch-manipulation"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu-portal"
             aria-label="Open navigation menu"
