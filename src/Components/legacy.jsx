@@ -66,7 +66,7 @@ function FounderCard() {
 
 function Card({ title, image, description, url }) {
   return (
-    <div className="relative w-full rounded-[2rem] shadow-lg overflow-hidden group h-full min-h-[350px]">
+    <div className="relative w-full rounded-[2rem] shadow-lg overflow-hidden group h-full min-h-[400px] md:min-h-[420px]">
       {/* Rotary/District card image: shimmer skeleton until loaded to avoid blank grey box on scroll */}
       <ShimmerImage
         src={image}
@@ -74,29 +74,35 @@ function Card({ title, image, description, url }) {
         className="absolute inset-0 w-full h-full object-cover object-[center_10%] transform group-hover:scale-105 transition-all duration-1000"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none" />
       <div className="absolute inset-0 backdrop-blur-none group-hover:backdrop-blur-md bg-black/0 group-hover:bg-black/30 transition-all duration-700 ease-in-out pointer-events-none" />
 
-      <div className="absolute inset-0 flex flex-col p-6 md:p-10 z-10 pointer-events-none">
+      <div className="absolute inset-0 flex flex-col p-6 sm:p-7 md:p-8 z-10 pointer-events-none">
         <div className="mt-auto pointer-events-auto">
-          <h2 className="font-black text-3xl md:text-4xl text-white mb-0 group-hover:mb-4 drop-shadow-md transform transition-all duration-500 ease-out">{title}</h2>
+          <h2 className="font-black text-2xl sm:text-3xl md:text-4xl text-white mb-2 group-hover:mb-3 drop-shadow-md transform transition-all duration-500 ease-out">
+            {title}
+          </h2>
 
           <div className="grid transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100">
             <div className="overflow-hidden">
-              <p className="text-sm md:text-base text-gray-200 leading-relaxed pr-8">
+              <p className="text-sm md:text-[15px] text-gray-200 leading-relaxed pr-4 md:pr-6">
                 {description}
               </p>
 
               {url && (
-                <a
-                  href={url}
-                  className="mt-6 inline-flex items-center gap-2 w-max px-6 py-2.5 bg-primary/90 backdrop-blur-md text-white text-sm font-bold rounded-full hover:bg-primary transition-colors duration-300 shadow-lg shadow-primary/30"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Discover More
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
+                <div className="pt-4 pb-1">
+                  <a
+                    href={url}
+                    className="inline-flex items-center gap-2 w-max px-6 py-2.5 bg-primary/95 text-white text-sm font-bold rounded-full hover:bg-primary active:scale-95 transition-all duration-300 shadow-lg shadow-primary/30"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Discover More
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
+                </div>
               )}
             </div>
           </div>
