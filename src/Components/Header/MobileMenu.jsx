@@ -169,8 +169,8 @@ export default function MobileMenu({
                     to={link.to}
                     onClick={handleLinkClick}
                     className={`group flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-200 active:bg-primary/10 cursor-pointer touch-manipulation ${isActive
-                        ? "text-primary font-black"
-                        : "text-foreground font-bold hover:text-primary"
+                      ? "text-primary font-black"
+                      : "text-foreground font-bold hover:text-primary"
                       }`}
                   >
                     <span className="text-xl tracking-tight transition-transform duration-200 ease-out group-hover:translate-x-1.5">
@@ -178,8 +178,8 @@ export default function MobileMenu({
                     </span>
                     <ArrowRight
                       className={`w-5 h-5 text-primary transition-all duration-200 ${isActive
-                          ? "opacity-100 translate-x-0"
-                          : "opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                        ? "opacity-100 translate-x-0"
+                        : "opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
                         }`}
                       aria-hidden="true"
                     />
@@ -207,8 +207,8 @@ export default function MobileMenu({
                 type="button"
                 onClick={() => setIsClubDropdownOpen((prev) => !prev)}
                 className={`group w-full flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-200 active:bg-primary/10 cursor-pointer touch-manipulation ${activeLink === "Club hub" || isClubDropdownOpen
-                    ? "text-primary font-black"
-                    : "text-foreground font-bold hover:text-primary"
+                  ? "text-primary font-black"
+                  : "text-foreground font-bold hover:text-primary"
                   }`}
                 aria-expanded={isClubDropdownOpen}
                 aria-label="Toggle Club Hub submenu"
@@ -225,8 +225,8 @@ export default function MobileMenu({
               {/* Submenu Grid Accordion */}
               <div
                 className={`grid transition-[grid-template-rows,opacity,margin] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${isClubDropdownOpen
-                    ? "grid-rows-[1fr] opacity-100 mt-1 mb-2"
-                    : "grid-rows-[0fr] opacity-0 m-0"
+                  ? "grid-rows-[1fr] opacity-100 mt-1 mb-2"
+                  : "grid-rows-[0fr] opacity-0 m-0"
                   }`}
               >
                 <div className="overflow-hidden">
