@@ -9,9 +9,11 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col relative selection:bg-primary/20 bg-background">
       {/* Pure CSS Ambient Mesh Background & Noise Overlay */}
       <MeshBackground />
-      <div className="relative z-20">
+      <div className="fixed top-0 inset-x-0 z-[100] w-full flex justify-center pointer-events-none">
         <Header />
       </div>
+      {/* Flow spacer to prevent layout shift and content overlap */}
+      <div className="h-[72px] md:h-[76px] w-full pointer-events-none shrink-0" aria-hidden="true" />
       <main className="flex-grow relative z-10">
         <Outlet />
       </main>

@@ -17,9 +17,69 @@ function Header() {
   const navItemRefs = useRef([]);
   const navRef = useRef(null);
   const menuTriggerRef = useRef(null);
+  const isLockedClosedRef = useRef(false);
+  const closeTimeoutRef = useRef(null);
 
   const handleCloseMenu = useCallback(() => setIsMenuOpen(false), []);
   const handleOpenMenu = useCallback(() => setIsMenuOpen(true), []);
+
+  const handleMouseEnterDropdown = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    // If locked closed by a user click, do not reopen until mouse has left
+    if (isLockedClosedRef.current) return;
+    setIsClubDropdownOpen(true);
+  };
+
+  const handleMouseLeaveDropdown = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    // Small grace period ensuring smooth mouse movement, then resets lock
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsClubDropdownOpen(false);
+      isLockedClosedRef.current = false;
+    }, 120);
+  };
+
+  const handleToggleClubDropdown = (e) => {
+    e.stopPropagation();
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+
+    if (isClubDropdownOpen) {
+      // If currently open, user explicitly clicked to close it
+      setIsClubDropdownOpen(false);
+      isLockedClosedRef.current = true;
+    } else {
+      // If currently closed, user explicitly clicked to open it
+      isLockedClosedRef.current = false;
+      setIsClubDropdownOpen(true);
+    }
+  };
+
+  const handleNavClick = useCallback(() => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    // Immediately close dropdown & mobile drawer and lock hover until mouse leaves
+    isLockedClosedRef.current = true;
+    setIsClubDropdownOpen(false);
+    setIsMenuOpen(false);
+
+    // Force instant scroll to top (handles same-page re-clicks as well)
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true });
+    }
+  }, []);
 
   // Single, synchronous routing source of truth
   const getActiveNav = (rawPath) => {
@@ -53,6 +113,7 @@ function Header() {
   const activeLink = activeNav.name;
 
   // Auto-close drawers when navigating between different routes
+  // (Do NOT unlock hover here so that a freshly clicked link doesn't reopen under the cursor)
   useEffect(() => {
     if (prevPathRef.current !== location.pathname) {
       prevPathRef.current = location.pathname;
@@ -63,11 +124,26 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScroll =
+        window.scrollY ||
+        window.pageYOffset ||
+        (window.__lenis ? window.__lenis.scroll : 0) ||
+        0;
+      setIsScrolled(currentScroll > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    let unbindLenis;
+    if (window.__lenis) {
+      unbindLenis = window.__lenis.on("scroll", handleScroll);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (typeof unbindLenis === "function") unbindLenis();
+    };
   }, []);
 
   useEffect(() => {
@@ -76,12 +152,26 @@ function Header() {
         clubDropdownRef.current &&
         !clubDropdownRef.current.contains(event.target)
       ) {
+        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
         setIsClubDropdownOpen(false);
+        isLockedClosedRef.current = false;
       }
     };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+        setIsClubDropdownOpen(false);
+        isLockedClosedRef.current = false;
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     };
   }, []);
 
@@ -101,20 +191,21 @@ function Header() {
 
   return (
     <header
-      className={`sticky z-[100] transition-all duration-500 ease-in-out ${isScrolled
-        ? "top-4 mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] rounded-full shadow-2xl py-2 px-6 md:px-8 lg:px-10 bg-card/90 backdrop-blur-2xl border border-primary/30"
-        : "top-0 mx-auto w-full rounded-none shadow-md py-4 px-6 md:px-8 lg:px-10 bg-card/98 backdrop-blur-md border-b border-primary/20"
-        }`}
+      className={`pointer-events-auto transition-all duration-300 ease-in-out ${
+        isScrolled
+          ? "mt-3 md:mt-4 mx-auto w-[95vw] lg:w-[90vw] xl:w-[85vw] max-w-7xl rounded-full py-2 px-5 md:px-8 nav-glass-scrolled"
+          : "mt-0 mx-auto w-full max-w-full rounded-none py-3.5 px-6 md:px-8 lg:px-12 nav-glass-top"
+      }`}
     >
       <div className="max-w-screen-xl mx-auto flex justify-between items-center relative">
         
         {/* Logo */}
         <div className="flex-1 flex justify-start">
-          <Link to="/" className="flex items-center group">
+          <Link to="/" onClick={handleNavClick} className="flex items-center group">
             <img
               src="https://res.cloudinary.com/dtc2xaeaf/image/upload/v1757125056/logo_pdqctw_ztwsvl.png"
               alt="Rotaract Club of TCET Logo"
-              className={`transition-all duration-500 ease-in-out drop-shadow-md group-hover:rotate-12 ${
+              className={`transition-all duration-300 ease-in-out drop-shadow-md group-hover:rotate-12 ${
                 isScrolled ? "h-9 w-9" : "h-11 w-11"
               }`}
             />
@@ -131,10 +222,11 @@ function Header() {
               key={link.name}
               ref={(el) => (navItemRefs.current[index] = el)}
               to={link.to}
+              onClick={handleNavClick}
               className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group transition-all duration-300 ${
                 activeIndex === index
                   ? "text-primary opacity-100"
-                  : "text-foreground opacity-75 hover:opacity-100 hover:text-primary"
+                  : "text-foreground opacity-90 hover:opacity-100 hover:text-primary"
               }`}
             >
               <span className="relative z-20 transition-colors duration-300">
@@ -147,16 +239,16 @@ function Header() {
           <div
             className="relative flex items-center h-full"
             ref={clubDropdownRef}
-            onMouseEnter={() => setIsClubDropdownOpen(true)}
-            onMouseLeave={() => setIsClubDropdownOpen(false)}
+            onMouseEnter={handleMouseEnterDropdown}
+            onMouseLeave={handleMouseLeaveDropdown}
           >
             <button
               ref={(el) => (navItemRefs.current[4] = el)}
-              onClick={() => setIsClubDropdownOpen(!isClubDropdownOpen)}
+              onClick={handleToggleClubDropdown}
               className={`relative px-3 py-2 rounded-full text-base font-bold tracking-wide group flex items-center gap-1.5 transition-all duration-300 ${
                 activeIndex === 4
                   ? "text-primary opacity-100"
-                  : "text-foreground opacity-75 hover:opacity-100 hover:text-primary"
+                  : "text-foreground opacity-90 hover:opacity-100 hover:text-primary"
               }`}
             >
               <span className="relative z-20 flex items-center gap-1.5 transition-colors duration-300">
@@ -179,12 +271,15 @@ function Header() {
                   transition={{ duration: 0.2, ease: "easeOut" }}
                   className="absolute top-[calc(100%+0.5rem)] left-1/2 -translate-x-1/2 z-[200] w-[320px]"
                 >
+                  {/* Invisible hover bridge to prevent dead-zone hover leaves when crossing the 8px gap */}
+                  <div className="absolute -top-3 left-0 right-0 h-3" aria-hidden="true" />
+
                   <div className="bg-card/95 backdrop-blur-3xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] rounded-2xl border border-primary/20 overflow-hidden p-2 grid grid-cols-1 gap-1">
                     {clubLinks.map((link) => (
                       <Link
                         key={link.name}
                         to={link.to}
-                        onClick={() => setIsClubDropdownOpen(false)}
+                        onClick={handleNavClick}
                         className="group/item flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors"
                       >
                         {/* Icons removed as per user request */}
@@ -209,6 +304,7 @@ function Header() {
             activeIndex={activeIndex}
             navItemRefs={navItemRefs}
             containerRef={navRef}
+            isScrolled={isScrolled}
           />
         </nav>
 
@@ -216,6 +312,7 @@ function Header() {
         <div className="hidden lg:flex flex-1 justify-end space-x-3 items-center">
           <Link
             to="/join"
+            onClick={handleNavClick}
             className="btn-rotaract relative group bg-gradient-to-br from-primary via-secondary to-accent text-white font-semibold py-2 px-5 rounded-full shadow-[0_0_15px_rgba(234,88,12,0.35)] hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap overflow-hidden"
           >
             <span className="relative z-10 text-sm tracking-wide">Become a member</span>
@@ -234,7 +331,7 @@ function Header() {
           <button
             ref={menuTriggerRef}
             onClick={handleOpenMenu}
-            className="p-2 bg-primary/10 text-primary rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary hover:bg-primary/20 transition-all duration-300"
+            className="p-2 bg-primary/10 text-primary rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary hover:bg-primary/20 active:scale-95 transition-all duration-200 cursor-pointer touch-manipulation"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu-portal"
             aria-label="Open navigation menu"
