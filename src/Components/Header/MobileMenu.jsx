@@ -96,7 +96,7 @@ export default function MobileMenu({
   const handleLinkClick = (e, to) => {
     e.preventDefault();
     if (isNavigatingRef.current) return;
-    
+
     isNavigatingRef.current = true;
     onClose();
     navigate(to);
@@ -258,21 +258,19 @@ export default function MobileMenu({
                       <a
                         href={link.to}
                         onClick={(e) => handleLinkClick(e, link.to)}
-                        className={`group flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-300 ${
-                          isActive
+                        className={`group flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-300 ${isActive
                             ? "text-primary font-black"
                             : "text-foreground font-bold hover:text-primary"
-                        }`}
+                          }`}
                       >
                         <span className="text-xl tracking-tight transition-transform duration-300 ease-out group-hover:translate-x-1.5">
                           {link.name}
                         </span>
                         <ArrowRight
-                          className={`w-5 h-5 text-primary transition-all duration-300 ${
-                            isActive
+                          className={`w-5 h-5 text-primary transition-all duration-300 ${isActive
                               ? "opacity-100 translate-x-0"
                               : "opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
-                          }`}
+                            }`}
                           aria-hidden="true"
                         />
                       </a>
@@ -288,11 +286,10 @@ export default function MobileMenu({
                   <button
                     type="button"
                     onClick={() => setIsClubDropdownOpen(!isClubDropdownOpen)}
-                    className={`group w-full flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-300 ${
-                      activeLink === "Club hub" || isClubDropdownOpen
+                    className={`group w-full flex items-center justify-between py-3.5 px-2 rounded-xl transition-all duration-300 ${activeLink === "Club hub" || isClubDropdownOpen
                         ? "text-primary font-black"
                         : "text-foreground font-bold hover:text-primary"
-                    }`}
+                      }`}
                     aria-expanded={isClubDropdownOpen}
                     aria-label="Toggle Club Hub submenu"
                   >
@@ -300,9 +297,8 @@ export default function MobileMenu({
                       Club Hub
                     </span>
                     <ChevronDown
-                      className={`w-5 h-5 text-primary transition-transform duration-300 ${
-                        isClubDropdownOpen ? "rotate-180" : ""
-                      }`}
+                      className={`w-5 h-5 text-primary transition-transform duration-300 ${isClubDropdownOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
 

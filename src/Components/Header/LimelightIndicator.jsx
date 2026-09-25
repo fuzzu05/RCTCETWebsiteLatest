@@ -116,7 +116,7 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
     if (document.fonts) {
       document.fonts.ready.then(() => {
         if (isMounted) handleReposition();
-      }).catch(() => {});
+      }).catch(() => { });
     }
 
     const t1 = setTimeout(handleReposition, 100);
@@ -139,8 +139,8 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
   const transitionStyle = prefersReducedMotion
     ? "opacity 200ms ease"
     : indicatorState.isReady
-    ? "left 400ms cubic-bezier(0.22, 1, 0.36, 1), width 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease"
-    : "opacity 200ms ease";
+      ? "left 400ms cubic-bezier(0.22, 1, 0.36, 1), width 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease"
+      : "opacity 200ms ease";
 
   const lampRatio = 0.55; // Lamp bar is 55% of the active item width
   const lampLeftPct = ((1 - lampRatio) / 2) * 100; // 22.5%
@@ -148,9 +148,8 @@ const LimelightIndicator = ({ activeIndex, navItemRefs, containerRef }) => {
 
   return (
     <div
-      className={`absolute -top-1 pointer-events-none transition-opacity !m-0 ${
-        indicatorState.opacity === 1 ? "opacity-100" : "opacity-0"
-      }`}
+      className={`absolute -top-1 pointer-events-none transition-opacity !m-0 ${indicatorState.opacity === 1 ? "opacity-100" : "opacity-0"
+        }`}
       style={{
         left: `${indicatorState.left}px`,
         width: `${indicatorState.width}px`,
